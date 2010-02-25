@@ -1,7 +1,7 @@
 # xcode noise
 src/build/*
-*.xcodeproj/
-!*.xcodeproj/project.pbxproj
+src/Ile sans fil.xcodeproj/*
+!src/Ile sans fil.xcodeproj/project.pbxproj
 
 # old skool
 .svn
