@@ -30,7 +30,6 @@
 		4F260BDB108CB6D300737FAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F260BD9108CB6D300737FAC /* Localizable.strings */; };
 		4F260C60108CEA0100737FAC /* btn_isf_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C59108CEA0100737FAC /* btn_isf_en.png */; };
 		4F260C61108CEA0100737FAC /* btn_isf_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C5A108CEA0100737FAC /* btn_isf_fr.png */; };
-		4F260C62108CEA0100737FAC /* btn_kolt_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C5B108CEA0100737FAC /* btn_kolt_en.png */; };
 		4F260C63108CEA0100737FAC /* infos_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C5C108CEA0100737FAC /* infos_en.png */; };
 		4F260C64108CEA0100737FAC /* infos_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C5D108CEA0100737FAC /* infos_fr.png */; };
 		4F260C65108CEA0100737FAC /* isf_infos_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C5E108CEA0100737FAC /* isf_infos_fr.png */; };
@@ -39,7 +38,6 @@
 		4F260C94108CF6AE00737FAC /* btn_isf_infos_back_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C92108CF6AE00737FAC /* btn_isf_infos_back_fr.png */; };
 		4F260CD7108D015400737FAC /* ConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F260CD6108D015400737FAC /* ConnectionViewController.m */; };
 		4F260CD9108D019600737FAC /* ConnectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F260CD8108D019600737FAC /* ConnectionViewController.xib */; };
-		4F260DAE108D465700737FAC /* btn_kolt_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260DAC108D465700737FAC /* btn_kolt_fr.png */; };
 		4F260DAF108D465700737FAC /* isf_infos_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260DAD108D465700737FAC /* isf_infos_en.png */; };
 		4F625A58108586C7003E7AC8 /* tab-rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F625A57108586C7003E7AC8 /* tab-rss.png */; };
 		4F87B08D107C2B4D0066F042 /* tab-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F87B08A107C2B4D0066F042 /* tab-info.png */; };
@@ -100,7 +98,6 @@
 		4F260BDC108CB6E600737FAC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		4F260C59108CEA0100737FAC /* btn_isf_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_isf_en.png; sourceTree = "<group>"; };
 		4F260C5A108CEA0100737FAC /* btn_isf_fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_isf_fr.png; sourceTree = "<group>"; };
-		4F260C5B108CEA0100737FAC /* btn_kolt_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_kolt_en.png; sourceTree = "<group>"; };
 		4F260C5C108CEA0100737FAC /* infos_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infos_en.png; sourceTree = "<group>"; };
 		4F260C5D108CEA0100737FAC /* infos_fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infos_fr.png; sourceTree = "<group>"; };
 		4F260C5E108CEA0100737FAC /* isf_infos_fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isf_infos_fr.png; sourceTree = "<group>"; };
@@ -110,7 +107,6 @@
 		4F260CD5108D015400737FAC /* ConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionViewController.h; sourceTree = "<group>"; };
 		4F260CD6108D015400737FAC /* ConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionViewController.m; sourceTree = "<group>"; };
 		4F260CD8108D019600737FAC /* ConnectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectionViewController.xib; sourceTree = "<group>"; };
-		4F260DAC108D465700737FAC /* btn_kolt_fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_kolt_fr.png; sourceTree = "<group>"; };
 		4F260DAD108D465700737FAC /* isf_infos_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isf_infos_en.png; sourceTree = "<group>"; };
 		4F625A57108586C7003E7AC8 /* tab-rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-rss.png"; sourceTree = "<group>"; };
 		4F87B08A107C2B4D0066F042 /* tab-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-info.png"; sourceTree = "<group>"; };
@@ -273,13 +269,11 @@
 			children = (
 				4F98412710937CDA0029FB1B /* btn-back-map-en.png */,
 				4F98412810937CDA0029FB1B /* btn-back-map-fr.png */,
-				4F260DAC108D465700737FAC /* btn_kolt_fr.png */,
 				4F260DAD108D465700737FAC /* isf_infos_en.png */,
 				4F260C91108CF6AE00737FAC /* btn_isf_infos_back_en.png */,
 				4F260C92108CF6AE00737FAC /* btn_isf_infos_back_fr.png */,
 				4F260C59108CEA0100737FAC /* btn_isf_en.png */,
 				4F260C5A108CEA0100737FAC /* btn_isf_fr.png */,
-				4F260C5B108CEA0100737FAC /* btn_kolt_en.png */,
 				4F260C5C108CEA0100737FAC /* infos_en.png */,
 				4F260C5D108CEA0100737FAC /* infos_fr.png */,
 				4F260C5E108CEA0100737FAC /* isf_infos_fr.png */,
@@ -380,7 +374,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ile sans fil" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "isf" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -428,7 +422,6 @@
 				4F260BDB108CB6D300737FAC /* Localizable.strings in Resources */,
 				4F260C60108CEA0100737FAC /* btn_isf_en.png in Resources */,
 				4F260C61108CEA0100737FAC /* btn_isf_fr.png in Resources */,
-				4F260C62108CEA0100737FAC /* btn_kolt_en.png in Resources */,
 				4F260C63108CEA0100737FAC /* infos_en.png in Resources */,
 				4F260C64108CEA0100737FAC /* infos_fr.png in Resources */,
 				4F260C65108CEA0100737FAC /* isf_infos_fr.png in Resources */,
@@ -436,7 +429,6 @@
 				4F260C93108CF6AE00737FAC /* btn_isf_infos_back_en.png in Resources */,
 				4F260C94108CF6AE00737FAC /* btn_isf_infos_back_fr.png in Resources */,
 				4F260CD9108D019600737FAC /* ConnectionViewController.xib in Resources */,
-				4F260DAE108D465700737FAC /* btn_kolt_fr.png in Resources */,
 				4F260DAF108D465700737FAC /* isf_infos_en.png in Resources */,
 				4F98412910937CDA0029FB1B /* btn-back-map-en.png in Resources */,
 				4F98412A10937CDA0029FB1B /* btn-back-map-fr.png in Resources */,
@@ -605,7 +597,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ile sans fil" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "isf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

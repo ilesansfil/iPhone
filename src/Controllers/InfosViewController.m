@@ -9,7 +9,6 @@
 #import "InfosViewController.h"
 
 
-#define kActionSheetVisitKoltProduction	1
 #define kActionSheetVisitIleSansFil			2
 #define kActionSheetCallIleSansFil			3
 #define kActionSheetEmailIleSansFil			4
@@ -21,7 +20,6 @@
 	[super viewDidLoad];
 	[infosImage setImage:[UIImage imageNamed:NSLocalizedString(@"infosImage", @"")]];
 	[ISFButton setImage:[UIImage imageNamed:NSLocalizedString(@"isfButton", @"")] forState:UIControlStateNormal];
-	[koltButton setImage:[UIImage imageNamed:NSLocalizedString(@"koltButton", @"")] forState:UIControlStateNormal];
 
 	[ISFInfosImage setImage:[UIImage imageNamed:NSLocalizedString(@"isfInfosImage", @"")]];
 	[backButton setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
@@ -110,29 +108,11 @@
 	[actionSheet release];
 }
 
-- (IBAction)visitKoltProduction {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Visit the Kolt Production website?", @"")
-																				delegate:self 
-																	cancelButtonTitle:NSLocalizedString(@"No", @"") 
-															 destructiveButtonTitle:nil 
-																	otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
-	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-	actionSheet.tag = kActionSheetVisitKoltProduction;
-	[actionSheet showInView:self.tabBarController.view];
-	[actionSheet release];
-}
-
-
 #pragma mark -
 #pragma mark Action Sheet
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	switch (actionSheet.tag) {
-		case kActionSheetVisitKoltProduction:
-			if (buttonIndex == 0) {
-				[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.koltproduction.com"]];
-			}
-			break;
 		case kActionSheetVisitIleSansFil:
 			if (buttonIndex == 0) {
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.ilesansfil.org"]];
