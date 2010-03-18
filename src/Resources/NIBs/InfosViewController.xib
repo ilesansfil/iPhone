@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="18"/>
 			<integer value="1"/>
+			<integer value="18"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -481,11 +481,9 @@
 							<string>emailIleSansFil</string>
 							<string>flipViews</string>
 							<string>visitIleSansFil</string>
-							<string>visitKoltProduction</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -501,7 +499,6 @@
 							<string>ISFView</string>
 							<string>backButton</string>
 							<string>infosImage</string>
-							<string>koltButton</string>
 							<string>mainView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -511,7 +508,6 @@
 							<string>UIView</string>
 							<string>UIButton</string>
 							<string>UIImageView</string>
-							<string>UIButton</string>
 							<string>UIView</string>
 						</object>
 					</object>
