@@ -523,11 +523,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ze Agence Inc";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
 				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
 				PRODUCT_NAME = "Ile sans fil";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7FDFDE9-4436-4768-B5EE-1C0F4D2DA6A9";
 			};
 			name = appstore;
 		};
@@ -550,13 +552,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Boucher (K5DBZBB8X2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
 				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
 				PRODUCT_NAME = "Ile sans fil";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "89C7837C-2135-4317-A26E-38C99A270F86";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = "Ad Hoc";
 		};
