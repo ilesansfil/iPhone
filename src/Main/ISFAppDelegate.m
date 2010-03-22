@@ -8,6 +8,7 @@
 
 #import "ISFAppDelegate.h"
 #import "RootViewController.h"
+#import "FlurryAPI.h"
 
 
 @implementation ISFAppDelegate
@@ -19,8 +20,16 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
+
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAPI logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+	NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [FlurryAPI startSessionWithLocationServices:@"ZFKIWCLDGIHM4Z5Q1B2E"];
+	
     // Override point for customization after app launch    
 	
 	[window addSubview:[tabBarController view]];
