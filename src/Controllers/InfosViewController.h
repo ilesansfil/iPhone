@@ -13,7 +13,6 @@
 	IBOutlet UIView			*mainView;
 	IBOutlet UIImageView		*infosImage;
 	IBOutlet UIButton			*ISFButton;
-	IBOutlet UIButton			*koltButton;
 	
 	IBOutlet UIView			*ISFView;
 	IBOutlet UIImageView		*ISFInfosImage;
@@ -26,6 +25,5 @@
 - (IBAction)visitIleSansFil;
 - (IBAction)callIleSansFil;
 - (IBAction)emailIleSansFil;
-- (IBAction)visitKoltProduction;
 
 @end
