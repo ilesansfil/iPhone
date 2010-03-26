@@ -64,6 +64,7 @@
 		4FECC38F107993F300CD8D96 /* pin-unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FECC38C107993F300CD8D96 /* pin-unknown.png */; };
 		4FECC390107993F300CD8D96 /* pin-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FECC38D107993F300CD8D96 /* pin-up.png */; };
 		4FF1E88D107E3BAC0033B9E5 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF1E88C107E3BAC0033B9E5 /* dist.plist */; };
+		BADBD83C1157C26F00757A9E /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,8 @@
 		4FECC38D107993F300CD8D96 /* pin-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-up.png"; sourceTree = "<group>"; };
 		4FF1E88C107E3BAC0033B9E5 /* dist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dist.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Ile_sans_fil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Ile_sans_fil-Info.plist"; path = "../Ile_sans_fil-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BADBD83A1157C26F00757A9E /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAPI.h; path = Librairies/FlurryAPI.h; sourceTree = "<group>"; };
+		BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryWithLocation.a; path = Librairies/libFlurryWithLocation.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,7 @@
 				4F091EFF1077C8DB00794F0E /* MapKit.framework in Frameworks */,
 				4F091F0F1077CA6600794F0E /* SystemConfiguration.framework in Frameworks */,
 				4F195A9310786DB200F2B4A0 /* CoreData.framework in Frameworks */,
+				BADBD83C1157C26F00757A9E /* libFlurryWithLocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +182,7 @@
 				4F091E431077BDA900794F0E /* Views */,
 				4F091E361077BDA900794F0E /* Controllers */,
 				4F091E391077BDA900794F0E /* Main */,
+				BADBD83D1157C27600757A9E /* Libraries */,
 				4F091E3E1077BDA900794F0E /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -349,6 +354,15 @@
 			name = News;
 			sourceTree = "<group>";
 		};
+		BADBD83D1157C27600757A9E /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				BADBD83A1157C26F00757A9E /* FlurryAPI.h */,
+				BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -488,6 +502,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
 				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Librairies\"",
+				);
 				PRODUCT_NAME = "Ile sans fil";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "89C7837C-2135-4317-A26E-38C99A270F86";
 			};
@@ -501,6 +519,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
 				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Librairies\"",
+				);
 				PRODUCT_NAME = "Ile sans fil";
 			};
 			name = Release;
@@ -528,6 +550,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
 				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Librairies\"",
+				);
 				PRODUCT_NAME = "Ile sans fil";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7FDFDE9-4436-4768-B5EE-1C0F4D2DA6A9";
 			};
@@ -557,6 +583,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
 				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Librairies\"",
+				);
 				PRODUCT_NAME = "Ile sans fil";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
