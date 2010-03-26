@@ -1,0 +1,46 @@
+/* 
+   Localizable.strings
+   Ile sans fil
+
+   Created by Oli Kenobi on 09-10-19.
+   Copyright 2009 Kenobi Studios. All rights reserved.
+ */
+ 
+"Map" = "Map";
+"News" = "News";
+"Informations" = "Informations";
+
+// Connection View
+"Cannot connect to the Internet" = "Cannot connect to the Internet";
+"You must connect to a Wi-Fi or cellular data network to use this application." = "You must connect to a Wi-Fi or cellular data network to use this application.";
+
+
+"Loading..." = "Loading...";
+"Locating..." = "Locating";
+"You are here" = "You are here";
+"There are no location in the area" = "There are no location in the area";
+"Could not find the address" = "Could not find the address";
+
+"btn-back-map" = "btn-back-map-en.png";
+"Address" = "Address";
+"Phone" = "Phone";
+"Email" = "Email";
+"Directions To Here" = "Directions To Here";
+"Open in Google Maps?" = "Open in Google Maps?";
+"Call the phone number?" = "Call the phone number?";
+"Send an email?" = "Send an email?";
+
+"ISF News" = "ISF News";
+
+"Yes" = "Yes";
+"No" = "No";
+"Visit the Île sans fil website?" = "Visit the Île sans fil website?";
+"Call Île sans fil?" = "Call Île sans fil?";
+"Send an email to Île sans fil?" = "Send an email to Île sans fil?";
+"Visit the Kolt Production website?" = "Visit the Kolt Production website?";
+
+"infosImage" = "infos_en.png";
+"isfButton" = "btn_isf_en.png";
+"koltButton" = "btn_kolt_en.png";
+"backButton" = "btn_isf_infos_back_en.png";
+"isfInfosImage" = "isf_infos_en.png";
