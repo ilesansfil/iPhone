@@ -9,6 +9,7 @@
 "Map" = "Carte";
 "News" = "Nouvelles";
 "Informations" = "Informations";
+"Favorites" = "Favoris";
 
 // Connection View
 "Cannot connect to the Internet" = "Aucune connexion à Internet";
@@ -21,13 +22,16 @@
 "Could not find the address" = "Impossible de trouver l'adresse";
 
 "btn-back-map" = "btn-back-map-fr.png";
+"btn-back-favorites" = "btn-back-favorites-fr.png";
 "Address" = "Addresse";
 "Phone" = "Téléphone";
 "Email" = "Courriel";
 "Directions To Here" = "Itinéraire vers ce lieu";
+"Add to Favorites" = "Ajouter aux favoris";
 "Open in Google Maps?" = "Ouvrir dans Google Maps ?";
 "Call the phone number?" = "Appeler le numéro ?";
 "Send an email?" = "Envoyer un courriel ?";
+"This hotspot has been removed!" = "Ce point d'accés a été supprimé !";
 
 "ISF News" = "Nouvelles ISF";
 

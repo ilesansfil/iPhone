@@ -78,7 +78,7 @@
 
 - (void)viewDidLoad {
    [super viewDidLoad];
-
+	
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
 
@@ -327,6 +327,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+	//Action du bouton info des annotations
 	HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithNibName:@"HotspotInfosViewController" bundle:nil] autorelease];
 	infosController.hotspot = ((LocationAnnotation *)(view.annotation)).hotspot;
 	infosController.currentCoords = mapView.userLocation.coordinate;

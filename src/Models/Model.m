@@ -9,6 +9,7 @@
 #import "Model.h"
 #import "Hotspot.h"
 #import "Node.h"
+#import "Favorite.h"
 
 @implementation Model
 
@@ -137,6 +138,7 @@
 - (Model *)wipe {
 	[self deleteObjects:[Hotspot findAll]];
 	[self deleteObjects:[Node findAll]];
+	[self deleteObjects:[Favorite findAll]];
 	return self;
 }
 

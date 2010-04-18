@@ -9,7 +9,7 @@
 "Map" = "Map";
 "News" = "News";
 "Informations" = "Informations";
-
+"Favorites" = "Favorites";
 // Connection View
 "Cannot connect to the Internet" = "Cannot connect to the Internet";
 "You must connect to a Wi-Fi or cellular data network to use this application." = "You must connect to a Wi-Fi or cellular data network to use this application.";
@@ -22,13 +22,16 @@
 "Could not find the address" = "Could not find the address";
 
 "btn-back-map" = "btn-back-map-en.png";
+"btn-back-favorites" = "btn-back-favorites-en.png";
 "Address" = "Address";
 "Phone" = "Phone";
 "Email" = "Email";
 "Directions To Here" = "Directions To Here";
+"Add to Favorites" = "Add to Favorites";
 "Open in Google Maps?" = "Open in Google Maps?";
 "Call the phone number?" = "Call the phone number?";
 "Send an email?" = "Send an email?";
+"This hotspot has been removed!" = "This hotspot has been removed!";
 
 "ISF News" = "ISF News";
 
@@ -37,7 +40,6 @@
 "Visit the Île sans fil website?" = "Visit the Île sans fil website?";
 "Call Île sans fil?" = "Call Île sans fil?";
 "Send an email to Île sans fil?" = "Send an email to Île sans fil?";
-
 "infosImage" = "infos_en.png";
 "isfButton" = "btn_isf_en.png";
 "backButton" = "btn_isf_infos_back_en.png";

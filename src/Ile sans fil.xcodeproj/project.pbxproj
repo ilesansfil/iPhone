@@ -65,6 +65,10 @@
 		4FECC390107993F300CD8D96 /* pin-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FECC38D107993F300CD8D96 /* pin-up.png */; };
 		4FF1E88D107E3BAC0033B9E5 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF1E88C107E3BAC0033B9E5 /* dist.plist */; };
 		BADBD83C1157C26F00757A9E /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */; };
+		C68329111177D87500F92EEA /* btn-back-favorites-en.png in Resources */ = {isa = PBXBuildFile; fileRef = C683290F1177D87500F92EEA /* btn-back-favorites-en.png */; };
+		C68329121177D87500F92EEA /* btn-back-favorites-fr.png in Resources */ = {isa = PBXBuildFile; fileRef = C68329101177D87500F92EEA /* btn-back-favorites-fr.png */; };
+		C68A14F71173BAB40010F77A /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C68A14F51173BAB40010F77A /* FavoritesViewController.m */; };
+		C6A4D05311764368001480C8 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A4D05211764368001480C8 /* Favorite.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +150,12 @@
 		8D1107310486CEB800E47090 /* Ile_sans_fil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Ile_sans_fil-Info.plist"; path = "../Ile_sans_fil-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BADBD83A1157C26F00757A9E /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAPI.h; path = Librairies/FlurryAPI.h; sourceTree = "<group>"; };
 		BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryWithLocation.a; path = Librairies/libFlurryWithLocation.a; sourceTree = "<group>"; };
+		C683290F1177D87500F92EEA /* btn-back-favorites-en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-back-favorites-en.png"; sourceTree = "<group>"; };
+		C68329101177D87500F92EEA /* btn-back-favorites-fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-back-favorites-fr.png"; sourceTree = "<group>"; };
+		C68A14F51173BAB40010F77A /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesViewController.m; path = ../FavoritesViewController.m; sourceTree = "<group>"; };
+		C68A14F61173BAB40010F77A /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesViewController.h; path = ../FavoritesViewController.h; sourceTree = "<group>"; };
+		C6A4D05111764368001480C8 /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Favorite.h; path = ../Resources/Favorite.h; sourceTree = "<group>"; };
+		C6A4D05211764368001480C8 /* Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Favorite.m; path = ../Resources/Favorite.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +226,7 @@
 		4F091E361077BDA900794F0E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C68A14D31173B6DD0010F77A /* Favorites */,
 				4F091E911077C47400794F0E /* Map */,
 				4FA4B0A1108124A200CE5C68 /* News */,
 				4F87B0AB107C2F130066F042 /* Infos */,
@@ -240,6 +251,8 @@
 		4F091E3D1077BDA900794F0E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C6A4D05111764368001480C8 /* Favorite.h */,
+				C6A4D05211764368001480C8 /* Favorite.m */,
 				4FECC12210790D9900CD8D96 /* LocationAnnotation.h */,
 				4FECC12310790D9900CD8D96 /* LocationAnnotation.m */,
 				4F195AE010787BFA00F2B4A0 /* Model.h */,
@@ -272,6 +285,8 @@
 		4F091E3F1077BDA900794F0E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C683290F1177D87500F92EEA /* btn-back-favorites-en.png */,
+				C68329101177D87500F92EEA /* btn-back-favorites-fr.png */,
 				4F98412710937CDA0029FB1B /* btn-back-map-en.png */,
 				4F98412810937CDA0029FB1B /* btn-back-map-fr.png */,
 				4F260DAD108D465700737FAC /* isf_infos_en.png */,
@@ -363,6 +378,15 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
+		C68A14D31173B6DD0010F77A /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				C68A14F61173BAB40010F77A /* FavoritesViewController.h */,
+				C68A14F51173BAB40010F77A /* FavoritesViewController.m */,
+			);
+			name = Favorites;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,6 +470,8 @@
 				4F260DAF108D465700737FAC /* isf_infos_en.png in Resources */,
 				4F98412910937CDA0029FB1B /* btn-back-map-en.png in Resources */,
 				4F98412A10937CDA0029FB1B /* btn-back-map-fr.png in Resources */,
+				C68329111177D87500F92EEA /* btn-back-favorites-en.png in Resources */,
+				C68329121177D87500F92EEA /* btn-back-favorites-fr.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +499,8 @@
 				4FE0EA6C10823584001100E9 /* NewsWebViewController.m in Sources */,
 				4FC35C681089249B000C0E7D /* LoadingOverlay.m in Sources */,
 				4F260CD7108D015400737FAC /* ConnectionViewController.m in Sources */,
+				C68A14F71173BAB40010F77A /* FavoritesViewController.m in Sources */,
+				C6A4D05311764368001480C8 /* Favorite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,12 +559,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kolt Media";
+				CODE_SIGN_IDENTITY = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "50579899-829F-4032-A0DE-03CD8F17CEEB";
+				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
 				SDKROOT = iphoneos3.1;
 			};
 			name = appstore;
@@ -564,12 +594,14 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Resources/dist.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
 				SDKROOT = iphoneos3.1;
 			};
 			name = "Ad Hoc";
@@ -596,12 +628,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Debug;
@@ -610,11 +644,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
+				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
 				SDKROOT = iphoneos3.1;
 			};
 			name = Release;
