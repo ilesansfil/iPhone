@@ -10,6 +10,9 @@
 #import "Model.h"
 #import "Hotspot.h"
 #import "HotspotInfosViewController.h"
+#import "MapViewController.h"
+
+
 
 @implementation FavoritesViewController
 
@@ -110,7 +113,9 @@
 		Hotspot *hotspot=entity;
 		HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithNibName:@"HotspotInfosViewController" bundle:nil] autorelease];
 		infosController.hotspot = hotspot;
-		
+		//infosController.currentCoords = mapView.userLocation.coordinate;
+
+		infosController.currentCoords =[mapViewController getCurrentCoordinate];
 		[infosController changeImageLeftBarButtonItem:@"btn-back-favorites"];
 		[self presentModalViewController:infosController animated:YES];
 	}

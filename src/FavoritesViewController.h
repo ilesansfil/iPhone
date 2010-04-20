@@ -7,10 +7,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "MapViewController.h"
 
+@class MapViewController;
 @interface FavoritesViewController : UITableViewController {
     IBOutlet UISearchDisplayController *searchDisplayController;
     IBOutlet UIView *view;
+	IBOutlet MapViewController *mapViewController;
 	NSMutableArray *favoritesArray;
 }
 

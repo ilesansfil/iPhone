@@ -24,7 +24,7 @@
 
 @implementation HotspotInfosViewController
 
-@synthesize hotspot, currentCoords, btn, btn2;
+@synthesize hotspot, currentCoords, btn, btn2, exist;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -38,32 +38,33 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	
+
 	btn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
-	[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-map", @"")] forState:UIControlStateNormal];
+	[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-retour", @"")] forState:UIControlStateNormal];
+
 	[btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
 	btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
 	btn.titleLabel.textAlignment = UITextAlignmentRight;
-	
+/*	
 	btn2 = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
 	[btn2 setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
 	[btn2 addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
 	btn2.titleLabel.font = [UIFont boldSystemFontOfSize:13];
 	btn2.titleLabel.textAlignment = UITextAlignmentRight;
-	
-	//[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
-	
-	
+*/
+	//UIBarButtonItem *lebouton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
 	
 	_navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-	
-		
-//	btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-map", @"")] style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
-//	_navBar.topItem.leftBarButtonItem =btn;
-	
+	//_navBar.topItem.leftBarButtonItem = lebouton;
+
+
 	infos = [[NSMutableArray alloc] init];
 	
 	
-		
+	
+	
 }
 
 
@@ -168,12 +169,35 @@
 		cell.textLabel.text				= NSLocalizedString(@"Directions To Here", @"");
 		cell.textLabel.textAlignment	= UITextAlignmentCenter;
 	}else {
-		
 	
-
 	if(indexPath.section == kSectionFavorite)	 {
-		cell.textLabel.text				= NSLocalizedString(@"Add to Favorites", @"");
-		cell.textLabel.textAlignment	= UITextAlignmentCenter;
+		
+		
+		NSString *identifier=hotspot.hotspotId;
+		NSPredicate *predicate = identifier
+		? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
+		: nil;
+		
+		id entity = [[Model shared] findFirstObjectForEntityForName:@"Favorite" 
+														  predicate:predicate 
+														   sortedBy:nil];
+		
+		if(entity==nil)
+		{
+			cell.textLabel.text				= NSLocalizedString(@"Add to Favorites", @"");
+			cell.textLabel.textAlignment	= UITextAlignmentCenter;
+			UIImage *img= [UIImage imageNamed:@"favorite-grey.png"];
+			cell.imageView.image = img;
+			self.exist=0;
+			
+		}else {
+			
+			cell.textLabel.text				= NSLocalizedString(@"Remove to Favorites", @"");
+			cell.textLabel.textAlignment	= UITextAlignmentCenter;
+			UIImage *img= [UIImage imageNamed:@"favorite-color.png"];
+			cell.imageView.image = img;
+			self.exist=1;
+		}
 	}
 	else {
 		switch (indexPath.row) {
@@ -208,7 +232,12 @@
 	}
 	else {
 	if (indexPath.section == 2) {
-			[self AddFavorite];
+		[self AddDeleteFavorite:exist];
+		//static NSString *DefaultCellIdentifier = @"DefaultCell";
+		//static NSString *ButtonCellIdentifier	= @"ButtonCell";
+		
+		//UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+		[tableView reloadData];
 	}
 	 else {
 		switch (indexPath.row) {
@@ -314,13 +343,9 @@
 	NSURL *myURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps?daddr==%@&saddr=%f,%f", [[hotspot fullAddressOneLine] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], currentCoords.latitude, currentCoords.longitude]];
 	[[UIApplication sharedApplication] openURL:myURL];
 }
-- (void)AddFavorite {
-	//Hotspot *hotspot = [[Model shared] findOrCreateObjectForEntityForName:@"Hotspot" withIdentifier:[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID]];
-	//if (hotspot.hotspotId == nil) {
-	//	hotspot.hotspotId = [contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID];
-	//	hotspot.createdAt = [NSDate date];
-	//}
-	NSString *identifier=hotspot.hotspotId;
+- (void)AddDeleteFavorite:(BOOL )action {
+
+	/*NSString *identifier=hotspot.hotspotId;
 	NSPredicate *predicate = identifier
 	? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
 	: nil;
@@ -328,26 +353,46 @@
 	id entity = [[Model shared] findFirstObjectForEntityForName:@"Favorite" 
 											predicate:predicate 
 											 sortedBy:nil];
-	
-	if(entity==nil)
+	*/
+	//if(entity==nil)
+	if(!action)
 	{
 		
 	Favorite *favorite = [[Model shared] insertNewObjectForEntityForName:@"Favorite"];
 	favorite.identifier			= hotspot.hotspotId;
 	favorite.name				= hotspot.name;
-	//NSDate *ladate=[NSDate date];
-	//favorite.createdAt			= [[NSDate alloc] init];
-	[favorite setCreatedAt:[NSDate date]];
+		[favorite setCreatedAt:[NSDate date]];
 
 	
 	[[Model shared] save];
+	//	[_tableView  cellForRowAtIndexPath:
+		
+		
+	self.exist=0;
+		
+		
+		
+		
 	}else {
+		
+		NSString *identifier=hotspot.hotspotId;
+		NSPredicate *predicate = identifier
+		? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
+		: nil;
+		
+		id entity = [[Model shared] findFirstObjectForEntityForName:@"Favorite" 
+														  predicate:predicate 
+														   sortedBy:nil];
+		Favorite *favorite=entity;
+		[[Model shared] deleteObject:favorite];
+		[[Model shared] save];
 		/*UIAlertView *Alert = [[UIAlertView alloc] initWithTitle: @"Alert" message: @"the favorite already exist ! "  delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
 		[Alert show];*/
+	self.exist=1;
 		
 	}
-
-
+	//(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+	
 }
 - (IBAction)closeView {
 	[self dismissModalViewControllerAnimated:YES];
@@ -380,44 +425,16 @@
 }
 
 -(void)changeImageLeftBarButtonItem:(NSString *)imageName {
-	/*btn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
-	[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
-	[btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-	btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-	btn.titleLabel.textAlignment = UITextAlignmentRight;*/
-//[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
-	//	_navBar.topItem.leftBarButtonItem = /*[*/[[UIBarButtonItem alloc] initWithCustomView:btn]/* autorelease*//*]*/;
-//	_navBar.topItem.leftBarButtonItem.image = [UIImage imageNamed:@"btn-back-favorites-fr.png"];
-	//[_navBar setNeedsDisplay];
-	//[self.btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
-	//_navBar.topItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithCustomView:btn];
-//	UIBarButtonItem *toto=_navBar.topItem.leftBarButtonItem;
-	
-	//[btn2 setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")]];
-	//btn2.image =[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")];
-	//[toto setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")]];
-//	_navBar.topItem.leftBarButtonItem=btn2;
-	
-	//[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
-
-//	btn2=[[UIBarButtonItem alloc] initWithCustomView:btn];
-	
-//	_navBar.topItem.leftBarButtonItem = btn2;
 	
 	
 	
 	
-	[self.navigationItem setLeftBarButtonItem:nil];
-	//[self.navigationItem setLeftBarButtonItem:btn2];
+	/*[self.navigationItem setLeftBarButtonItem:nil];
 	_navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn2];
 	[self.view setNeedsDisplay];
 	[self.tabBarController.view setNeedsDisplay];
-	
-	[self.tabBarController.view setNeedsDisplay];
 	[_navBar setNeedsDisplay];
-		//btn.image=[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")];
-	//_navBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:btn] autorelease];	
-	
+	[self.tabBarController reloadData];*/
 }
 @end
 

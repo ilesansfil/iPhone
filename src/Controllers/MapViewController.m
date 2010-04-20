@@ -432,7 +432,12 @@
 	searchLocation.title = @"";
 	[self removeSearchingView];
 }
-
+-(CLLocationCoordinate2D) getCurrentCoordinate {
+	CLLocationCoordinate2D toto= [[map userLocation] coordinate];
+	
+	return toto;
+	
+}
 
 
 @end

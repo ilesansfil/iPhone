@@ -13,6 +13,7 @@
 	IBOutlet UIView			*mainView;
 	IBOutlet UIImageView		*infosImage;
 	IBOutlet UIButton			*ISFButton;
+	//IBOutlet UITextView			*Credits;
 	
 	IBOutlet UIView			*ISFView;
 	IBOutlet UIImageView		*ISFInfosImage;

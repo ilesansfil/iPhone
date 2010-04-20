@@ -22,12 +22,14 @@
 "Could not find the address" = "Impossible de trouver l'adresse";
 
 "btn-back-map" = "btn-back-map-fr.png";
+"btn-retour" = "btn-retour-fr.png";
 "btn-back-favorites" = "btn-back-favorites-fr.png";
 "Address" = "Addresse";
 "Phone" = "Téléphone";
 "Email" = "Courriel";
 "Directions To Here" = "Itinéraire vers ce lieu";
 "Add to Favorites" = "Ajouter aux favoris";
+"Remove to Favorites" = "Enlever des favoris";
 "Open in Google Maps?" = "Ouvrir dans Google Maps ?";
 "Call the phone number?" = "Appeler le numéro ?";
 "Send an email?" = "Envoyer un courriel ?";
