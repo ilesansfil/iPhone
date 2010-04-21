@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Set the title.
-	self.title = @"Favorites";
+	self.title = NSLocalizedString(@"Favorites",@"");
 	// Set up the buttons.
 	self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	favoritesArray=[[NSMutableArray alloc] init];
@@ -88,7 +88,7 @@
 		cell.detailTextLabel.text=[hotspot streetAddress];
 	}
 	else {
-	    cell.detailTextLabel.text=@"This hotspot has been removed!";
+	    cell.detailTextLabel.text=NSLocalizedString(@"This hotspot has been removed!",@"");
 		cell.detailTextLabel.textColor = [UIColor redColor];
 	}
 	
