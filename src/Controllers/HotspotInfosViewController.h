@@ -19,17 +19,17 @@
 	Hotspot 							*hotspot;
 	CLLocationCoordinate2D		 currentCoords;
 	UIButton *btn;
-	UIButton *btn2;
 	BOOL exist;
 	
 }
 
 
 @property (nonatomic, retain) UIButton *btn;
-@property (nonatomic, retain) UIButton *btn2;
 @property (nonatomic, retain) Hotspot *hotspot;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoords;
 @property (nonatomic, assign) BOOL exist;
+
+- (id)initWithBackImageNamed:(NSString*)imageName;
 
 - (void)confirmMap;
 - (void)showMap;
@@ -41,6 +41,5 @@
 - (void)AddDeleteFavorite:(BOOL )action;
 
 - (IBAction)closeView;
--(void)changeImageLeftBarButtonItem:(NSString *)imageName;
 
 @end

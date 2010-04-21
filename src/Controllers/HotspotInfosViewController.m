@@ -24,7 +24,7 @@
 
 @implementation HotspotInfosViewController
 
-@synthesize hotspot, currentCoords, btn, btn2, exist;
+@synthesize hotspot, currentCoords, btn, exist;
 
 /*
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -36,35 +36,22 @@
 */
 
 
+- (id)initWithBackImageNamed:(NSString*)imageName {
+	if (self = [super initWithNibName:@"HotspotInfosViewController" bundle:nil]) {
+		btn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
+		[btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+		[btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
+		btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
+		btn.titleLabel.textAlignment = UITextAlignmentRight;
+	}
+	return self;
+}
+
+
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	
-	
-
-	btn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
-	[btn setImage:[UIImage imageNamed:NSLocalizedString(@"btn-retour", @"")] forState:UIControlStateNormal];
-
-	[btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-	btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-	btn.titleLabel.textAlignment = UITextAlignmentRight;
-/*	
-	btn2 = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
-	[btn2 setImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] forState:UIControlStateNormal];
-	[btn2 addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-	btn2.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-	btn2.titleLabel.textAlignment = UITextAlignmentRight;
-*/
-	//UIBarButtonItem *lebouton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:NSLocalizedString(@"btn-back-favorites", @"")] style:UIBarButtonItemStylePlain target:self action:@selector(closeView)];
-	
-	_navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-	//_navBar.topItem.leftBarButtonItem = lebouton;
-
-
+	_navBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:btn] autorelease];
 	infos = [[NSMutableArray alloc] init];
-	
-	
-	
-	
+	[super viewDidLoad];
 }
 
 
@@ -424,17 +411,6 @@
 	}
 }
 
--(void)changeImageLeftBarButtonItem:(NSString *)imageName {
-	
-	
-	
-	
-	/*[self.navigationItem setLeftBarButtonItem:nil];
-	_navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn2];
-	[self.view setNeedsDisplay];
-	[self.tabBarController.view setNeedsDisplay];
-	[_navBar setNeedsDisplay];
-	[self.tabBarController reloadData];*/
-}
+
 @end
 

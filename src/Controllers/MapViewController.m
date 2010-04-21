@@ -328,7 +328,7 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 	//Action du bouton info des annotations
-	HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithNibName:@"HotspotInfosViewController" bundle:nil] autorelease];
+	HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithBackImageNamed:NSLocalizedString(@"btn-back-map", @"")] autorelease];
 	infosController.hotspot = ((LocationAnnotation *)(view.annotation)).hotspot;
 	infosController.currentCoords = mapView.userLocation.coordinate;
 	[self presentModalViewController:infosController animated:YES];
