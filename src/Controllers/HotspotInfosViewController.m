@@ -155,6 +155,8 @@
 	if (indexPath.section == kSectionDirections) {
 		cell.textLabel.text				= NSLocalizedString(@"Directions To Here", @"");
 		cell.textLabel.textAlignment	= UITextAlignmentCenter;
+		UIImage *img2= [UIImage imageNamed:@"direction.png"];
+		cell.imageView.image = img2;
 	}else {
 	
 	if(indexPath.section == kSectionFavorite)	 {
@@ -220,10 +222,6 @@
 	else {
 	if (indexPath.section == 2) {
 		[self AddDeleteFavorite:exist];
-		//static NSString *DefaultCellIdentifier = @"DefaultCell";
-		//static NSString *ButtonCellIdentifier	= @"ButtonCell";
-		
-		//UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
 		[tableView reloadData];
 	}
 	 else {
@@ -331,17 +329,6 @@
 	[[UIApplication sharedApplication] openURL:myURL];
 }
 - (void)AddDeleteFavorite:(BOOL )action {
-
-	/*NSString *identifier=hotspot.hotspotId;
-	NSPredicate *predicate = identifier
-	? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
-	: nil;
-	
-	id entity = [[Model shared] findFirstObjectForEntityForName:@"Favorite" 
-											predicate:predicate 
-											 sortedBy:nil];
-	*/
-	//if(entity==nil)
 	if(!action)
 	{
 		
@@ -352,7 +339,6 @@
 
 	
 	[[Model shared] save];
-	//	[_tableView  cellForRowAtIndexPath:
 		
 		
 	self.exist=0;
@@ -378,7 +364,6 @@
 	self.exist=1;
 		
 	}
-	//(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 	
 }
 - (IBAction)closeView {

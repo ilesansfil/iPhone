@@ -40,6 +40,8 @@
 "Yes" = "Oui";
 "No" = "Non";
 "Visit the Île sans fil website?" = "Visiter le site de Île sans fil ?";
+"Visit the iWeb website?" = "Voulez vous visiter le site web de iWeb?";
+"Visit the Thomas Dobranowski website?" = "Voulez vous visiter le site web de Thomas Dobranowski?";
 "Call Île sans fil?" = "Appeler Île sans fil?";
 "Send an email to Île sans fil?" = "Écrire un courriel à Île sans fil?";
 
@@ -47,3 +49,4 @@
 "isfButton" = "btn_isf_fr.png";
 "backButton" = "btn_isf_infos_back_fr.png";
 "isfInfosImage" = "isf_infos_fr.png";
+"isfCreditsImage" ="btn_credits_fr.png";
