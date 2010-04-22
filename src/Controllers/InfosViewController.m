@@ -16,6 +16,7 @@
 #define kActionSheetVisitIWeb				6
 #define kActionSheetVisitPatrick			7
 #define kActionSheetVisitLaurent			8
+#define kActionSheetVisitApache				9
 
 @implementation InfosViewController
 
@@ -160,6 +161,17 @@
 	[actionSheet showInView:self.tabBarController.view];
 	[actionSheet release];
 }
+- (IBAction)visitApache {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Visit the ile sans fil website Apache 2.0 license?", @"")
+															 delegate:self 
+													cancelButtonTitle:NSLocalizedString(@"No", @"") 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+	actionSheet.tag = kActionSheetVisitApache;
+	[actionSheet showInView:self.tabBarController.view];
+	[actionSheet release];
+}
 - (IBAction)callIleSansFil {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Call Île sans fil?", @"")
 																				delegate:self 
@@ -212,6 +224,12 @@
 		case kActionSheetVisitLaurent:
 			if (buttonIndex == 0) {
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.zelaurent.com/"]];
+			}
+			break;
+			break;
+		case kActionSheetVisitApache:
+			if (buttonIndex == 0) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:NSLocalizedString(@"site apache",@"")]];
 			}
 			break;
 		case kActionSheetCallIleSansFil:

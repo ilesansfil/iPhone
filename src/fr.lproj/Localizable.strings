@@ -35,6 +35,8 @@
 "Send an email?" = "Envoyer un courriel ?";
 "This hotspot has been removed!" = "Ce point d'accés a été supprimé !";
 
+"site apache"= "http://www.ilesansfil.org/a-propos/documents-officiels/licence-app/";
+
 "ISF News" = "Nouvelles ISF";
 
 "Yes" = "Oui";
@@ -44,6 +46,7 @@
 "Visit the Thomas Dobranowski website?" = "Voulez vous visiter le site web de Thomas Dobranowski ?";
 "Visit the Laurent Maisonnave website?" = "Voulez vous visiter le site web de Laurent Maisonnave ?";
 "Visit the Patrick Boucher website?" = "Voulez vous visiter le site de web Patrick Boucher ?";
+"Visit the ile sans fil website Apache 2.0 license?" = "Voulez vous visiter le site de la license apache 2.0 d'île sans fil ?";
 "Call Île sans fil?" = "Appeler Île sans fil?";
 "Send an email to Île sans fil?" = "Écrire un courriel à Île sans fil?";
 

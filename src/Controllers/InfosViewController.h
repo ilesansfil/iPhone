@@ -32,6 +32,7 @@
 - (IBAction)visitTdo;
 - (IBAction)visitPatrick;
 - (IBAction)visitLaurent;
+- (IBAction)visitApache;
 - (IBAction)callIleSansFil;
 - (IBAction)emailIleSansFil;
 

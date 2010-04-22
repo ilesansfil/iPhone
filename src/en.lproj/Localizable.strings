@@ -35,6 +35,8 @@
 "Send an email?" = "Send an email?";
 "This hotspot has been removed!" = "This hotspot has been removed!";
 
+"site apache"= "http://www.ilesansfil.org/welcome/about/app-license/";
+
 "ISF News" = "ISF News";
 
 "Yes" = "Yes";
@@ -44,6 +46,7 @@
 "Visit the Thomas Dobranowski website?" = "Visit the Thomas Dobranowski website?";
 "Visit the Laurent Maisonnave website?" = "Visit the Laurent Maisonnave website?";
 "Visit the Patrick Boucher website?" = "Visit the Patrick Boucher website?";
+"Visit the ile sans fil website Apache 2.0 license?" = "Visit the ile sans fil website Apache 2.0 license?";
 "Call Île sans fil?" = "Call Île sans fil?";
 "Send an email to Île sans fil?" = "Send an email to Île sans fil?";
 "infosImage" = "infos_en.png";

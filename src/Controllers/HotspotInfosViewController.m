@@ -145,8 +145,7 @@
 	if (cell == nil) {
 		if (indexPath.section == kSectionDirections) { 
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ButtonCellIdentifier] autorelease];
-		}else 
-		{
+		} else {
 		if (indexPath.section == kSectionFavorite) cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ButtonCellIdentifier] autorelease];
 		else cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:DefaultCellIdentifier] autorelease];
 		}
@@ -179,7 +178,7 @@
 			cell.imageView.image = img;
 			self.exist=0;
 			
-		}else {
+		} else {
 			
 			cell.textLabel.text				= NSLocalizedString(@"Remove to Favorites", @"");
 			cell.textLabel.textAlignment	= UITextAlignmentCenter;
@@ -187,8 +186,7 @@
 			cell.imageView.image = img;
 			self.exist=1;
 		}
-	}
-	else {
+	} else {
 		switch (indexPath.row) {
 			case kRowTagAddress:
 				cell.textLabel.text 			= NSLocalizedString(@"Address", @"");
