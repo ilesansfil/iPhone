@@ -39,9 +39,11 @@
 
 "Yes" = "Oui";
 "No" = "Non";
-"Visit the Île sans fil website?" = "Visiter le site de Île sans fil ?";
-"Visit the iWeb website?" = "Voulez vous visiter le site web de iWeb?";
-"Visit the Thomas Dobranowski website?" = "Voulez vous visiter le site web de Thomas Dobranowski?";
+"Visit the Île sans fil website?" = "Voulez vous Visiter le site de Île sans fil ?";
+"Visit the iWeb website?" = "Voulez vous visiter le site web de iWeb ?";
+"Visit the Thomas Dobranowski website?" = "Voulez vous visiter le site web de Thomas Dobranowski ?";
+"Visit the Laurent Maisonnave website?" = "Voulez vous visiter le site web de Laurent Maisonnave ?";
+"Visit the Patrick Boucher website?" = "Voulez vous visiter le site de web Patrick Boucher ?";
 "Call Île sans fil?" = "Appeler Île sans fil?";
 "Send an email to Île sans fil?" = "Écrire un courriel à Île sans fil?";
 

@@ -14,6 +14,9 @@
 #define kActionSheetEmailIleSansFil			4
 #define kActionSheetVisitTdo				5
 #define kActionSheetVisitIWeb				6
+#define kActionSheetVisitPatrick			7
+#define kActionSheetVisitLaurent			8
+
 @implementation InfosViewController
 
 
@@ -135,6 +138,28 @@
 	[actionSheet showInView:self.tabBarController.view];
 	[actionSheet release];
 }
+- (IBAction)visitPatrick {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Visit the Patrick Boucher website?", @"")
+															 delegate:self 
+													cancelButtonTitle:NSLocalizedString(@"No", @"") 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+	actionSheet.tag = kActionSheetVisitPatrick;
+	[actionSheet showInView:self.tabBarController.view];
+	[actionSheet release];
+}
+- (IBAction)visitLaurent {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Visit the Laurent Maisonnave website?", @"")
+															 delegate:self 
+													cancelButtonTitle:NSLocalizedString(@"No", @"") 
+											   destructiveButtonTitle:nil 
+													otherButtonTitles:NSLocalizedString(@"Yes", @""), nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+	actionSheet.tag = kActionSheetVisitLaurent;
+	[actionSheet showInView:self.tabBarController.view];
+	[actionSheet release];
+}
 - (IBAction)callIleSansFil {
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Call Île sans fil?", @"")
 																				delegate:self 
@@ -177,6 +202,16 @@
 		case kActionSheetVisitIWeb:
 			if (buttonIndex == 0) {
 				[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://iweb.ca"]];
+			}
+			break;
+		case kActionSheetVisitPatrick:
+			if (buttonIndex == 0) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://twitter.com/pboucher"]];
+			}
+			break;
+		case kActionSheetVisitLaurent:
+			if (buttonIndex == 0) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.zelaurent.com/"]];
 			}
 			break;
 		case kActionSheetCallIleSansFil:

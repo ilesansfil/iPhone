@@ -30,6 +30,8 @@
 - (IBAction)visitIleSansFil;
 - (IBAction)visitIWeb;
 - (IBAction)visitTdo;
+- (IBAction)visitPatrick;
+- (IBAction)visitLaurent;
 - (IBAction)callIleSansFil;
 - (IBAction)emailIleSansFil;
 

@@ -58,12 +58,12 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	// A date formatter for the time stamp static 
-	NSDateFormatter *dateFormatter = nil; 
+	/*NSDateFormatter *dateFormatter = nil; 
 	if (dateFormatter == nil) {
 		dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
 		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	}
+	}*/
 	static NSString *CellIdentifier = @"identifier";
 	// Dequeue or create a new cell
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -85,7 +85,9 @@
 	if(entity!=nil)
 	{
 		Hotspot *hotspot=entity;
-		cell.detailTextLabel.text=[hotspot streetAddress];
+		
+		NSString *address=[[hotspot civicNumber] stringByAppendingString:@" "];
+		cell.detailTextLabel.text=[address stringByAppendingString:[hotspot streetAddress]];
 	}
 	else {
 	    cell.detailTextLabel.text=NSLocalizedString(@"This hotspot has been removed!",@"");

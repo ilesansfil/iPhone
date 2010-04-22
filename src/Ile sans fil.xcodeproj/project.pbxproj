@@ -64,6 +64,7 @@
 		4FECC390107993F300CD8D96 /* pin-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FECC38D107993F300CD8D96 /* pin-up.png */; };
 		4FF1E88D107E3BAC0033B9E5 /* dist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FF1E88C107E3BAC0033B9E5 /* dist.plist */; };
 		BADBD83C1157C26F00757A9E /* libFlurryWithLocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */; };
+		C65AD126117FC5E800A5301B /* direction.png in Resources */ = {isa = PBXBuildFile; fileRef = C65AD125117FC5E800A5301B /* direction.png */; };
 		C68A14F71173BAB40010F77A /* FavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C68A14F51173BAB40010F77A /* FavoritesViewController.m */; };
 		C690D939117E0DBE0041C526 /* btn-retour-en.png in Resources */ = {isa = PBXBuildFile; fileRef = C690D937117E0DBE0041C526 /* btn-retour-en.png */; };
 		C690D93A117E0DBE0041C526 /* btn-retour-fr.png in Resources */ = {isa = PBXBuildFile; fileRef = C690D938117E0DBE0041C526 /* btn-retour-fr.png */; };
@@ -72,10 +73,9 @@
 		C69BF783117F87820075600C /* btn_credits_en.png in Resources */ = {isa = PBXBuildFile; fileRef = C69BF781117F87820075600C /* btn_credits_en.png */; };
 		C69BF784117F87820075600C /* btn_credits_fr.png in Resources */ = {isa = PBXBuildFile; fileRef = C69BF782117F87820075600C /* btn_credits_fr.png */; };
 		C6A4D05311764368001480C8 /* Favorite.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A4D05211764368001480C8 /* Favorite.m */; };
-		C6E4096B117FABB900EDDA7F /* InfosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E4096A117FABB900EDDA7F /* InfosViewController.xib */; };
-		C6E40981117FAF6800EDDA7F /* direction.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E40980117FAF6800EDDA7F /* direction.png */; };
 		C6E409A3117FB33D00EDDA7F /* btn-back-favorites-en.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E409A1117FB33D00EDDA7F /* btn-back-favorites-en.png */; };
 		C6E409A4117FB33D00EDDA7F /* btn-back-favorites-fr.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E409A2117FB33D00EDDA7F /* btn-back-favorites-fr.png */; };
+		C6E40A0A117FBB2900EDDA7F /* InfosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E40A09117FBB2900EDDA7F /* InfosViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -156,6 +156,7 @@
 		8D1107310486CEB800E47090 /* Ile_sans_fil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Ile_sans_fil-Info.plist"; path = "../Ile_sans_fil-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		BADBD83A1157C26F00757A9E /* FlurryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlurryAPI.h; path = Librairies/FlurryAPI.h; sourceTree = "<group>"; };
 		BADBD83B1157C26F00757A9E /* libFlurryWithLocation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurryWithLocation.a; path = Librairies/libFlurryWithLocation.a; sourceTree = "<group>"; };
+		C65AD125117FC5E800A5301B /* direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction.png; sourceTree = "<group>"; };
 		C68A14F51173BAB40010F77A /* FavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoritesViewController.m; path = ../FavoritesViewController.m; sourceTree = "<group>"; };
 		C68A14F61173BAB40010F77A /* FavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoritesViewController.h; path = ../FavoritesViewController.h; sourceTree = "<group>"; };
 		C690D937117E0DBE0041C526 /* btn-retour-en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-retour-en.png"; sourceTree = "<group>"; };
@@ -164,13 +165,12 @@
 		C690D9D3117E2D370041C526 /* favorite-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorite-grey.png"; sourceTree = "<group>"; };
 		C69BF781117F87820075600C /* btn_credits_en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_credits_en.png; sourceTree = "<group>"; };
 		C69BF782117F87820075600C /* btn_credits_fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_credits_fr.png; sourceTree = "<group>"; };
-		C69BF81C117FA0F60075600C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/InfosViewController.xib; sourceTree = "<group>"; };
+		C69BF81C117FA0F60075600C /* InfosViewController.xib */ = {isa = PBXFileReference; explicitFileType = file.xib; name = InfosViewController.xib; path = ../../en.lproj/InfosViewController.xib; sourceTree = "<group>"; };
 		C6A4D05111764368001480C8 /* Favorite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Favorite.h; path = ../Resources/Favorite.h; sourceTree = "<group>"; };
 		C6A4D05211764368001480C8 /* Favorite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Favorite.m; path = ../Resources/Favorite.m; sourceTree = "<group>"; };
-		C6E4096C117FABC300EDDA7F /* French */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = French; path = French.lproj/InfosViewController.xib; sourceTree = "<group>"; };
-		C6E40980117FAF6800EDDA7F /* direction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = direction.png; sourceTree = "<group>"; };
 		C6E409A1117FB33D00EDDA7F /* btn-back-favorites-en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-back-favorites-en.png"; sourceTree = "<group>"; };
 		C6E409A2117FB33D00EDDA7F /* btn-back-favorites-fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-back-favorites-fr.png"; sourceTree = "<group>"; };
+		C6E40A0B117FBB3000EDDA7F /* InfosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfosViewController.xib; path = ../../fr.lproj/InfosViewController.xib; sourceTree = "<group>"; wrapsLines = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,9 +300,9 @@
 		4F091E3F1077BDA900794F0E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C65AD125117FC5E800A5301B /* direction.png */,
 				C6E409A1117FB33D00EDDA7F /* btn-back-favorites-en.png */,
 				C6E409A2117FB33D00EDDA7F /* btn-back-favorites-fr.png */,
-				C6E40980117FAF6800EDDA7F /* direction.png */,
 				C69BF781117F87820075600C /* btn_credits_en.png */,
 				C69BF782117F87820075600C /* btn_credits_fr.png */,
 				C690D9D3117E2D370041C526 /* favorite-grey.png */,
@@ -339,7 +339,7 @@
 		4F091E401077BDA900794F0E /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
-				C6E4096A117FABB900EDDA7F /* InfosViewController.xib */,
+				C6E40A09117FBB2900EDDA7F /* InfosViewController.xib */,
 				4F091E411077BDA900794F0E /* MainWindow.xib */,
 				4F1953C010780E3700F2B4A0 /* MapViewController.xib */,
 				4F87B0E5107C3EA40066F042 /* HotspotInfosViewController.xib */,
@@ -444,6 +444,8 @@
 				German,
 				en,
 				fr,
+				Fr,
+				En,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -497,10 +499,10 @@
 				C690D9D4117E2D370041C526 /* favorite-grey.png in Resources */,
 				C69BF783117F87820075600C /* btn_credits_en.png in Resources */,
 				C69BF784117F87820075600C /* btn_credits_fr.png in Resources */,
-				C6E4096B117FABB900EDDA7F /* InfosViewController.xib in Resources */,
-				C6E40981117FAF6800EDDA7F /* direction.png in Resources */,
 				C6E409A3117FB33D00EDDA7F /* btn-back-favorites-en.png in Resources */,
 				C6E409A4117FB33D00EDDA7F /* btn-back-favorites-fr.png in Resources */,
+				C6E40A0A117FBB2900EDDA7F /* InfosViewController.xib in Resources */,
+				C65AD126117FC5E800A5301B /* direction.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,11 +547,11 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		C6E4096A117FABB900EDDA7F /* InfosViewController.xib */ = {
+		C6E40A09117FBB2900EDDA7F /* InfosViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C69BF81C117FA0F60075600C /* English */,
-				C6E4096C117FABC300EDDA7F /* French */,
+				C69BF81C117FA0F60075600C /* InfosViewController.xib */,
+				C6E40A0B117FBB3000EDDA7F /* InfosViewController.xib */,
 			);
 			name = InfosViewController.xib;
 			sourceTree = "<group>";
