@@ -437,6 +437,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "ile sans fil";
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ile sans fil" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
@@ -599,75 +602,6 @@
 			};
 			name = Release;
 		};
-		3128DD711093A1E700F61FAD /* appstore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				SDKROOT = iphoneos3.1;
-			};
-			name = appstore;
-		};
-		3128DD721093A1E700F61FAD /* appstore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ze Agence Inc";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
-				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Librairies\"",
-				);
-				PRODUCT_NAME = "Ile sans fil";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C7FDFDE9-4436-4768-B5EE-1C0F4D2DA6A9";
-			};
-			name = appstore;
-		};
-		4F2F8151107DAF4A0064CAB6 /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_ENTITLEMENTS = Resources/dist.plist;
-				CODE_SIGN_IDENTITY = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: thomas dobranowski (2X4GM79DBN)";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				SDKROOT = iphoneos3.1;
-			};
-			name = "Ad Hoc";
-		};
-		4F2F8152107DAF4A0064CAB6 /* Ad Hoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
-				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Librairies\"",
-				);
-				PRODUCT_NAME = "Ile sans fil";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-			};
-			name = "Ad Hoc";
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -678,9 +612,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				SDKROOT = iphoneos3.1;
+				PROVISIONING_PROFILE = "3F4E7C91-CB96-42FB-8DD2-50D6F415DC11";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F4E7C91-CB96-42FB-8DD2-50D6F415DC11";
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Debug;
 		};
@@ -694,11 +628,43 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				PROVISIONING_PROFILE = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "558E39AF-7B71-4CA3-8A25-FDC2AD9E0E82";
-				SDKROOT = iphoneos3.1;
+				PROVISIONING_PROFILE = "3F4E7C91-CB96-42FB-8DD2-50D6F415DC11";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F4E7C91-CB96-42FB-8DD2-50D6F415DC11";
+				SDKROOT = iphoneos3.1.2;
 			};
 			name = Release;
+		};
+		C68FA1BD1185ED5F0022DDFB /* distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ze Agence Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ze Agence Inc";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				PROVISIONING_PROFILE = "EADA274A-9049-47A3-9E89-6651884809AD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EADA274A-9049-47A3-9E89-6651884809AD";
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = distribution;
+		};
+		C68FA1BE1185ED5F0022DDFB /* distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Ile_sans_fil_Prefix.pch;
+				INFOPLIST_FILE = "Ile_sans_fil-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Librairies\"",
+				);
+				PRODUCT_NAME = "Ile sans fil";
+			};
+			name = distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -708,22 +674,20 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-				3128DD721093A1E700F61FAD /* appstore */,
-				4F2F8152107DAF4A0064CAB6 /* Ad Hoc */,
+				C68FA1BE1185ED5F0022DDFB /* distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ile sans fil" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				3128DD711093A1E700F61FAD /* appstore */,
-				4F2F8151107DAF4A0064CAB6 /* Ad Hoc */,
+				C68FA1BD1185ED5F0022DDFB /* distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
