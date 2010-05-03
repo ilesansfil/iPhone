@@ -10,6 +10,7 @@
 	IBOutlet UITabBarItem *mapButton;
 	IBOutlet UITabBarItem *newsButton;
 	IBOutlet UITabBarItem *infosButton;
+	IBOutlet UITabBarItem *favoritesButton;
 }
 
 @end

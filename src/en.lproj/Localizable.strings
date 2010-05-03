@@ -9,7 +9,7 @@
 "Map" = "Map";
 "News" = "News";
 "Informations" = "Informations";
-
+"Favorites" = "Favorites";
 // Connection View
 "Cannot connect to the Internet" = "Cannot connect to the Internet";
 "You must connect to a Wi-Fi or cellular data network to use this application." = "You must connect to a Wi-Fi or cellular data network to use this application.";
@@ -22,23 +22,35 @@
 "Could not find the address" = "Could not find the address";
 
 "btn-back-map" = "btn-back-map-en.png";
+"btn-retour" = "btn-retour-en.png";
+"btn-back-favorites" = "btn-back-favorites-en.png";
 "Address" = "Address";
 "Phone" = "Phone";
 "Email" = "Email";
 "Directions To Here" = "Directions To Here";
+"Add to Favorites" = "Add to Favorites";
+"Remove to Favorites" = "Remove to Favorites";
 "Open in Google Maps?" = "Open in Google Maps?";
 "Call the phone number?" = "Call the phone number?";
 "Send an email?" = "Send an email?";
+"This hotspot has been removed!" = "This hotspot has been removed!";
+
+"site apache"= "http://www.ilesansfil.org/welcome/about/app-license/";
 
 "ISF News" = "ISF News";
 
 "Yes" = "Yes";
 "No" = "No";
 "Visit the Île sans fil website?" = "Visit the Île sans fil website?";
+"Visit the iWeb website?" = "Visit the iWeb website?";
+"Visit the Thomas Dobranowski website?" = "Visit the Thomas Dobranowski website?";
+"Visit the Laurent Maisonnave website?" = "Visit the Laurent Maisonnave website?";
+"Visit the Patrick Boucher website?" = "Visit the Patrick Boucher website?";
+"Visit the ile sans fil website Apache 2.0 license?" = "Visit the ile sans fil website Apache 2.0 license?";
 "Call Île sans fil?" = "Call Île sans fil?";
 "Send an email to Île sans fil?" = "Send an email to Île sans fil?";
-
 "infosImage" = "infos_en.png";
 "isfButton" = "btn_isf_en.png";
 "backButton" = "btn_isf_infos_back_en.png";
 "isfInfosImage" = "isf_infos_en.png";
+"isfCreditsImage" ="btn_credits_en.png";

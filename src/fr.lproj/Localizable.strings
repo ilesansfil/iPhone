@@ -9,6 +9,7 @@
 "Map" = "Carte";
 "News" = "Nouvelles";
 "Informations" = "Informations";
+"Favorites" = "Favoris";
 
 // Connection View
 "Cannot connect to the Internet" = "Aucune connexion à Internet";
@@ -21,19 +22,31 @@
 "Could not find the address" = "Impossible de trouver l'adresse";
 
 "btn-back-map" = "btn-back-map-fr.png";
+"btn-retour" = "btn-retour-fr.png";
+"btn-back-favorites" = "btn-back-favorites-fr.png";
 "Address" = "Addresse";
 "Phone" = "Téléphone";
 "Email" = "Courriel";
 "Directions To Here" = "Itinéraire vers ce lieu";
+"Add to Favorites" = "Ajouter aux favoris";
+"Remove to Favorites" = "Enlever des favoris";
 "Open in Google Maps?" = "Ouvrir dans Google Maps ?";
 "Call the phone number?" = "Appeler le numéro ?";
 "Send an email?" = "Envoyer un courriel ?";
+"This hotspot has been removed!" = "Ce point d'accés a été supprimé !";
+
+"site apache"= "http://www.ilesansfil.org/a-propos/documents-officiels/licence-app/";
 
 "ISF News" = "Nouvelles ISF";
 
 "Yes" = "Oui";
 "No" = "Non";
-"Visit the Île sans fil website?" = "Visiter le site de Île sans fil ?";
+"Visit the Île sans fil website?" = "Voulez vous Visiter le site de Île sans fil ?";
+"Visit the iWeb website?" = "Voulez vous visiter le site web de iWeb ?";
+"Visit the Thomas Dobranowski website?" = "Voulez vous visiter le site web de Thomas Dobranowski ?";
+"Visit the Laurent Maisonnave website?" = "Voulez vous visiter le site web de Laurent Maisonnave ?";
+"Visit the Patrick Boucher website?" = "Voulez vous visiter le site de web Patrick Boucher ?";
+"Visit the ile sans fil website Apache 2.0 license?" = "Voulez vous visiter le site de la license Apache 2.0 d'île sans fil ?";
 "Call Île sans fil?" = "Appeler Île sans fil?";
 "Send an email to Île sans fil?" = "Écrire un courriel à Île sans fil?";
 
@@ -41,3 +54,4 @@
 "isfButton" = "btn_isf_fr.png";
 "backButton" = "btn_isf_infos_back_fr.png";
 "isfInfosImage" = "isf_infos_fr.png";
+"isfCreditsImage" ="btn_credits_fr.png";
