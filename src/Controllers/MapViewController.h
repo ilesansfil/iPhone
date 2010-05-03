@@ -43,5 +43,5 @@
 }
 
 - (IBAction)locateMe;
-
+- (CLLocationCoordinate2D) getCurrentCoordinate;
 @end

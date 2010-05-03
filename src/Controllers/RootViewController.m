@@ -21,7 +21,7 @@
 	mapButton.title	= NSLocalizedString(@"Map", @"");
 	newsButton.title	= NSLocalizedString(@"News", @"");
 	infosButton.title	= NSLocalizedString(@"Informations", @"");
-	
+	favoritesButton.title	= NSLocalizedString(@"Favorites", @"");
 	// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	// self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
