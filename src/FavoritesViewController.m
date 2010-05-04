@@ -113,12 +113,12 @@
 	if(entity!=nil)
 	{
 		Hotspot *hotspot=entity;
-		HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithBackImageNamed:NSLocalizedString(@"btn-back-favorites", @"")] autorelease];
+		HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] init] autorelease];
 		infosController.hotspot = hotspot;
 		//infosController.currentCoords = mapView.userLocation.coordinate;
 
 		infosController.currentCoords =[mapViewController getCurrentCoordinate];
-		[self presentModalViewController:infosController animated:YES];
+		[self.navigationController pushViewController:infosController animated:YES];
 	}
 	
 }

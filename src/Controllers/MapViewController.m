@@ -54,7 +54,6 @@
 
 @implementation MapViewController
 
-
 - (void)fetchHotspots {
 	NSString *urlString = @"http://auth.ilesansfil.org/hotspot_status.php?format=XML";
 	NSURL *url = [NSURL URLWithString:urlString];
@@ -118,11 +117,16 @@
 			break;
 		}
 	}
+	
+	self.navigationController.navigationBarHidden = YES;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
+	self.navigationItem.title = NSLocalizedString(@"Map", @"");
+	self.navigationController.navigationBarHidden = YES;
 	
 	if([self isConnectionAvailable] == NO) {
 		ConnectionViewController *connectionView= [[[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil] autorelease];
@@ -140,9 +144,6 @@
 	[super didReceiveMemoryWarning];
 	
 	[self removeAllAnnotations];
-}
-
-- (void)viewDidUnload {
 }
 
 - (void)dealloc {
@@ -328,11 +329,13 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
 	//Action du bouton info des annotations
-	HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithBackImageNamed:NSLocalizedString(@"btn-back-map", @"")] autorelease];
+	HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] init] autorelease];
 	infosController.hotspot = ((LocationAnnotation *)(view.annotation)).hotspot;
 	infosController.currentCoords = mapView.userLocation.coordinate;
-	[self presentModalViewController:infosController animated:YES];
+
+	[self.navigationController pushViewController:infosController animated:YES];
 }
+
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
 }
 

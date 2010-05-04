@@ -23,13 +23,9 @@
 	
 }
 
-
-@property (nonatomic, retain) UIButton *btn;
 @property (nonatomic, retain) Hotspot *hotspot;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoords;
 @property (nonatomic, assign) BOOL exist;
-
-- (id)initWithBackImageNamed:(NSString*)imageName;
 
 - (void)confirmMap;
 - (void)showMap;
@@ -39,7 +35,5 @@
 - (void)sendEmail;
 - (void)showDirections;
 - (void)AddDeleteFavorite:(BOOL )action;
-
-- (IBAction)closeView;
 
 @end

@@ -32,11 +32,6 @@
 	[backButton2 setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
 	
 	isMainView = YES;
-	
-	
-	
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {

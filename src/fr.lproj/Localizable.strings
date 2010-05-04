@@ -21,9 +21,6 @@
 "There are no location in the area" = "Aucun point d'accès dans cette zone";
 "Could not find the address" = "Impossible de trouver l'adresse";
 
-"btn-back-map" = "btn-back-map-fr.png";
-"btn-retour" = "btn-retour-fr.png";
-"btn-back-favorites" = "btn-back-favorites-fr.png";
 "Address" = "Addresse";
 "Phone" = "Téléphone";
 "Email" = "Courriel";
@@ -52,6 +49,5 @@
 
 "infosImage" = "infos_fr.png";
 "isfButton" = "btn_isf_fr.png";
-"backButton" = "btn_isf_infos_back_fr.png";
 "isfInfosImage" = "isf_infos_fr.png";
 "isfCreditsImage" ="btn_credits_fr.png";
