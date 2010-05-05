@@ -25,7 +25,6 @@
 		4F1953C410780E9200F2B4A0 /* btn-loc.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1953C310780E9200F2B4A0 /* btn-loc.png */; };
 		4F1953C610780EA300F2B4A0 /* searching-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F1953C510780EA300F2B4A0 /* searching-back.png */; };
 		4F195A9310786DB200F2B4A0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F195A9210786DB200F2B4A0 /* CoreData.framework */; };
-		4F195AA610786ECF00F2B4A0 /* Hotspots.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 4F195AA510786ECF00F2B4A0 /* Hotspots.xcdatamodel */; };
 		4F195AE210787BFA00F2B4A0 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F195AE110787BFA00F2B4A0 /* Model.m */; };
 		4F260BDB108CB6D300737FAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F260BD9108CB6D300737FAC /* Localizable.strings */; };
 		4F260C60108CEA0100737FAC /* btn_isf_en.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F260C59108CEA0100737FAC /* btn_isf_en.png */; };
@@ -77,6 +76,7 @@
 		C6E409A3117FB33D00EDDA7F /* btn-back-favorites-en.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E409A1117FB33D00EDDA7F /* btn-back-favorites-en.png */; };
 		C6E409A4117FB33D00EDDA7F /* btn-back-favorites-fr.png in Resources */ = {isa = PBXBuildFile; fileRef = C6E409A2117FB33D00EDDA7F /* btn-back-favorites-fr.png */; };
 		C6E40A0A117FBB2900EDDA7F /* InfosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6E40A09117FBB2900EDDA7F /* InfosViewController.xib */; };
+		C6F7EA97118FADC70085A2C5 /* Hotspots.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6F7EA96118FADC70085A2C5 /* Hotspots.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,7 +104,6 @@
 		4F1953C310780E9200F2B4A0 /* btn-loc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-loc.png"; sourceTree = "<group>"; };
 		4F1953C510780EA300F2B4A0 /* searching-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searching-back.png"; sourceTree = "<group>"; };
 		4F195A9210786DB200F2B4A0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4F195AA510786ECF00F2B4A0 /* Hotspots.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Hotspots.xcdatamodel; sourceTree = "<group>"; };
 		4F195AE010787BFA00F2B4A0 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		4F195AE110787BFA00F2B4A0 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		4F260BDA108CB6D300737FAC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -173,6 +172,8 @@
 		C6E409A1117FB33D00EDDA7F /* btn-back-favorites-en.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-back-favorites-en.png"; sourceTree = "<group>"; };
 		C6E409A2117FB33D00EDDA7F /* btn-back-favorites-fr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-back-favorites-fr.png"; sourceTree = "<group>"; };
 		C6E40A0B117FBB3000EDDA7F /* InfosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfosViewController.xib; path = ../../fr.lproj/InfosViewController.xib; sourceTree = "<group>"; wrapsLines = 0; };
+		C6F7EA70118FA9D20085A2C5 /* Hotspots.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Hotspots.xcdatamodel; sourceTree = "<group>"; };
+		C6F7EA98118FADC70085A2C5 /* Hotspots 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Hotspots 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,13 +288,13 @@
 		4F091E3E1077BDA900794F0E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C6F7EA96118FADC70085A2C5 /* Hotspots.xcdatamodeld */,
 				4FF1E88C107E3BAC0033B9E5 /* dist.plist */,
 				4F091E3F1077BDA900794F0E /* Images */,
 				4F091E401077BDA900794F0E /* NIBs */,
 				4F091E5E1077C10000794F0E /* Default.png */,
 				4F091E4B1077C02000794F0E /* icon.png */,
 				8D1107310486CEB800E47090 /* Ile_sans_fil-Info.plist */,
-				4F195AA510786ECF00F2B4A0 /* Hotspots.xcdatamodel */,
 				4F260BD9108CB6D300737FAC /* Localizable.strings */,
 			);
 			path = Resources;
@@ -525,7 +526,6 @@
 				4F091E461077BDA900794F0E /* main.m in Sources */,
 				4F091EEE1077C78900794F0E /* MapViewController.m in Sources */,
 				4F091EF01077C78900794F0E /* googleMapsAPI.m in Sources */,
-				4F195AA610786ECF00F2B4A0 /* Hotspots.xcdatamodel in Sources */,
 				4F195AE210787BFA00F2B4A0 /* Model.m in Sources */,
 				4FECC12410790D9900CD8D96 /* LocationAnnotation.m in Sources */,
 				4FECC1AA107929B800CD8D96 /* XMLReader.m in Sources */,
@@ -539,6 +539,7 @@
 				4F260CD7108D015400737FAC /* ConnectionViewController.m in Sources */,
 				C68A14F71173BAB40010F77A /* FavoritesViewController.m in Sources */,
 				C6A4D05311764368001480C8 /* Favorite.m in Sources */,
+				C6F7EA97118FADC70085A2C5 /* Hotspots.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +691,20 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C6F7EA96118FADC70085A2C5 /* Hotspots.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C6F7EA70118FA9D20085A2C5 /* Hotspots.xcdatamodel */,
+				C6F7EA98118FADC70085A2C5 /* Hotspots 2.xcdatamodel */,
+			);
+			currentVersion = C6F7EA98118FADC70085A2C5 /* Hotspots 2.xcdatamodel */;
+			path = Hotspots.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }
