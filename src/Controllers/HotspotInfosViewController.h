@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Hotspot.h"
 #import "MapViewController.h"
+#import "TwitterViewController.h"
 
 @class Favorite;
 
@@ -20,7 +21,7 @@
 	Hotspot 							*hotspot;
 	CLLocationCoordinate2D		 currentCoords;
 	BOOL exist;
-	
+	TwitterViewController *twitterviewcontroller;
 }
 
 

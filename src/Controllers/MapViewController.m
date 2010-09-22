@@ -75,17 +75,17 @@
 	
 	
 	NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"hotspot.xml"];
-	 
 	
-	 NSURL *url = [NSURL fileURLWithPath:path];
-	 
+	
+	NSURL *url = [NSURL fileURLWithPath:path];
+	
 	
 	XMLReader *xmlReader = [[[XMLReader alloc] init] autorelease];
 	xmlReader.delegate = self;
 	[xmlReader parseXMLFileAtURL:url parseError:nil];
 }
 - (void)XMLReaderDidFinishParsing {
-
+	
 	if (isFirstLaunch == YES) {
 		[self mapZoomToLocation:[[map userLocation] coordinate] animated:YES];
 		isFirstLaunch = NO;
@@ -106,24 +106,24 @@
 	self.filteredListContent = [NSMutableArray arrayWithCapacity:[hotspotArray count]];
 	
 	tableViewHotspot.scrollEnabled = YES;
-
+	
 	//NSLog(@"FINI PARSAGE");
 }
 - (void)XMLReaderDidFailParsing {
 }
 
 - (void)viewDidLoad {
-   [super viewDidLoad];
+	[super viewDidLoad];
 	
 	searchWasActive=NO;
 	
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
-
 	
 	
 	
-
+	
+	
 	
 	if ([[Hotspot findAll] count] == 0) {
 		
@@ -138,35 +138,35 @@
 			
 		}else {
 			
-
-		isFirstLaunch = YES;
-		[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
-		[self fetchHotspots];
-		
+			
+			isFirstLaunch = YES;
+			[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
+			[self fetchHotspots];
+			
 		}
 		
 	} else {
 		//isFirstLaunch = YES;
-	//	[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
-	//	[self fetchHotspots];
-	/*	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fetchHotspots) object:nil];
-		[operationQueue addOperation:operation];
-		[operation release];*/
+		//	[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
+		//	[self fetchHotspots];
+		/*	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fetchHotspots) object:nil];
+		 [operationQueue addOperation:operation];
+		 [operation release];*/
 	}
-
+	
 	searchingView.hidden = YES;
 	
 	locatingLabel.text = NSLocalizedString(@"Locating...", @"");
 	
 	initialized = NO;
 	[searchingView removeFromSuperview];
-
+	
 	// Initialize the current location
 	[[map userLocation] setTitle:NSLocalizedString(@"You are here", @"")];
-
+	
 	// Initialize the search location
 	searchLocation = [[LocationAnnotation alloc] init];
-
+	
 	// Set the search bar keyboard appearance
 	for (UIView *v in addressSearchBar.subviews) {
 		if ([v isKindOfClass: [UITextField class]]) {
@@ -175,7 +175,7 @@
 		}
 	}
 	
-
+	
 	
 	//initialize bar button views
 	barButtonSuperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37, 36)];
@@ -187,8 +187,8 @@
 	[primaryButton addTarget:self action:@selector(showList) forControlEvents:UIControlEventTouchUpInside];
 	[barButtonPrimaryView addSubview:primaryButton];
 	
-
-		
+	
+	
 	barButtonSecondaryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37, 36)];
 	UIButton * secondaryButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	secondaryButton.frame = CGRectMake(0, 0, 37, 36);
@@ -226,7 +226,7 @@
 	
 	// create a filtered list that will contain products for the search results table.
 	self.filteredListContent = [NSMutableArray arrayWithCapacity:[hotspotArray count]];
-		
+	
 	
 	self.navigationController.navigationBarHidden = YES;
 	
@@ -257,27 +257,27 @@
 	
 	
 	/*if([self isConnectionAvailable] == NO) {
-		ConnectionViewController *connectionView= [[[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil] autorelease];
-		[self presentModalViewController:connectionView animated:NO];
-	}*/
+	 ConnectionViewController *connectionView= [[[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil] autorelease];
+	 [self presentModalViewController:connectionView animated:NO];
+	 }*/
 	
-/*	if([self isConnectionAvailable] == NO) {
-		//map.hidden=true;
-		connectionView.hidden=true;
-		[map removeFromSuperview];
-		[principalView addSubview:tableViewHotspot];
-		[barButtonSuperView addSubview:barButtonSecondaryView];
-		isMapView=NO;
-		
-		
-	} else {
-		
-		connectionView.hidden=true;
-		isMapView=YES;
-	}*/
+	/*	if([self isConnectionAvailable] == NO) {
+	 //map.hidden=true;
+	 connectionView.hidden=true;
+	 [map removeFromSuperview];
+	 [principalView addSubview:tableViewHotspot];
+	 [barButtonSuperView addSubview:barButtonSecondaryView];
+	 isMapView=NO;
+	 
+	 
+	 } else {
+	 
+	 connectionView.hidden=true;
+	 isMapView=YES;
+	 }*/
 	needsZoomOut = YES;
 	
-
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -297,8 +297,8 @@
 
 - (void)dealloc {
 	[map release];
-//	[gMapsAPI release];
-
+	//	[gMapsAPI release];
+	
 	[tableViewHotspot release];
 	[operationQueue release];
 	[noHotspotView release];
@@ -338,7 +338,7 @@
 
 - (void)displaySearchingView {
 	searchingLocation = YES;
-//	[self.view addSubview:searchingView];
+	//	[self.view addSubview:searchingView];
 }
 - (void)removeSearchingView {
 	[searchingView removeFromSuperview];
@@ -407,18 +407,21 @@
 	
 	for (Hotspot *hotspot in [Hotspot findAll]) {
 		LocationAnnotation *annotation = [[[LocationAnnotation alloc] init] autorelease];
-		annotation.title = hotspot.name;
+	
+			annotation.title=hotspot.name;
+				
+		
 		annotation.subtitle = [hotspot fullAddressOneLine];
 		CLLocationCoordinate2D coords;
 		coords.latitude	= [hotspot.latitude doubleValue];
 		coords.longitude	= [hotspot.longitude doubleValue];
 		annotation.coordinate = coords;
 		annotation.hotspot = hotspot;
-
+		
 		[AnnotationsClone addObject:annotation];
 		[map addAnnotation:(LocationAnnotation *)annotation];
-				
-	
+		
+		
 	}
 	//NSLog(@"FINI ajout annotation");
 }
@@ -437,17 +440,17 @@
 	}
 }
 -(void)refreshAnnotations:(Hotspot *)hotspot {
-
+	
 	NSInteger i=0;
 	while(i<[AnnotationsClone count]) {
-			
+		
 		if([[[[AnnotationsClone objectAtIndex:i]hotspot]hotspotId] isEqualToString:hotspot.hotspotId])
 		{
-		
+			
 			LocationAnnotation *annotation2 = [[[LocationAnnotation alloc] init] autorelease];
 			
 			annotation2=[[map annotations] objectAtIndex:i+1];
-
+			
 			[map removeAnnotation:[[map annotations] objectAtIndex:i+1]];
 			[AnnotationsClone removeObjectAtIndex:i];
 			[map addAnnotation:annotation2];
@@ -456,7 +459,7 @@
 			
 			return;
 		}
-	
+		
 		
 		i++;
 		
@@ -471,12 +474,12 @@
 		
 		if([[[[AnnotationsClone objectAtIndex:i]hotspot]hotspotId] isEqualToString:hotspot.hotspotId])
 		{
-			
+			NSLog(@"trouver");
 			[map selectAnnotation:[[map annotations] objectAtIndex:i+1] animated:YES];
 			return;
 		}
 		
-		
+		NSLog(@"rien sur : %d",i);
 		i++;
 		
 	}
@@ -508,7 +511,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-
+	
 	if (isFirstLaunch) return nil;
 	if(annotation == [mapView userLocation]) {
 		if(initialized == NO) {
@@ -516,14 +519,14 @@
 		}
 		return nil;
 	}
-
+	
 	static NSString *annotationIdentifier = @"DefaultPinID";
 	MKAnnotationView *mkav = (MKAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:annotationIdentifier];
-
+	
 	if (mkav == nil) {
-		 mkav = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
+		mkav = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:annotationIdentifier] autorelease];
 	} else {
-		 mkav.annotation = annotation;
+		mkav.annotation = annotation;
 	}
 	
 	mkav.canShowCallout = TRUE;
@@ -536,14 +539,14 @@
 	{
 		
 		if([[[FavoritesArray objectAtIndex:i] identifier] isEqualToString:((LocationAnnotation *)annotation).hotspot.hotspotId])
-			   //[[FavoritesArray objectAtIndex:i] identifier]==((LocationAnnotation *)annotation).hotspot.hotspotId)
-			{
-				i=[FavoritesArray count];
-				isFavorite=TRUE;
-			}
+			//[[FavoritesArray objectAtIndex:i] identifier]==((LocationAnnotation *)annotation).hotspot.hotspotId)
+		{
+			i=[FavoritesArray count];
+			isFavorite=TRUE;
+		}
 		i++;
 	}
-
+	
 	if ((LocationAnnotation *)annotation == searchLocation) mkav.image = [UIImage imageNamed:@"pin-search.png"];
 	else {
 		mkav.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -553,7 +556,7 @@
 		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusDown && isFavorite==TRUE) mkav.image = [UIImage imageNamed:@"pin-down-fav.png"];
 		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusUp && isFavorite==TRUE) mkav.image = [UIImage imageNamed:@"pin-up-fav.png"];
 	}
-
+	
 	return mkav;
 }
 
@@ -567,7 +570,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
-		
+	
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
@@ -581,12 +584,12 @@
 		initialized = YES;
 	}
 	if(initialized == NO || loadingMap == YES) return;
-
+	
 	if(searchingLocation == NO) {
 		[self checkLocationsInView];
 		if (locationInView == NO) [self mapZoomOut];
 	}
-
+	
 	// Is there any location in the area
 	if(locationInView == NO && (mapView.region.span.latitudeDelta >= MAX_SPAN_DELTA || mapView.region.span.longitudeDelta >= MAX_SPAN_DELTA)) {
 		[self displayNoHotspotView];
@@ -613,7 +616,7 @@
 		[self checkLocationsInView];
 		if (locationInView == NO) [self mapZoomOut];
 	}
-
+	
 	[map showsUserLocation];
 	
 }
@@ -629,16 +632,16 @@
 	[map selectAnnotation:[map userLocation] animated:YES];
 }
 - (IBAction)Refresh {
-
+	
 	[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
 	[self fetchHotspots];
 	[tableViewHotspot reloadData];
 	/*[self removeAllAnnotations];
-	
-	[self addHotspots];*/
+	 
+	 [self addHotspots];*/
 	
 }
-	
+
 
 -(CLLocationCoordinate2D) getCurrentCoordinate {
 	CLLocationCoordinate2D coordinate= [[map userLocation] coordinate];
@@ -653,8 +656,9 @@
 	//if(!map.hidden)
 	if(isMapView == YES)
 	{
-	[self showList];
+		[self showList];
 	}
+//	refreshHeaderView.userInteractionEnabled=false;
 	//si on est sur la map et que l'on appuis sur le bouton recherche on affiche la liste
 	
 }
@@ -686,10 +690,10 @@
 	
 	if([addressSearchBar.text length] > 0) {
 		
-	
+		
 		searchWasActive = YES;
-	
-	
+		
+		
 		[self searchTableView:addressSearchBar.text];
 		
 		//si la barre de recherche est rempli on dit que la recherche est active et on cherche les resultat correspondant
@@ -699,7 +703,7 @@
 		searchWasActive = NO;
 		//sinon lorsque on supprimer les caractères de la recherche on dit que la recherche est inactive pour afficher la liste complete
 	}
-
+	
 	[tableViewHotspot reloadData];
 }
 
@@ -730,7 +734,7 @@
 - (IBAction)showList {
 	
 	
-
+	
 	[UIView beginAnimations:@"BarButtonViewAnimation" context:NULL];
 	[UIView setAnimationDuration:kTransitionDuration];
 	
@@ -817,7 +821,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	return 60.0f;
+	return 65.0f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
@@ -838,14 +842,36 @@
     } else {
         hotspot = (Hotspot *)[hotspotArray objectAtIndex:indexPath.row];
     }
-	
+	NSString *address=[[NSString alloc]initWithString:@""];
+	if(hotspot.civicNumber)
+	{
+		address=[[hotspot civicNumber] stringByAppendingString:@" "];
+	}
+	if(hotspot.streetAddress)
+	{
+		address=[address stringByAppendingString:[hotspot streetAddress]];
+	}
+	address=[address stringByAppendingString:@" "];	
+	if(hotspot.postalCode)
+	{
 		
-	NSString *address=[[hotspot civicNumber] stringByAppendingString:@" "];
-	address=[address stringByAppendingString:[hotspot streetAddress]];
-	address=[address stringByAppendingString:@" "];
-	cell.detailTextLabel.text=[address stringByAppendingString:[hotspot postalCode]];
+		address=[address stringByAppendingString:[hotspot postalCode]];
+	}
+	cell.detailTextLabel.text=address;
 	
-	cell.textLabel.text = [hotspot name];
+	
+
+		if([[hotspot name] length]>27)
+		{
+			cell.textLabel.text = [[hotspot name] substringWithRange:NSMakeRange(0, 26)];
+		}else {
+			cell.textLabel.text=[hotspot name];
+		}
+		
+	
+	
+	
+	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	UIImage *img=[[UIImage alloc] init];
 	
@@ -865,40 +891,40 @@
 		i++;
 	}
 	//NSLog(@"Is FAVORITE: %@", isFavorite ? @"YES" : @"NO");
-		
+	
 	if ([hotspot status] == kHotspotStatusUnknow) img = [UIImage imageNamed:@"pin-unknown.png"];
 	if ([hotspot status] == kHotspotStatusDown && isFavorite==FALSE) img = [UIImage imageNamed:@"pin-down.png"];
 	if ([hotspot status] == kHotspotStatusUp && isFavorite==FALSE) img = [UIImage imageNamed:@"pin-up.png"];
 	if ([hotspot status] == kHotspotStatusDown && isFavorite==TRUE) img = [UIImage imageNamed:@"pin-down-fav.png"];
 	if ([hotspot status] == kHotspotStatusUp && isFavorite==TRUE) img = [UIImage imageNamed:@"pin-up-fav.png"];
     cell.imageView.image = img;
-	cell.textLabel.textAlignment	= UITextAlignmentCenter;
+	//cell.textLabel.textAlignment	= UITextAlignmentCenter;
 	
 	
 	return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-		
+	
 	
 	Hotspot *hotspot = nil;
-
+	
 	if(searchWasActive==YES)
 	{
         hotspot =  (Hotspot *)[self.filteredListContent objectAtIndex:indexPath.row];
 		[addressSearchBar resignFirstResponder];
-	
+		
     } else {
         hotspot = (Hotspot *)[hotspotArray objectAtIndex:indexPath.row];
     }
 	
-		HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] init] autorelease];
-		infosController.hotspot = hotspot;
-		infosController.currentCoords =[self getCurrentCoordinate];
-		[self.navigationController pushViewController:infosController animated:YES];
+	HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] init] autorelease];
+	infosController.hotspot = hotspot;
+	infosController.currentCoords =[self getCurrentCoordinate];
+	[self.navigationController pushViewController:infosController animated:YES];
 	
 	
-		
+	
 	
 }
 

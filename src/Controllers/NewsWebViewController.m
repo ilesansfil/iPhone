@@ -46,7 +46,14 @@
 		}
 	
 
+	// webView is a UIWebView, either initialized programmatically or loaded as part of a xib.
 	
+/*	
+	NSString *htmlString = @"<html><head><meta name = \"viewport\" content = \"initial-scale = 1.0, user-scalable = no, width = 212\"/></head><body style=\"background:#F00;margin-top:0px;margin-left:0px\"><div><object width=\"480\" height=\"385\"><param name=\"movie\" value=\"http://www.youtube.com/v/T83eis3wsNo&amp;hl=fr_FR&amp;fs=1\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/T83eis3wsNo&amp;hl=fr_FR&amp;fs=1\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"480\" height=\"385\"></embed></object></div></body></html>";
+	
+	[webView loadHTMLString:htmlString baseURL:[NSURL URLWithString:@"http://www.your-url.com"]];
+	
+*/	
 	
 	//NSLog(@"CONTENU AFFICHER : %@",[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"]);
 }

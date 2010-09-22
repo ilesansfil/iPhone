@@ -14,6 +14,8 @@
 #import "ISFAppDelegate.h"
 
 
+
+
 @implementation FavoritesViewController
 
 @synthesize favoritesArray;
@@ -26,6 +28,10 @@
 	self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	favoritesArray=[[NSMutableArray alloc] init];
 	[self setFavoritesArray:[NSMutableArray arrayWithArray:[Favorite findAll]]];
+	
+	
+	
+
 	
 }
 

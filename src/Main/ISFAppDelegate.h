@@ -20,5 +20,5 @@
 
 + (ISFAppDelegate *)appDelegate;
 - (void)showNetworkActivity:(BOOL)active;
-
+-(void)alertNotice:(NSString *)title withMSG:(NSString *)msg cancleButtonTitle:(NSString *)cancleTitle otherButtonTitle:(NSString *)otherTitle;
 @end

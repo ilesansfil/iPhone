@@ -31,7 +31,7 @@
 #define XML_TAG_HOTSPOTLATLONG	@"gisCenterLatLong"
 #define XML_TAG_HOTSPOT_LAT		@"lat"
 #define XML_TAG_HOTSPOT_LONG		@"long"
-
+#define XML_TAG_SHOW				@"show"
 // XML tags - Node
 #define XML_TAG_NODEID				@"nodeId"
 #define XML_TAG_CREATIONDATE		@"creationDate"
@@ -48,14 +48,14 @@ static NSUInteger parsedLocationsCounter;
 
 
 - (void)parseXMLFileAtURL:(NSURL *)URL parseError:(NSError **)error {	
-
+	
 	NSURLRequest *theRequest=[NSURLRequest requestWithURL:URL
-															cachePolicy:NSURLRequestUseProtocolCachePolicy
-													  timeoutInterval:60.0];
+											  cachePolicy:NSURLRequestUseProtocolCachePolicy
+										  timeoutInterval:60.0];
 	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 	if (theConnection) {
 		receivedData = [[NSMutableData data] retain];
-	
+		
 	} else {
 	}
 }
@@ -69,7 +69,7 @@ static NSUInteger parsedLocationsCounter;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	[receivedData appendData:data];
-
+	
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -82,8 +82,8 @@ static NSUInteger parsedLocationsCounter;
 	
 	// inform the user
 	NSLog(@"Connection failed! Error - %@ %@",
-			[error localizedDescription],
-			[[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+		  [error localizedDescription],
+		  [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
 	
 	
 }
@@ -117,7 +117,7 @@ static NSUInteger parsedLocationsCounter;
 	hotspotsList = [[NSMutableArray alloc] init];
 	
 	[parser parse];
-		
+	
 	[parser release];
 }
 
@@ -129,7 +129,7 @@ static NSUInteger parsedLocationsCounter;
 	if (qName) {
 		elementName = qName;
 	}
-
+	
 	// New hotspot
 	if ([elementName isEqualToString:@"hotspot"]) {
 		parsedLocationsCounter++;
@@ -151,35 +151,36 @@ static NSUInteger parsedLocationsCounter;
 	
 	// Hotspot properties
 	if ([elementName isEqualToString:XML_TAG_HOTSPOTID] ||
-		 [elementName isEqualToString:XML_TAG_NAME] ||
-		 [elementName isEqualToString:XML_TAG_OPENINGDATE] ||
-		 [elementName isEqualToString:XML_TAG_WEBSITEURL] ||
-		 [elementName isEqualToString:XML_TAG_DESCRIPTION] ||
-		 [elementName isEqualToString:XML_TAG_MASSTRANSITINFO] ||
-		 [elementName isEqualToString:XML_TAG_CONTACTEMAIL] ||
-		 [elementName isEqualToString:XML_TAG_CONTACTPHONE] ||
-		 [elementName isEqualToString:XML_TAG_CIVICNUMBER] ||
-		 [elementName isEqualToString:XML_TAG_STREETADDRESS] ||
-		 [elementName isEqualToString:XML_TAG_CITY] ||
-		 [elementName isEqualToString:XML_TAG_PROVINCE] ||
-		 [elementName isEqualToString:XML_TAG_POSTALCODE] ||
-		 [elementName isEqualToString:XML_TAG_COUNTRY]) contentOfCurrentLocationProperty = [NSMutableString string];
+		[elementName isEqualToString:XML_TAG_NAME] ||
+		[elementName isEqualToString:XML_TAG_OPENINGDATE] ||
+		[elementName isEqualToString:XML_TAG_WEBSITEURL] ||
+		[elementName isEqualToString:XML_TAG_DESCRIPTION] ||
+		[elementName isEqualToString:XML_TAG_MASSTRANSITINFO] ||
+		[elementName isEqualToString:XML_TAG_CONTACTEMAIL] ||
+		[elementName isEqualToString:XML_TAG_CONTACTPHONE] ||
+		[elementName isEqualToString:XML_TAG_CIVICNUMBER] ||
+		[elementName isEqualToString:XML_TAG_STREETADDRESS] ||
+		[elementName isEqualToString:XML_TAG_CITY] ||
+		[elementName isEqualToString:XML_TAG_PROVINCE] ||
+		[elementName isEqualToString:XML_TAG_POSTALCODE] ||
+		[elementName isEqualToString:XML_TAG_COUNTRY]) contentOfCurrentLocationProperty = [NSMutableString string];
 	
 	else if ([elementName isEqualToString:XML_TAG_HOTSPOTLATLONG]) {
 		[contentOfCurrentHotspot setObject:[attributeDict objectForKey:XML_TAG_HOTSPOT_LAT] forKey:XML_TAG_HOTSPOT_LAT];
 		[contentOfCurrentHotspot setObject:[attributeDict objectForKey:XML_TAG_HOTSPOT_LONG] forKey:XML_TAG_HOTSPOT_LONG];
+		[contentOfCurrentHotspot setObject:[attributeDict objectForKey:XML_TAG_SHOW] forKey:XML_TAG_SHOW];
 	}
 	
 	// Node properties
 	else if ([elementName isEqualToString:XML_TAG_NODEID] ||
-		 [elementName isEqualToString:XML_TAG_CREATIONDATE] ||
-		 [elementName isEqualToString:XML_TAG_STATUS]) contentOfCurrentLocationProperty = [NSMutableString string];
+			 [elementName isEqualToString:XML_TAG_CREATIONDATE] ||
+			 [elementName isEqualToString:XML_TAG_STATUS]) contentOfCurrentLocationProperty = [NSMutableString string];
 	
 	else if ([elementName isEqualToString:XML_TAG_NODELATLONG]) {
 		[contentOfCurrentNode setObject:[attributeDict objectForKey:XML_TAG_NODE_LAT] forKey:XML_TAG_NODE_LAT];
 		[contentOfCurrentNode setObject:[attributeDict objectForKey:XML_TAG_NODE_LONG] forKey:XML_TAG_NODE_LONG];
 	}
-
+	
 	else contentOfCurrentLocationProperty = nil;
 }
 
@@ -195,7 +196,7 @@ static NSUInteger parsedLocationsCounter;
 		[spot setObject:nodesForCurrentHotspot forKey:@"nodes"];
 		[hotspotsList addObject:spot];
 		[spot release];
-
+		
 		return;
 	}
 	
@@ -204,27 +205,27 @@ static NSUInteger parsedLocationsCounter;
 		[nodesForCurrentHotspot addObject:contentOfCurrentNode];
 		return;
 	}
-
+	
 	// Hotspot properties
 	if ([elementName isEqualToString:XML_TAG_HOTSPOTID] ||
-		 [elementName isEqualToString:XML_TAG_NAME] ||
-		 [elementName isEqualToString:XML_TAG_OPENINGDATE] ||
-		 [elementName isEqualToString:XML_TAG_WEBSITEURL] ||
-		 [elementName isEqualToString:XML_TAG_DESCRIPTION] ||
-		 [elementName isEqualToString:XML_TAG_MASSTRANSITINFO] ||
-		 [elementName isEqualToString:XML_TAG_CONTACTEMAIL] ||
-		 [elementName isEqualToString:XML_TAG_CONTACTPHONE] ||
-		 [elementName isEqualToString:XML_TAG_CIVICNUMBER] ||
-		 [elementName isEqualToString:XML_TAG_STREETADDRESS] ||
-		 [elementName isEqualToString:XML_TAG_CITY] ||
-		 [elementName isEqualToString:XML_TAG_PROVINCE] ||
-		 [elementName isEqualToString:XML_TAG_POSTALCODE] ||
-		 [elementName isEqualToString:XML_TAG_COUNTRY]) [contentOfCurrentHotspot setObject:[contentOfCurrentLocationProperty stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:elementName];
+		[elementName isEqualToString:XML_TAG_NAME] ||
+		[elementName isEqualToString:XML_TAG_OPENINGDATE] ||
+		[elementName isEqualToString:XML_TAG_WEBSITEURL] ||
+		[elementName isEqualToString:XML_TAG_DESCRIPTION] ||
+		[elementName isEqualToString:XML_TAG_MASSTRANSITINFO] ||
+		[elementName isEqualToString:XML_TAG_CONTACTEMAIL] ||
+		[elementName isEqualToString:XML_TAG_CONTACTPHONE] ||
+		[elementName isEqualToString:XML_TAG_CIVICNUMBER] ||
+		[elementName isEqualToString:XML_TAG_STREETADDRESS] ||
+		[elementName isEqualToString:XML_TAG_CITY] ||
+		[elementName isEqualToString:XML_TAG_PROVINCE] ||
+		[elementName isEqualToString:XML_TAG_POSTALCODE] ||
+		[elementName isEqualToString:XML_TAG_COUNTRY]) [contentOfCurrentHotspot setObject:[contentOfCurrentLocationProperty stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:elementName];
 	
 	// Node properties
 	if ([elementName isEqualToString:XML_TAG_NODEID] ||
-		 [elementName isEqualToString:XML_TAG_CREATIONDATE] ||
-		 [elementName isEqualToString:XML_TAG_STATUS]) [contentOfCurrentNode setObject:[contentOfCurrentLocationProperty stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:elementName];
+		[elementName isEqualToString:XML_TAG_CREATIONDATE] ||
+		[elementName isEqualToString:XML_TAG_STATUS]) [contentOfCurrentNode setObject:[contentOfCurrentLocationProperty stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] forKey:elementName];
 	
 }
 
@@ -236,52 +237,54 @@ static NSUInteger parsedLocationsCounter;
 
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-//	[[Model shared] wipe];
+	//	[[Model shared] wipe];
 	for (NSDictionary *spot in hotspotsList) {
 		contentOfCurrentHotspot = [spot objectForKey:@"hotspot"];
 		nodesForCurrentHotspot	= [spot objectForKey:@"nodes"];
-	
-		if(![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LAT] isEqualToString:@""] & ![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LONG] isEqualToString:@""])
-		{		
-
-	
-//		Hotspot *hotspot = [[Model shared] insertNewObjectForEntityForName:@"Hotspot"];
-		Hotspot *hotspot = [[Model shared] findOrCreateObjectForEntityForName:@"Hotspot" withIdentifier:[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID]];
-		if (hotspot.hotspotId == nil) {
-			hotspot.hotspotId = [contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID];
-			hotspot.createdAt = [NSDate date];
-		}
-		hotspot.city					= [contentOfCurrentHotspot objectForKey:XML_TAG_CITY];
-		hotspot.civicNumber			= [contentOfCurrentHotspot objectForKey:XML_TAG_CIVICNUMBER];
-		hotspot.contactEmail			= [contentOfCurrentHotspot objectForKey:XML_TAG_CONTACTEMAIL];
-		hotspot.contactPhoneNumber	= [contentOfCurrentHotspot objectForKey:XML_TAG_CONTACTPHONE];
-		hotspot.country				= [contentOfCurrentHotspot objectForKey:XML_TAG_COUNTRY];
-		hotspot.massTransitInfo		= [contentOfCurrentHotspot objectForKey:XML_TAG_MASSTRANSITINFO];
-		hotspot.name					= [contentOfCurrentHotspot objectForKey:XML_TAG_NAME];
-		hotspot.openingDate			= [contentOfCurrentHotspot objectForKey:XML_TAG_OPENINGDATE];
-		hotspot.postalCode			= [contentOfCurrentHotspot objectForKey:XML_TAG_POSTALCODE];
-		hotspot.province				= [contentOfCurrentHotspot objectForKey:XML_TAG_PROVINCE];
-		hotspot.streetAddress		= [contentOfCurrentHotspot objectForKey:XML_TAG_STREETADDRESS];
-		hotspot.websiteUrl			= [contentOfCurrentHotspot objectForKey:XML_TAG_WEBSITEURL];
-		hotspot.latitude				= [NSNumber numberWithDouble:[(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LAT] doubleValue]];
-		hotspot.longitude				= [NSNumber numberWithDouble:[(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LONG] doubleValue]];
-		hotspot.updatedAt 			= [NSDate date];
 		
-		// Add / Update nodes
-		for (NSDictionary *nodeContent in nodesForCurrentHotspot) {
-//			Node *node = [[Model shared] insertNewObjectForEntityForName:@"Node"];
-			Node *node = [[Model shared] findOrCreateObjectForEntityForName:@"Node" withIdentifier:[nodeContent objectForKey:XML_TAG_NODEID]];
-			if (node.nodeId == nil) {
-				node.nodeId		= [nodeContent objectForKey:XML_TAG_NODEID];
-				node.createdAt	= [NSDate date];
+		if(![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LAT] isEqualToString:@""] & ![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LONG] isEqualToString:@""] & ![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_SHOW] isEqualToString:@""])
+		{		
+			
+			
+			//		Hotspot *hotspot = [[Model shared] insertNewObjectForEntityForName:@"Hotspot"];
+			Hotspot *hotspot = [[Model shared] findOrCreateObjectForEntityForName:@"Hotspot" withIdentifier:[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID]];
+			if (hotspot.hotspotId == nil) {
+				hotspot.hotspotId = [contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID];
+				hotspot.createdAt = [NSDate date];
 			}
-			node.creationDate	= [nodeContent objectForKey:XML_TAG_CREATIONDATE];
-			node.status			= [nodeContent objectForKey:XML_TAG_STATUS];
-			node.latitude		= [NSNumber numberWithDouble:[(NSString *)[nodeContent objectForKey:XML_TAG_NODE_LAT] doubleValue]];
-			node.longitude		= [NSNumber numberWithDouble:[(NSString *)[nodeContent objectForKey:XML_TAG_NODE_LONG] doubleValue]];
-			node.updatedAt		= [NSDate date];
-			node.hotspot 		= hotspot;
-		}
+			hotspot.city					= [contentOfCurrentHotspot objectForKey:XML_TAG_CITY];
+			hotspot.civicNumber			= [contentOfCurrentHotspot objectForKey:XML_TAG_CIVICNUMBER];
+			hotspot.contactEmail			= [contentOfCurrentHotspot objectForKey:XML_TAG_CONTACTEMAIL];
+			hotspot.contactPhoneNumber	= [contentOfCurrentHotspot objectForKey:XML_TAG_CONTACTPHONE];
+			hotspot.country				= [contentOfCurrentHotspot objectForKey:XML_TAG_COUNTRY];
+			hotspot.massTransitInfo		= [contentOfCurrentHotspot objectForKey:XML_TAG_MASSTRANSITINFO];
+			hotspot.name					= [contentOfCurrentHotspot objectForKey:XML_TAG_NAME];
+			hotspot.openingDate			= [contentOfCurrentHotspot objectForKey:XML_TAG_OPENINGDATE];
+			hotspot.postalCode			= [contentOfCurrentHotspot objectForKey:XML_TAG_POSTALCODE];
+			hotspot.province				= [contentOfCurrentHotspot objectForKey:XML_TAG_PROVINCE];
+			
+			hotspot.streetAddress		= [contentOfCurrentHotspot objectForKey:XML_TAG_STREETADDRESS];
+			
+			hotspot.websiteUrl			= [contentOfCurrentHotspot objectForKey:XML_TAG_WEBSITEURL];
+			hotspot.latitude				= [NSNumber numberWithDouble:[(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LAT] doubleValue]];
+			hotspot.longitude				= [NSNumber numberWithDouble:[(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LONG] doubleValue]];
+			hotspot.updatedAt 			= [NSDate date];
+			
+			// Add / Update nodes
+			for (NSDictionary *nodeContent in nodesForCurrentHotspot) {
+				//			Node *node = [[Model shared] insertNewObjectForEntityForName:@"Node"];
+				Node *node = [[Model shared] findOrCreateObjectForEntityForName:@"Node" withIdentifier:[nodeContent objectForKey:XML_TAG_NODEID]];
+				if (node.nodeId == nil) {
+					node.nodeId		= [nodeContent objectForKey:XML_TAG_NODEID];
+					node.createdAt	= [NSDate date];
+				}
+				node.creationDate	= [nodeContent objectForKey:XML_TAG_CREATIONDATE];
+				node.status			= [nodeContent objectForKey:XML_TAG_STATUS];
+				node.latitude		= [NSNumber numberWithDouble:[(NSString *)[nodeContent objectForKey:XML_TAG_NODE_LAT] doubleValue]];
+				node.longitude		= [NSNumber numberWithDouble:[(NSString *)[nodeContent objectForKey:XML_TAG_NODE_LONG] doubleValue]];
+				node.updatedAt		= [NSDate date];
+				node.hotspot 		= hotspot;
+			}
 			
 		}
 	}
@@ -289,7 +292,7 @@ static NSUInteger parsedLocationsCounter;
 	
 	[[Model shared] save];
 	if (delegate && [delegate respondsToSelector:@selector(XMLReaderDidFinishParsing)]) [delegate XMLReaderDidFinishParsing];
-//	NSLog(@"%@", [Hotspot findAll]);
+	//	NSLog(@"%@", [Hotspot findAll]);
 }
 
 @end

@@ -12,8 +12,10 @@
 #import "News.h"
 #import "Model.h"
 #import "EGORefreshTableHeaderView.h"
+#import "RootViewController.h"
 
 #define kRSSURL @"http://www.ilesansfil.org/feed/"
+#define kRSSURL2 @"http://twitter.com/statuses/user_timeline/16543294.rss"
 
 @interface NewsViewController (Private)
 - (void)dataSourceDidFinishLoadingNewData;
@@ -21,15 +23,19 @@
 @end
 
 @implementation NewsViewController
-@synthesize stories,reloading=_reloading;
+@synthesize stories,twitterStories,reloading=_reloading;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
 	isOffline=FALSE;
-
 	
 	
+		
+	
+	[Switcher setTitle:NSLocalizedString(@"Blog",@"") forSegmentAtIndex:0];
+	[Switcher setTitle:NSLocalizedString(@"Twitter",@"") forSegmentAtIndex:1];
+	Switcher.frame=CGRectMake(30, 3, 250, 35);
 		if([self isConnectionAvailable] == NO) {
 			
 			if([[News findAll] count] == 0) {
@@ -39,11 +45,10 @@
 			[alertMessage setText:NSLocalizedString(@"To take advantage of offline mode, you need to connect once to Internet to create the database of news.", @"")];
 			}else {
 				
-				
+				Switcher.hidden=TRUE;
 				isOffline=TRUE;
 				stories=[[NSMutableArray alloc] init];
-			//	stories=[NSMutableArray arrayWithArray:[News findAll]];
-				//[self setStories:[NSMutableArray arrayWithArray:[News findAll]]];
+			
 				[self setStories:[NSMutableArray arrayWithArray:[[Model shared] fetchObjectsForEntityForName:@"News" predicate:nil sortedBy:@"createdAt" ascending:NO limit:0]]];
 				[newsTable reloadData];
 			}
@@ -54,8 +59,6 @@
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
 	
-	//refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-	//self.navigationItem.leftBarButtonItem = refreshButton;
 
 	activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 	activity.hidesWhenStopped = YES;
@@ -63,10 +66,20 @@
 	UIBarButtonItem *spinnerItem = [[UIBarButtonItem alloc] initWithCustomView:activity];
 	self.navigationItem.rightBarButtonItem = spinnerItem;
 	
+		
 	
-	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL];
+			
+		
+	NSInvocationOperation *	operation2 = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtNumberTypeNews:) object:@"1"];		
+	
+	[operationQueue addOperation:operation2];
+	NSInvocationOperation *	operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtNumberTypeNews:) object:@"0"];
+	
 	[operationQueue addOperation:operation];
+	
+
 	[operation release];
+	[operation2 release];
 			
 	}
 
@@ -85,9 +98,104 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.navigationItem.title = NSLocalizedString(@"ISF News", @"");
+	
+	[self updateBadge];
+
+	
+	
 }
 
- 
+- (void)updateBadge {
+	
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+	NSString *updateSuccess=[prefs stringForKey:@"updateSuccess"];
+	
+	if([UIApplication sharedApplication].applicationIconBadgeNumber!=0 | ![updateSuccess isEqualToString:@"success"])
+	{
+		NSLog(@"HOPHOPHOP ON RENTRE DEDANS");
+		
+		
+		
+#if !TARGET_IPHONE_SIMULATOR
+		
+		
+		// Get Bundle Info for Remote Registration (handy if you have more than one app)
+		NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+		NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+		
+		
+		// Get the users Device Model, Display Name, Unique ID, Token & Version Number
+		UIDevice *dev = [UIDevice currentDevice];
+		NSString *deviceUuid = dev.uniqueIdentifier;
+		NSString *deviceName = dev.name;
+		NSString *deviceModel = dev.model;
+		NSString *deviceSystemVersion = dev.systemVersion;
+		
+		
+		// Prepare the Device Token for Registration (remove spaces and < >)
+		
+		NSString *deviceToken =[prefs stringForKey:@"deviceToken"];
+		NSLog(@"token : %@ :",deviceToken);
+		
+		// Build URL String for Registration
+		// !!! CHANGE "www.mywebsite.com" TO YOUR WEBSITE. Leave out the http://
+		// !!! SAMPLE: "secure.awesomeapp.com"
+		//NSString *host = @"auth.ilesansfil.org/authpuppy/cms/Push";
+		NSString *numBadge=@"0";
+		NSString *host = @"www.ilesansfil.org/wp-content/plugins/push-notification/";
+		// !!! CHANGE "/apns.php?" TO THE PATH TO WHERE apns.php IS INSTALLED 
+		// !!! ( MUST START WITH / AND END WITH ? ). 
+		// !!! SAMPLE: "/path/to/apns.php?"
+		NSString *urlString = [NSString stringWithFormat:@"/20100713iphonescript.php?task=%@&appname=%@&appversion=%@&deviceuid=%@&devicetoken=%@&devicename=%@&devicemodel=%@&deviceversion=%@&typeOp=update&numbadge=%@", @"register", appName,appVersion, deviceUuid, deviceToken, deviceName, deviceModel, deviceSystemVersion,numBadge];
+		
+		
+		//NSString *urlString = [NSString stringWithFormat:@"/apns.php?task=%@&appname=%@&appversion=%@&deviceuid=%@&devicetoken=%@&devicename=%@&devicemodel=%@&deviceversion=%@&typeOp=update&numbadge=%@", @"register", appName,appVersion, deviceUuid, deviceToken, deviceName, deviceModel, deviceSystemVersion,numBadge];
+		NSHTTPURLResponse *response = NULL;
+		NSError *error = NULL;
+		// Register the Device Data
+		// !!! CHANGE "http" TO "https" IF YOU ARE USING HTTPS PROTOCOL
+		NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:host path:urlString];
+		NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+		
+		/* [request setHTTPMethod: @"POST"];
+		 [request setHTTPBody:postData];
+		 [request setValue:@"text/xml" forHTTPHeaderField:@"Accept"];
+		 [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];*/
+		NSHTTPURLResponse *httpResponse;
+		
+		NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+		NSLog(@"Register error: %@", error);
+		NSLog(@"Register response: %@", response);
+		NSLog(@"Register URL: %@", url);
+		NSLog(@"Return Data: %@", returnData);
+		httpResponse = (NSHTTPURLResponse *)response;
+		int statusCode = [httpResponse statusCode];  
+		NSLog(@"HTTP Response Headers %@", [httpResponse allHeaderFields]); 
+		NSLog(@"HTTP Status code: %d", statusCode);
+		
+		if(statusCode>400 | statusCode==0)
+		{
+			[prefs setObject:@"notsuccess" forKey:@"updateSuccess"];
+			[prefs synchronize];
+		}else {
+			[prefs setObject:@"success" forKey:@"updateSuccess"];
+			[prefs synchronize];
+			[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+			//[rootViewController changeNumberBadge:2:[NSString stringWithFormat:@"%d",[UIApplication sharedApplication].applicationIconBadgeNumber]];
+			[rootViewController changeNumberBadge:2:NULL];
+		}
+		
+		
+		
+		NSString *updateSuccess=[prefs stringForKey:@"updateSuccess"];
+		NSLog(@"success : %@ :",updateSuccess);
+		
+#endif
+		
+		
+	
+}
+}
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 }
@@ -107,23 +215,61 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-	return [stories count];
+	
+	
+	NSLog(@"stories array has %d items", [stories count]);
+	
+	NSLog(@"stories array has %d items", [twitterStories count]); 
+	
+	if(!isOffline) {
+		if([Switcher selectedSegmentIndex]==1)
+		{
+			return [twitterStories count];
+		
+		}else {
+			return [stories count];
+		}
+	}else{
+		
+		return [stories count];
+		
+	}
+	
+
 	
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if(!isOffline) {
-	int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
-	NSString *text = [[stories objectAtIndex: storyIndex] objectForKey: @"title"];
-	CGFloat height = 20.0f + [text sizeWithFont:[UIFont boldSystemFontOfSize:15] 
-									  constrainedToSize:CGSizeMake(280, 2000) 
-											lineBreakMode:UILineBreakModeWordWrap].height;
-	return MAX(height, 44.0f);
 		
+		if([Switcher selectedSegmentIndex]==1)
+		{
+			int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
+			//NSString *text = [[twitterStories objectAtIndex: storyIndex] objectForKey: @"title"];
+				NSString *text = [[[twitterStories objectAtIndex: storyIndex] objectForKey: @"title"] substringWithRange:NSMakeRange(5, [[[twitterStories objectAtIndex: storyIndex] objectForKey: @"title"] length]-5)];
+			CGFloat height = 26.0f + [text sizeWithFont:[UIFont systemFontOfSize:12] 
+									  constrainedToSize:CGSizeMake(270, 9999) 
+										  lineBreakMode:UILineBreakModeWordWrap].height;
+			
+			
+			return height;
+			
+		}else {
+			int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
+			NSString *text = [[stories objectAtIndex: storyIndex] objectForKey: @"title"];
+			CGFloat height = 20.0f + [text sizeWithFont:[UIFont boldSystemFontOfSize:15] 
+									  constrainedToSize:CGSizeMake(280, 2000) 
+										  lineBreakMode:UILineBreakModeWordWrap].height;
+			return MAX(height, 44.0f);
+		}
+
+			
+		
+
 	}else {
 		int storyIndex = indexPath.row;
 		NSString *text = [[stories objectAtIndex: storyIndex] title];
-		CGFloat height = 20.0f + [text sizeWithFont:[UIFont boldSystemFontOfSize:15] 
+		CGFloat height = 20.0f + [text sizeWithFont:[UIFont systemFontOfSize:15] 
 								  constrainedToSize:CGSizeMake(280, 2000) 
 									  lineBreakMode:UILineBreakModeWordWrap].height;
 		return MAX(height, 44.0f);	
@@ -131,85 +277,210 @@
 	}
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	int storyIndex						= [indexPath indexAtPosition: [indexPath length] - 1];
+	
+	NSInteger pair = storyIndex % 2;
+	if([Switcher selectedSegmentIndex]==1 && pair==0)
+   {
+	cell.backgroundColor = [UIColor colorWithRed:160.0/255 green:215.0/255 blue:246.0/255 alpha:0.1];
+   }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	if(!isOffline) {
 		
-		
-	static NSString *MyIdentifier = @"MyIdentifier";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-
-	int storyIndex						= [indexPath indexAtPosition: [indexPath length] - 1];
-	cell.textLabel.text				= [[stories objectAtIndex: storyIndex] objectForKey: @"title"];
-	cell.textLabel.font 				= [UIFont boldSystemFontOfSize:15];
-	cell.textLabel.numberOfLines 	= 0;
-	
-	
-		
-		
-		
-		
-		NSString *theDate=[[stories objectAtIndex:storyIndex] objectForKey:@"date"];
-		
-		
-		NSMutableString *TheFinalDate=[NSMutableString stringWithString:[theDate substringWithRange:NSMakeRange(5, 2)]];
-		[TheFinalDate appendString:@"-"];
-		[TheFinalDate appendString:[NSString stringWithFormat:@"%d", [self ConvertMonth:[theDate substringWithRange:NSMakeRange(8,3)]]]];
-		[TheFinalDate appendString:@"-"];
-		[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(12, 4)]];
-		[TheFinalDate appendString:@" "];
-		[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(17, 8)]];
-		
-		NSDate *date=[self convertStringDate:TheFinalDate];
-		
-		
-		NSLocale *locale = [NSLocale currentLocale];
-	//	NSLog(@"Current Locale: %@", [locale localeIdentifier]);
-		
-		if([[locale localeIdentifier] isEqualToString:@"fr_FR"])
+		if([Switcher selectedSegmentIndex]==1)
 		{
-		
-		// Create date formatter
-		NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-		[dateFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+			static NSString *MyIdentifier = @"MyIdentifier";
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+			int storyIndex						= [indexPath indexAtPosition: [indexPath length] - 1];
 			
-		// Set the locale as needed in the formatter (this example uses Japanese)
-		[dateFormat setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"] autorelease]];
+			UILabel *TitleLabel = nil;
+			UILabel *dateLabel = nil;
+			UILabel *DetailLabel = nil;
+			UIImageView *Image = nil;
 			
-		// Create date string from formatter, using the current date
-		NSString *dateString = [dateFormat stringFromDate:date];  
+			
+				
+				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
+				
+				TitleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(46, 4, 138, 20)] autorelease];
+				TitleLabel.tag = 2;
+				TitleLabel.font = [UIFont boldSystemFontOfSize:18];
+				TitleLabel.backgroundColor = [UIColor colorWithRed:159.0/255 green:215.0/255 blue:246.0/255 alpha:0];
+				[cell.contentView addSubview:TitleLabel];
+				
+				dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, 5, 130, 10)] autorelease];
+				dateLabel.tag = 3;
+				dateLabel.font = [UIFont systemFontOfSize:10];
+				dateLabel.backgroundColor = [UIColor colorWithRed:159.0/255 green:215.0/255 blue:246.0/255 alpha:0];
+				[cell.contentView addSubview:dateLabel];
+				
+				DetailLabel = [[[UILabel alloc] initWithFrame:CGRectMake(46, 24, 270, 43)] autorelease];
+				DetailLabel.tag = 4;
+				DetailLabel.numberOfLines=4;
+				DetailLabel.font = [UIFont systemFontOfSize:12];
+				DetailLabel.backgroundColor = [UIColor colorWithRed:159.0/255 green:215.0/255 blue:246.0/255 alpha:0];
+			//	DetailLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+				DetailLabel.lineBreakMode=UILineBreakModeWordWrap;
+				DetailLabel.textAlignment=UITextAlignmentLeft;
+				[cell.contentView addSubview:DetailLabel];
+				
+				Image = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"iconISF.png"]] autorelease];
+				CGRect imageFrame = Image.frame;
+				imageFrame.origin = CGPointMake(2, 2);
+				Image.frame = imageFrame;
+				Image.tag = 5;
+				Image.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+				[cell.contentView addSubview:Image];
+				
+				
+				// A reusable cell was available, so we just need to get a reference to the subviews using their tags.
+				TitleLabel = (UILabel *)[cell.contentView viewWithTag:2];
+				dateLabel = (UILabel *)[cell.contentView viewWithTag:3];
+				DetailLabel = (UILabel *)[cell.contentView viewWithTag:4];
+				Image = (UIImageView *)[cell.contentView viewWithTag:5];
+			
 		
-		// We're done with this now
-		[dateFormat release];
+			
+			
 		
-		cell.detailTextLabel.text=[[NSString stringWithFormat:@"%@",dateString] substringWithRange:NSMakeRange(0,[[NSString stringWithFormat:@"%@",dateString] length]-3)];
+			TitleLabel.text = [[[twitterStories objectAtIndex: storyIndex] objectForKey: @"title"] substringWithRange:NSMakeRange(0, 3)];
+				
+			DetailLabel.text =  [[[twitterStories objectAtIndex: storyIndex] objectForKey: @"title"] substringWithRange:NSMakeRange(5, [[[twitterStories objectAtIndex: storyIndex] objectForKey: @"title"] length]-5)];
+					
+			
+			
+			
+			
+			
+			NSString *theDate=[[twitterStories objectAtIndex:storyIndex] objectForKey:@"date"];
+			
+			
+			NSMutableString *TheFinalDate=[NSMutableString stringWithString:[theDate substringWithRange:NSMakeRange(5, 2)]];
+			[TheFinalDate appendString:@"-"];
+			[TheFinalDate appendString:[NSString stringWithFormat:@"%d", [self ConvertMonth:[theDate substringWithRange:NSMakeRange(8,3)]]]];
+			[TheFinalDate appendString:@"-"];
+			[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(12, 4)]];
+			[TheFinalDate appendString:@" "];
+			[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(17, 8)]];
+			
+			NSDate *date=[self convertStringDate:TheFinalDate];
+			
+			NSLocale *locale = [NSLocale currentLocale];
+			
+			
+			if([[locale localeIdentifier] isEqualToString:@"fr_FR"])
+			{
+				
+				// Create date formatter
+				NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+				[dateFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+				
+				// Set the locale as needed in the formatter (this example uses Japanese)
+				[dateFormat setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"] autorelease]];
+				
+				// Create date string from formatter, using the current date
+				NSString *dateString = [dateFormat stringFromDate:date];  
+				
+				// We're done with this now
+				[dateFormat release];
+				dateLabel.text = [[NSString stringWithFormat:@"%@",dateString] substringWithRange:NSMakeRange(0,[[NSString stringWithFormat:@"%@",dateString] length]-3)];
+				
+				
+			}else {
+				dateLabel.text=[[[NSString stringWithFormat:@"%@",theDate] stringByReplacingOccurrencesOfString:@" +0000" withString:@""] substringWithRange:NSMakeRange(4,[[[NSString stringWithFormat:@"%@",theDate] stringByReplacingOccurrencesOfString:@" +0000" withString:@""] length]-12)];
+				
+			}
+			
+			
+			cell.detailTextLabel.font		= [UIFont systemFontOfSize:12];
+			return cell;
+			
 			
 		}else {
+			static NSString *MyIdentifier = @"MyIdentifier";
 			
-			cell.detailTextLabel.text=[[NSString stringWithFormat:@"%@",theDate] stringByReplacingOccurrencesOfString:@" +0000" withString:@""];
+			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+			
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier] autorelease];
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			
+			
+			int storyIndex						= [indexPath indexAtPosition: [indexPath length] - 1];
+			cell.textLabel.text				= [[stories objectAtIndex: storyIndex] objectForKey: @"title"];
+			if([Switcher selectedSegmentIndex]==1)
+			{
+				cell.textLabel.font 				= [UIFont systemFontOfSize:12];
+			}else {
+				cell.textLabel.font 				= [UIFont boldSystemFontOfSize:15];
+			}
+			cell.textLabel.numberOfLines 	= 0;
+			
+			
+			
+			
+			
+			
+			NSString *theDate=[[stories objectAtIndex:storyIndex] objectForKey:@"date"];
+			
+			
+			NSMutableString *TheFinalDate=[NSMutableString stringWithString:[theDate substringWithRange:NSMakeRange(5, 2)]];
+			[TheFinalDate appendString:@"-"];
+			[TheFinalDate appendString:[NSString stringWithFormat:@"%d", [self ConvertMonth:[theDate substringWithRange:NSMakeRange(8,3)]]]];
+			[TheFinalDate appendString:@"-"];
+			[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(12, 4)]];
+			[TheFinalDate appendString:@" "];
+			[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(17, 8)]];
+			
+			NSDate *date=[self convertStringDate:TheFinalDate];
+			
+			NSLocale *locale = [NSLocale currentLocale];
+			
+			
+			if([[locale localeIdentifier] isEqualToString:@"fr_FR"])
+			{
+				
+				// Create date formatter
+				NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+				[dateFormat setDateFormat:@"dd-MM-yyyy HH:mm:ss"];
+				
+				// Set the locale as needed in the formatter (this example uses Japanese)
+				[dateFormat setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"fr_FR"] autorelease]];
+				
+				// Create date string from formatter, using the current date
+				NSString *dateString = [dateFormat stringFromDate:date];  
+				
+				// We're done with this now
+				[dateFormat release];
+				
+				cell.detailTextLabel.text=[[NSString stringWithFormat:@"%@",dateString] substringWithRange:NSMakeRange(0,[[NSString stringWithFormat:@"%@",dateString] length]-3)];
+				
+			}else {
+				
+				cell.detailTextLabel.text=[[[NSString stringWithFormat:@"%@",theDate] stringByReplacingOccurrencesOfString:@" +0000" withString:@""] substringWithRange:NSMakeRange(0,[[[NSString stringWithFormat:@"%@",theDate] stringByReplacingOccurrencesOfString:@" +0000" withString:@""] length]-6)];
+			}
+			
+			
+			cell.detailTextLabel.font		= [UIFont systemFontOfSize:12];
+			return cell;
+			
+			
 		}
 
-		
-		cell.detailTextLabel.font		= [UIFont systemFontOfSize:12];
-	return cell;
+	
 	
 		
 		
 	}else {
-		//NSLog(@"NBTOTAL %d", [stories count]);
-		//NSLog(@"NUMERO EN COUR: %d", indexPath.row);
+		
 		static NSString *MyIdentifier = @"MyIdentifier";
 		
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-		if (cell == nil) {
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier] autorelease];
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		}
+		
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
 		int storyIndex						=indexPath.row;
 		cell.textLabel.text				= [[stories objectAtIndex: storyIndex] title];
@@ -221,7 +492,7 @@
 		
 		
 		NSLocale *locale = [NSLocale currentLocale];
-		//NSLog(@"Current Locale: %@", [locale localeIdentifier]);
+		
 		
 		if([[locale localeIdentifier] isEqualToString:@"fr_FR"])
 		{
@@ -259,21 +530,29 @@
 	
 	if(!isOffline) {
 		
-	int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
-	
-	NSString * storyLink = [[stories objectAtIndex: storyIndex] objectForKey: @"link"];
-	
-	// clean up the link - get rid of spaces, returns, and tabs...
-	storyLink = [storyLink stringByReplacingOccurrencesOfString:@" " withString:@""];
-	storyLink = [storyLink stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-	storyLink = [storyLink stringByReplacingOccurrencesOfString:@"	" withString:@""];
-	
-	NSLog(@"link: %@", storyLink);
+		
 
-	NewsWebViewController *webViewController = [[NewsWebViewController alloc] initWithNibName:@"NewsWebViewController" bundle:nil];
-	[webViewController setUrl:storyLink];
-	[self.navigationController pushViewController:webViewController animated:YES];
-	[webViewController release];
+		int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
+		NSString * storyLink;
+		if([Switcher selectedSegmentIndex]==1)
+		{
+			storyLink = [[twitterStories objectAtIndex: storyIndex] objectForKey: @"link"];
+		}else {
+			storyLink = [[stories objectAtIndex: storyIndex] objectForKey: @"link"];
+		}
+		
+	
+		// clean up the link - get rid of spaces, returns, and tabs...
+		storyLink = [storyLink stringByReplacingOccurrencesOfString:@" " withString:@""];
+		storyLink = [storyLink stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+		storyLink = [storyLink stringByReplacingOccurrencesOfString:@"	" withString:@""];
+	
+		NSLog(@"link: %@", storyLink);
+
+		NewsWebViewController *webViewController = [[NewsWebViewController alloc] initWithNibName:@"NewsWebViewController" bundle:nil];
+		[webViewController setUrl:storyLink];
+		[self.navigationController pushViewController:webViewController animated:YES];
+		[webViewController release];
 		
 	}else {
 		
@@ -349,6 +628,50 @@
 	[super dealloc];
 }
 
+-(void) segmentAction:(id)sender {
+	
+	NSLog(@"onglet select %d :",[sender selectedSegmentIndex]);
+	
+		//Switcher.enabled=FALSE;
+	/*	operationQueue = [[NSOperationQueue alloc] init];
+		[operationQueue setMaxConcurrentOperationCount:1];
+		
+		//refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+		//self.navigationItem.leftBarButtonItem = refreshButton;
+		
+		activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+		activity.hidesWhenStopped = YES;
+		[activity startAnimating];
+		UIBarButtonItem *spinnerItem = [[UIBarButtonItem alloc] initWithCustomView:activity];
+		self.navigationItem.rightBarButtonItem = spinnerItem;
+		NSInvocationOperation *operation;
+		if([sender selectedSegmentIndex]==1)
+		{
+			operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL2];
+		}else {
+			operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL];
+		}
+
+		
+		[operationQueue addOperation:operation];
+		[operation release];
+		
+	
+	
+	
+	if (refreshHeaderView == nil) {
+		refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, 320.0f, self.tableView.bounds.size.height)];
+		refreshHeaderView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+		[self.tableView addSubview:refreshHeaderView];
+		self.tableView.showsVerticalScrollIndicator = YES;
+		[refreshHeaderView release];
+	}*/
+	
+	[self.tableView reloadData];
+		
+		
+	
+}
 
 #pragma mark -
 #pragma mark XML Parser
@@ -356,11 +679,18 @@
 - (IBAction)refresh {
 	
 //	self.navigationItem.leftBarButtonItem = nil; 
-	
+	Switcher.enabled=FALSE;
 	stories=[[NSMutableArray alloc] init];
 	[self.tableView reloadData];
 	[activity startAnimating];
-	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL];
+	NSInvocationOperation *operation;
+	if([Switcher selectedSegmentIndex]==1)
+	{
+		operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtNumberTypeNews:) object:@"1"];
+	}else {
+
+		operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtNumberTypeNews:) object:@"0"];
+	}
 	[operationQueue addOperation:operation];
 	[operation release];
 	
@@ -368,16 +698,34 @@
 	
 	
 }
+-(void)parseXMLFileAtNumberTypeNews:(NSString *)Number{
+	
+	
+	if([Number isEqualToString:@"1"])
+	{
+	
+		NewsTypeNumber=1;
+		if (twitterStories) [twitterStories removeAllObjects];
+		else twitterStories = [[NSMutableArray alloc] init];
+	[self parseXMLFileAtURL:kRSSURL2];
+	}else {
+		
+		NewsTypeNumber=0;
+		if (stories) [stories removeAllObjects];
+		else stories = [[NSMutableArray alloc] init];
+	[self parseXMLFileAtURL:kRSSURL];	
+	}
 
+}
 - (void)parserDidStartDocument:(NSXMLParser *)parser{	
 	NSLog(@"found file and started parsing");
 	
 }
 
-- (void)parseXMLFileAtURL:(NSString *)URL
-{	
-	if (stories) [stories removeAllObjects];
-	else stories = [[NSMutableArray alloc] init];
+- (void)parseXMLFileAtURL:(NSString *)URL {	
+	
+	
+	
 	[self.tableView reloadData];
 	//you must then convert the path to a proper NSURL or it won't work
 	NSURL *xmlURL = [NSURL URLWithString:URL];
@@ -408,7 +756,7 @@
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 	[[ISFAppDelegate appDelegate] showNetworkActivity:NO];
 	[activity stopAnimating];
-	
+	Switcher.enabled=TRUE;
 	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
 	NSLog(@"error parsing XML: %@", errorString);
 	
@@ -443,7 +791,18 @@
 		[item setObject:currentText forKey:@"text"];
 		[item setObject:currentDate forKey:@"date"];
 		
-		[stories addObject:[[item copy] autorelease]];
+		if(NewsTypeNumber==1)
+		{
+			[twitterStories addObject:[[item copy] autorelease]];
+			//NSLog(@"C LE 1 ajout et yen a %d :",[twitterStories count]);
+			
+		}else {
+			[stories addObject:[[item copy] autorelease]];
+			//NSLog(@"C LE 0 ajout et yen a %d :",[stories count]);
+			
+		}
+
+		
 
 		NSLog(@"adding story: %@", currentTitle);
 	}
@@ -464,7 +823,6 @@
 		
 	}
 	return num;
-	
 }
 - (NSDate *) convertStringDate:(NSString *) convertString {
 	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease]; 
@@ -505,57 +863,65 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	
 	
-	
-	NSInteger num=0;
-	News *news;
-	[[Model shared] deleteObjects:[News findAll]];
-	[[Model shared] save];
-	while(num<[stories count])
+	if(NewsTypeNumber!=1)
 	{
+		NSInteger num=0;
+		News *news;
+		[[Model shared] deleteObjects:[News findAll]];
+		[[Model shared] save];
+		while(num<[stories count])
+		{
 		
 		
-		news = [[Model shared] insertNewObjectForEntityForName:@"News"];
-		//news=(News *)[stories objectAtIndex:num];
-		news.identifier=[NSString stringWithFormat:@"%d", num];
+			news = [[Model shared] insertNewObjectForEntityForName:@"News"];
+			//news=(News *)[stories objectAtIndex:num];
+			news.identifier=[NSString stringWithFormat:@"%d", num];
 		
-		news.title=[[stories objectAtIndex:num] objectForKey:@"title"];
-		news.text=[[stories objectAtIndex:num] objectForKey:@"text"];
-		news.link=[[stories objectAtIndex:num] objectForKey:@"link"];
+			news.title=[[stories objectAtIndex:num] objectForKey:@"title"];
+			news.text=[[stories objectAtIndex:num] objectForKey:@"text"];
+			news.link=[[stories objectAtIndex:num] objectForKey:@"link"];
 		
 		
-		news.summary=[[stories objectAtIndex:num] objectForKey:@"summary"];
-		//@"dd-MM-yyyy HH:mm:ss"]
-		NSString *theDate=[[stories objectAtIndex:num] objectForKey:@"date"];
-		//Mon, 14 Dec 2009 11:32:44 +0000
+			news.summary=[[stories objectAtIndex:num] objectForKey:@"summary"];
+			//@"dd-MM-yyyy HH:mm:ss"]
+			NSString *theDate=[[stories objectAtIndex:num] objectForKey:@"date"];
+			//Mon, 14 Dec 2009 11:32:44 +0000
 		
-		//NSString *TheFinalDate=[theDate substringFromIndex:5];
-		NSMutableString *TheFinalDate=[NSMutableString stringWithString:[theDate substringWithRange:NSMakeRange(5, 2)]];
-		[TheFinalDate appendString:@"-"];
-		[TheFinalDate appendString:[NSString stringWithFormat:@"%d", [self ConvertMonth:[theDate substringWithRange:NSMakeRange(8,3)]]]];
-		[TheFinalDate appendString:@"-"];
-		[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(12, 4)]];
-		[TheFinalDate appendString:@" "];
-		[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(17, 8)]];
+			//NSString *TheFinalDate=[theDate substringFromIndex:5];
+			NSMutableString *TheFinalDate=[NSMutableString stringWithString:[theDate substringWithRange:NSMakeRange(5, 2)]];
+			[TheFinalDate appendString:@"-"];
+			[TheFinalDate appendString:[NSString stringWithFormat:@"%d", [self ConvertMonth:[theDate substringWithRange:NSMakeRange(8,3)]]]];
+			[TheFinalDate appendString:@"-"];
+			[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(12, 4)]];
+			[TheFinalDate appendString:@" "];
+			[TheFinalDate appendString:[theDate substringWithRange:NSMakeRange(17, 8)]];
 		 
 			//NSLog(@"DATE  %@ ",TheFinalDate);
 		 
-		[news setCreatedAt:[self convertStringDate:TheFinalDate]];
+			[news setCreatedAt:[self convertStringDate:TheFinalDate]];
 
 	
-		[[Model shared] save];
+			[[Model shared] save];
 		
-		//NSLog(@"La DATE DE MERDE EST  %@ ",news.createdAt);
-		num++;
+		
+			num++;
+		}
 	}
-
 	
 //	NSLog(@"IL Y A  %d NEWSSS", [lesnews count]);
 	
 	[activity stopAnimating];
-	
+	Switcher.enabled=TRUE;
 	
 	NSLog(@"all done!");
-	NSLog(@"stories array has %d items", [stories count]);
+	if(NewsTypeNumber==1)
+	{
+		NSLog(@"stories array has %d items", [twitterStories count]);
+	}else {
+		NSLog(@"stories array has %d items", [stories count]);
+	}
+
+	
 	[self.tableView reloadData];
 	
 	//refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
@@ -583,9 +949,16 @@
 - (void)reloadTableViewDataSource{
 	
 	
-	
+	Switcher.enabled=FALSE;
 	[activity startAnimating];
-	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL];
+	NSInvocationOperation *operation;
+	if([Switcher selectedSegmentIndex]==1)
+	{
+		operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtNumberTypeNews:) object:@"1"];
+	}else {
+		
+		operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtNumberTypeNews:) object:@"0"];
+	}	
 	[operationQueue addOperation:operation];
 	[operation release];
 	

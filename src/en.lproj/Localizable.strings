@@ -45,6 +45,8 @@
 "site apache"= "http://www.ilesansfil.org/welcome/about/app-license/";
 
 "ISF News" = "ISF News";
+"Blog" = "Blog";
+"Twitter" = "Twitter";
 
 "Yes" = "Yes";
 "No" = "No";
@@ -63,6 +65,9 @@
 "isfInfosNotice" = "isfInfosNotice_en.png";
 "isfCreditsImage" ="btn_credits_en.png";
 "btn_notice" = "btn_notice_en.png";
+"bt_settings" = "settings_en.png";
+
+"#ISF i'm actually to  " = "#ISF i'm actually to  ";
 
 
-"textinfo" = "This application is there to help you find free internet wireless access points on the great Montréal, managed by the non profit organisation Île sans fil.\r\n\n Today you are 150,000 members to use more than 210 WiFi hotpsots. Île sans fil network is the easiest and free way to connect to the Internet wirelessly in Montreal. Spread the word around!";
+"textinfo" = "This application is there to help you find free internet wireless access points on the great Montréal, managed by the non profit organisation Île sans fil.\r\n\n Today you are 160,000 members to use more than 220 WiFi hotpsots. Île sans fil network is the easiest and free way to connect to the Internet wirelessly in Montreal. Spread the word around!";

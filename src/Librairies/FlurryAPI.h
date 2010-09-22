@@ -17,6 +17,7 @@
  */
 + (void)setAppCircleEnabled:(BOOL)value;		// default is NO
 + (void)setShowErrorInLogEnabled:(BOOL)value;	// default is NO
++ (void)unlockDebugMode:(NSString*)debugModeKey apiKey:(NSString *)apiKey;
 
 /*
  start session, attempt to send saved sessions to server 
@@ -54,6 +55,7 @@
  optional session settings that can be changed after start session
  */
 + (void)setSessionReportsOnCloseEnabled:(BOOL)sendSessionReportsOnClose;	// default is YES
++ (void)setSessionReportsOnPauseEnabled:(BOOL)sendSessionReportsOnClose;	// default is NO
 + (void)setAppVersion:(NSString *)version;
 + (void)setEventLoggingEnabled:(BOOL)value;		// default is YES
 

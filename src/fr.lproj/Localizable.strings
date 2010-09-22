@@ -9,7 +9,7 @@
 "Map" = "Carte";
 "Hotspots" = "Points d'accès";
 "News" = "Nouvelles";
-"Informations" = "Informations";
+"Informations" = "Infos";
 "Favorites" = "Favoris";
 
 // Connection View
@@ -46,6 +46,8 @@
 "site apache"= "http://www.ilesansfil.org/a-propos/documents-officiels/licence-app/";
 
 "ISF News" = "Nouvelles ISF";
+"Blog" = "Blogue";
+"Twitter" = "Twitter";
 
 "Yes" = "Oui";
 "No" = "Non";
@@ -65,5 +67,8 @@
 "isfInfosNotice" = "isfInfosNotice_fr.png";
 "isfCreditsImage" ="btn_credits_fr.png";
 "btn_notice" = "btn_notice_fr.png";
+"bt_settings" = "settings_fr.png";
 
-"textinfo" = "Cette application est là pour vous aider à trouver des points d'accès sans fil internet gratuit sur le grand Montréal, qui sont gérés par l'organisme à but non lucratif Île sans fil. \r\n\n Aujourd'hui, vous êtes 150 000 membres à utiliser plus de 210 points d'accès. Le réseau d'Île sans fil est le moyen le plus simple et gratuit pour se connecter à l'Internet sans fil à Montréal. Passez le message autour de vous !";
+"#ISF i'm actually to  " = "#ISF je suis actuellement au  ";
+
+"textinfo" = "Cette application est là pour vous aider à trouver des points d'accès sans fil internet gratuit sur le grand Montréal, qui sont gérés par l'organisme à but non lucratif Île sans fil. \r\n\n Aujourd'hui, vous êtes 160 000 membres à utiliser plus de 220 points d'accès. Le réseau d'Île sans fil est le moyen le plus simple et gratuit pour se connecter à l'Internet sans fil à Montréal. Passez le message autour de vous !";

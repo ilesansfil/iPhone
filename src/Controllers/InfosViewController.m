@@ -7,7 +7,7 @@
 //
 
 #import "InfosViewController.h"
-
+#import "SA_OAuthTwitterEngine.h"
 
 #define kActionSheetVisitIleSansFil			2
 #define kActionSheetCallIleSansFil			3
@@ -17,6 +17,9 @@
 #define kActionSheetVisitPatrick			7
 #define kActionSheetVisitLaurent			8
 #define kActionSheetVisitApache				9
+
+#define kOAuthConsumerKey				@"E6naEMYeeVUVPrSkm1v8bg"		//REPLACE ME
+#define kOAuthConsumerSecret			@"Tf7kKcb0c1d0YvxUjOfIbiMkDLk613VyBnEQ3kwtM"		//REPLACE ME
 
 @implementation InfosViewController
 
@@ -33,12 +36,14 @@
 	[backButton setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
 	[backButton2 setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
 	[backButton3 setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
+	[bt_settings setImage:[UIImage imageNamed:NSLocalizedString(@"bt_settings",@"")] forState:UIControlStateNormal];
 	
 	NSString *versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey];
 	NSLog(@"version : %@",versionString);
 
 	
 	versionLabel.text=[@"Version : " stringByAppendingFormat:versionString]; 
+	NavigationBar.title=NSLocalizedString(@"Informations",@"");
 	
 	isMainView = YES;
 	
@@ -91,6 +96,39 @@
 		isMainView = YES;
 	}
 
+}
+- (IBAction)flipViews4 {
+	if (isMainView == YES) {
+/*		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationBeginsFromCurrentState:NO];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+		[mainView removeFromSuperview];
+		[self.view addSubview:settingsView];
+		[UIView commitAnimations];
+		isMainView = NO;*/
+/*	}
+	else {
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationBeginsFromCurrentState:NO];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+		[settingsView removeFromSuperview];
+		[self.view addSubview:mainView];
+		[UIView commitAnimations];
+		isMainView = YES;
+	}
+	*/
+	lasettingsviewcontroller = [[settingsViewController alloc] initWithNibName:@"settings" bundle:[NSBundle mainBundle]];
+	[UIView beginAnimations:nil context:nil];
+	[UIView setAnimationDuration:1.0];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+	[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+	[mainView removeFromSuperview];
+	[self.view addSubview:lasettingsviewcontroller.view];
+	[UIView commitAnimations];
+	isMainView = NO;
+	}
 }
 - (IBAction)flipViews2 {
 	if (isMainView == YES) {
@@ -278,5 +316,15 @@
 			break;
 	}
 }
-
+-(IBAction)deleteCacheTwitter {
+	
+	if (!_engine){
+		_engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate: self];
+		_engine.consumerKey = kOAuthConsumerKey;
+		_engine.consumerSecret = kOAuthConsumerSecret;
+	}
+		[_engine clearAccessToken];
+	
+	
+}
 @end

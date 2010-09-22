@@ -14,4 +14,5 @@
 	IBOutlet UITabBar	*latabbar;
 }
 
+-(void)changeNumberBadge:(NSInteger)numBadge:(NSString *)nbbadge;
 @end

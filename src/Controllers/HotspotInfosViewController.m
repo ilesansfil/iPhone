@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
 	
-	
+	twitterviewcontroller = [[TwitterViewController alloc] initWithNibName:@"TwitterViewController" bundle:[NSBundle mainBundle]];
 	NSString *identifier=hotspot.hotspotId;
 	NSPredicate *predicate = identifier
 	? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
@@ -146,7 +146,7 @@
 	CGSize size = [hotspot.name sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(280, 80) lineBreakMode:UILineBreakModeWordWrap];
 	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, size.height+40.0f)] autorelease];
 //	UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 20, 280, size.height+10)] autorelease];
-	UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(45, 20, 255, size.height+10)] autorelease];
+	UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(45, 20, 200, size.height+10)] autorelease];
 	nameLabel.backgroundColor = [UIColor clearColor];
 	nameLabel.text = hotspot.name;
 	nameLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -154,6 +154,14 @@
 	nameLabel.shadowOffset = CGSizeMake(0, 1);
 	nameLabel.numberOfLines = 3;
 	[headerView addSubview:nameLabel];
+	
+	UIButton *bt_share = [[UIButton alloc] initWithFrame:CGRectMake(230, 5, 50, size.height+40.0f)];
+	[bt_share setImage:[UIImage imageNamed:@"twitter.png"] forState:UIControlStateNormal];
+	//bt_share.showsTouchWhenHighlighted = NO;
+	//bt_share.adjustsImageWhenHighlighted = NO;
+	[bt_share addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+	[headerView addSubview:bt_share];
+	bt_share.hidden=true;
 	
 	//UIImageView *imageView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin-down.png"]];
 	UIImageView *imageView=[[[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 20,/* size.height+10*/34)] autorelease];
@@ -166,6 +174,36 @@
 	[headerView addSubview:imageView];
 
 	return headerView;
+}
+- (void)buttonPressed:(UIButton *)sender {
+	NSLog(@"BT PRESSED",@"");
+	[self.navigationController pushViewController:twitterviewcontroller animated:YES];
+	
+	//si + 60 mettre ... , + nom twitter de tous les conferenciers
+	NSString *texte=[[NSString alloc] init];
+	
+	
+	texte=[NSLocalizedString(@"#ISF i'm actually to  ",@"") stringByAppendingString:hotspot.name];
+	/*lesconferencier=[lesconferencier stringByAppendingString:@" "];
+		
+	
+	NSInteger nbcharacters;
+	nbcharacters=8+[lesconferencier length];
+	nbcharacters=139-nbcharacters;
+	NSString *nomconferenciers=[[NSString alloc] init];
+	
+	if([nomconf.text length]<nbcharacters)
+	{
+		nbcharacters=[nomconf.text length];
+		nomconferenciers=nomconf.text;
+	}else {
+		nomconferenciers=[[nomconf.text substringWithRange:NSMakeRange(0,nbcharacters-3)] stringByAppendingString:@"..."];
+	}
+	
+	
+	lesconferencier=[[@" #PCMTL " stringByAppendingString:nomconferenciers] stringByAppendingString:lesconferencier];*/
+	[twitterviewcontroller setmessage:texte];
+	
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
