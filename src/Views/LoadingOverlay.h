@@ -2,8 +2,8 @@
 //  LoadingOverlay.h
 //  RedNest
 //
-//  Created by Olivier Collet on 09-10-07.
-//  Copyright 2009 WhereCloud Inc. License Apache2.
+//  
+//  Copyright 2009 License Apache2.
 //
 
 #import <UIKit/UIKit.h>

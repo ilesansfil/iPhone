@@ -33,6 +33,7 @@ void uncaughtExceptionHandler(NSException *exception) {
     // Override point for customization after app launch    
 	
 	[window addSubview:[tabBarController view]];
+//	[[[[[[tabBarController viewControllers] objectAtIndex:0] navigationController] viewControllers]objectAtIndex:0] refreshAnnotations:@"toto"];
 	[window makeKeyAndVisible];
 }
 

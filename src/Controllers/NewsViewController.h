@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class EGORefreshTableHeaderView;
 
 @interface NewsViewController : UITableViewController {
 	IBOutlet UITableView		*newsTable;
@@ -18,6 +19,7 @@
 	IBOutlet UIView							*connectionView;
 	IBOutlet UILabel						*alertMain;
 	IBOutlet UILabel						*alertMessage;
+	BOOL									isOffline;
 	UIBarButtonItem *refreshButton;
 	// a temporary item; added to the "stories" array one at a time, and cleared for the next one
 	NSMutableDictionary * item;
@@ -28,11 +30,21 @@
 	NSString * currentElement;
 	NSMutableString * currentTitle, * currentDate, * currentSummary, * currentLink, *currentAutor, *currentText;
 
+	EGORefreshTableHeaderView *refreshHeaderView;
+	
 	NSOperationQueue *operationQueue;
+	
+	BOOL _reloading;
 }
+@property (nonatomic, retain) NSMutableArray *stories;
+@property(assign,getter=isReloading) BOOL reloading;
+
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 
 - (void)parseXMLFileAtURL:(NSString *)URL;
 - (IBAction)refresh;
 - (BOOL)isConnectionAvailable;
-
+-(NSInteger) ConvertMonth:(NSString *) Month;
+- (NSDate *) convertStringDate:(NSString *) convertString;
 @end

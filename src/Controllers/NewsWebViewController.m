@@ -28,17 +28,27 @@
 	spinner.hidesWhenStopped = YES;
 	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 	self.navigationItem.rightBarButtonItem = item;
+	
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
-	if (self.url) {
+	if (self.url && !contentWebView) {
 		NSURL *url = [NSURL URLWithString:self.url];
 		NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 		[webView loadRequest:requestObj];
-	}
+	} else {
+	
+		[webView loadHTMLString:contentWebView baseURL:[NSURL fileURLWithPath:self.url]];
+		[webView reload];
+		}
+	
+
+	
+	
+	//NSLog(@"CONTENU AFFICHER : %@",[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"]);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -66,7 +76,13 @@
 	[webView release];
 	[super dealloc];
 }
+- (void)setContentWebView:(NSString *)content:(NSString *)URL {
+	
 
+	contentWebView=content;
+	self.url=URL;
+
+}
 
 #pragma mark -
 #pragma mark UIWebViewDelegate
@@ -79,6 +95,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	[[ISFAppDelegate appDelegate] showNetworkActivity:NO];
 	[spinner stopAnimating];
+	//NSLog(@"CONTENU AFFICHER : %@",[webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"]);
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

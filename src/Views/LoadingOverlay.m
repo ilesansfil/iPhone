@@ -2,8 +2,8 @@
 //  LoadingOverlay.m
 //  RedNest
 //
-//  Created by Olivier Collet on 09-10-07.
-//  Copyright 2009 WhereCloud Inc. License Apache2.
+// 
+//  Copyright 2009 License Apache2.
 //
 
 #import "LoadingOverlay.h"
@@ -35,7 +35,7 @@ static LoadingOverlay *_overlayInstance;
 	if (overlayView == nil) {
 		overlayView = [[UIView alloc] initWithFrame:CGRectInfinite];
 		overlayView.backgroundColor = [UIColor blackColor];
-		overlayView.alpha = 0.9f;
+		overlayView.alpha = 0.5f;
 		
 		spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
 		[spinner startAnimating];

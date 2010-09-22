@@ -2,8 +2,8 @@
 //  Model.m
 //  Ile sans fil
 //
-//  Created by Fred Brunel on 02/08/09.
-//  Copyright 2009 WhereCloud Inc. License Apache2.
+//  
+//  Copyright 2009  License Apache2.
 
 //
 
@@ -64,7 +64,8 @@
 	
 	NSArray *results = [self fetchObjectsForEntityForName:entityName 
 												predicate:predicate 
-												 sortedBy:sortKey 
+												 sortedBy:sortKey
+												ascending:YES
 													limit:0];
 	return (results.count == 0) ? nil : [results objectAtIndex:0];
 }
@@ -74,7 +75,7 @@
 										 inManagedObjectContext:self.managedObjectContext];
 }
 
-- (NSArray *)fetchObjectsForEntityForName:(NSString *)entityName 
+/*- (NSArray *)fetchObjectsForEntityForName:(NSString *)entityName 
 								predicate:(NSPredicate *)predicate 
 								 sortedBy:(NSString *)sortKey
 									limit:(NSUInteger)limit {
@@ -108,11 +109,49 @@
 		// FIXME: Handle the error.
 	}
 	
-	NSLog(@"%d result(s) [%@]", fetchResults.count, predicate);
+//	NSLog(@"%d result(s) [%@]", fetchResults.count, predicate);
+	
+	return fetchResults;
+}*/
+- (NSArray *)fetchObjectsForEntityForName:(NSString *)entityName 
+								predicate:(NSPredicate *)predicate 
+								 sortedBy:(NSString *)sortKey
+								ascending:(BOOL)ascending
+									limit:(NSUInteger)limit {
+	
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	
+	// Set the entity name
+	NSEntityDescription *entity = [NSEntityDescription entityForName:entityName 
+											  inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+	
+	// Set the predicate
+	if (predicate) {
+		[request setPredicate:predicate];
+	}
+	
+	// Set the sort description
+	if (sortKey) {
+		NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:sortKey ascending:ascending] autorelease];
+		[request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+	}
+	
+	// Set the limites
+	if (limit != kModelLimitInfinite) {
+		[request setFetchLimit:limit];
+	}
+	
+	NSError *error;
+	NSMutableArray *fetchResults = [NSMutableArray arrayWithArray:[self.managedObjectContext executeFetchRequest:request error:&error]];
+	if (fetchResults == nil) {
+		// FIXME: Handle the error.
+	}
+	
+	//	NSLog(@"%d result(s) [%@]", fetchResults.count, predicate);
 	
 	return fetchResults;
 }
-
 - (void)deleteObject:(NSManagedObject *)object {
 	if (_managedObjectContext != nil) { [_managedObjectContext deleteObject:object]; }
 }

@@ -15,7 +15,8 @@
 #import "ISFAppDelegate.h"
 #import "LoadingOverlay.h"
 #import "ConnectionViewController.h"
-
+#import "Favorite.h"
+#import "EGORefreshTableHeaderView.h"
 
 #define ZOOM_DEFAULT 1000		// 1000 meters
 #define ZOOM_INCREMENT 0.01
@@ -50,29 +51,50 @@
 - (void)mapZoomToLocation:(CLLocationCoordinate2D)position animated:(BOOL)animated;
 
 - (void)searchAddress;
+
+- (void)dataSourceDidFinishLoadingNewData;
+
+
 @end
 
 
 @implementation MapViewController
 
-@synthesize hotspotArray,filteredListContent, searchWasActive;
+@synthesize hotspotArray,filteredListContent, searchWasActive,AnnotationsClone,isMapView,reloading=_reloading;
 
 - (void)fetchHotspots {
+
+	
 	NSString *urlString = @"http://auth.ilesansfil.org/hotspot_status.php?format=XML";
 	NSURL *url = [NSURL URLWithString:urlString];
 	XMLReader *xmlReader = [[[XMLReader alloc] init] autorelease];
 	xmlReader.delegate = self;
 	[xmlReader parseXMLFileAtURL:url parseError:nil];
 }
-
+- (void)fetchHotspotsLocal {
+	
+	
+	NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"hotspot.xml"];
+	 
+	
+	 NSURL *url = [NSURL fileURLWithPath:path];
+	 
+	
+	XMLReader *xmlReader = [[[XMLReader alloc] init] autorelease];
+	xmlReader.delegate = self;
+	[xmlReader parseXMLFileAtURL:url parseError:nil];
+}
 - (void)XMLReaderDidFinishParsing {
+
 	if (isFirstLaunch == YES) {
 		[self mapZoomToLocation:[[map userLocation] coordinate] animated:YES];
 		isFirstLaunch = NO;
-		[[LoadingOverlay overlayInstance] hide];
+		//[[LoadingOverlay overlayInstance] hide];
 	}
+	[[LoadingOverlay overlayInstance] hide];
 	[self removeAllAnnotations];
 	[self addHotspots];
+	
 	
 	
 	hotspotArray=[[NSMutableArray alloc] init];
@@ -85,7 +107,7 @@
 	
 	tableViewHotspot.scrollEnabled = YES;
 
-	
+	//NSLog(@"FINI PARSAGE");
 }
 - (void)XMLReaderDidFailParsing {
 }
@@ -107,8 +129,12 @@
 		
 		if([self isConnectionAvailable] == NO) {
 			
-			ConnectionViewController *connectionview= [[[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil] autorelease];
-			[self presentModalViewController:connectionview animated:NO];
+			//ConnectionViewController *connectionview= [[[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil] autorelease];
+			//[self presentModalViewController:connectionview animated:NO];
+			
+			isFirstLaunch = YES;
+			[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
+			[self fetchHotspotsLocal];
 			
 		}else {
 			
@@ -120,9 +146,12 @@
 		}
 		
 	} else {
-		NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fetchHotspots) object:nil];
+		//isFirstLaunch = YES;
+	//	[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
+	//	[self fetchHotspots];
+	/*	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(fetchHotspots) object:nil];
 		[operationQueue addOperation:operation];
-		[operation release];
+		[operation release];*/
 	}
 
 	searchingView.hidden = YES;
@@ -147,15 +176,7 @@
 	}
 	
 
-	/*
-	UIBarButtonItem *showListButton = [[UIBarButtonItem alloc]
-								   initWithImage:[UIImage imageNamed:@"tab-list2.png"]
-								   style:UIBarButtonItemStyleBordered
-								   target:self
-								   action:@selector(showList)];
 	
-	[_navItem setLeftBarButtonItem:showListButton];
-	*/
 	//initialize bar button views
 	barButtonSuperView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37, 36)];
 	barButtonPrimaryView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37, 36)];
@@ -189,6 +210,16 @@
 	
 	hotspotArray=[[NSMutableArray alloc] init];
 	[self setHotspotArray:[NSMutableArray arrayWithArray:[Hotspot findAll]]];
+	
+	
+	if (refreshHeaderView == nil) {
+		refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tableViewHotspot.bounds.size.height, 320.0f, tableViewHotspot.bounds.size.height)];
+		refreshHeaderView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+		[tableViewHotspot addSubview:refreshHeaderView];
+		tableViewHotspot.showsVerticalScrollIndicator = YES;
+		[refreshHeaderView release];
+	}
+	
 	[tableViewHotspot reloadData];	
 	
 	
@@ -223,7 +254,7 @@
 	
 	self.navigationItem.title = NSLocalizedString(@"Hotspots", @"");
 	self.navigationController.navigationBarHidden = YES;
-
+	
 	
 	/*if([self isConnectionAvailable] == NO) {
 		ConnectionViewController *connectionView= [[[ConnectionViewController alloc] initWithNibName:@"ConnectionViewController" bundle:nil] autorelease];
@@ -256,7 +287,9 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	
-	[self removeAllAnnotations];
+	//[self removeAllAnnotations];
+	
+	//NSLog(@"tototo");
 }
 
 - (void)viewDidUnload {
@@ -270,6 +303,10 @@
 	[operationQueue release];
 	[noHotspotView release];
 	[searchingView release];
+	
+	
+	
+	
 	[super dealloc];
 }
 
@@ -346,6 +383,7 @@
 #pragma mark Annotations
 
 - (void)removeAllAnnotations {
+	
 	NSArray *annotations = [[NSArray alloc] initWithArray:map.annotations];
 	NSEnumerator *enumerator = [annotations objectEnumerator];
 	LocationAnnotation *location;
@@ -360,9 +398,13 @@
 		[map removeAnnotation:location];
 	}
 	[annotations release];
+	[AnnotationsClone release];
+	//NSLog(@"FINI suppr annotation");
 }
 
 - (void)addHotspots {
+	AnnotationsClone=[[NSMutableArray alloc] init];
+	
 	for (Hotspot *hotspot in [Hotspot findAll]) {
 		LocationAnnotation *annotation = [[[LocationAnnotation alloc] init] autorelease];
 		annotation.title = hotspot.name;
@@ -372,8 +414,13 @@
 		coords.longitude	= [hotspot.longitude doubleValue];
 		annotation.coordinate = coords;
 		annotation.hotspot = hotspot;
-		[map addAnnotation:annotation];
+
+		[AnnotationsClone addObject:annotation];
+		[map addAnnotation:(LocationAnnotation *)annotation];
+				
+	
 	}
+	//NSLog(@"FINI ajout annotation");
 }
 
 - (void)checkLocationsInView {
@@ -389,7 +436,54 @@
 		}
 	}
 }
+-(void)refreshAnnotations:(Hotspot *)hotspot {
 
+	NSInteger i=0;
+	while(i<[AnnotationsClone count]) {
+			
+		if([[[[AnnotationsClone objectAtIndex:i]hotspot]hotspotId] isEqualToString:hotspot.hotspotId])
+		{
+		
+			LocationAnnotation *annotation2 = [[[LocationAnnotation alloc] init] autorelease];
+			
+			annotation2=[[map annotations] objectAtIndex:i+1];
+
+			[map removeAnnotation:[[map annotations] objectAtIndex:i+1]];
+			[AnnotationsClone removeObjectAtIndex:i];
+			[map addAnnotation:annotation2];
+			[AnnotationsClone addObject:annotation2];
+			[tableViewHotspot reloadData];
+			
+			return;
+		}
+	
+		
+		i++;
+		
+	}
+	
+	
+	
+}
+-(void)selectAnnotations:(Hotspot *) hotspot {
+	NSInteger i=0;
+	while(i<[AnnotationsClone count]) {
+		
+		if([[[[AnnotationsClone objectAtIndex:i]hotspot]hotspotId] isEqualToString:hotspot.hotspotId])
+		{
+			
+			[map selectAnnotation:[[map annotations] objectAtIndex:i+1] animated:YES];
+			return;
+		}
+		
+		
+		i++;
+		
+	}
+	
+	
+	
+}
 
 #pragma mark -
 #pragma mark Map Kit
@@ -414,6 +508,7 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+
 	if (isFirstLaunch) return nil;
 	if(annotation == [mapView userLocation]) {
 		if(initialized == NO) {
@@ -433,12 +528,30 @@
 	
 	mkav.canShowCallout = TRUE;
 	
+	NSMutableArray *FavoritesArray=[[NSMutableArray alloc] init];
+	FavoritesArray=[NSMutableArray arrayWithArray:[Favorite findAll]];
+	NSInteger i=0;
+	BOOL isFavorite=FALSE;
+	while(i<[FavoritesArray count])
+	{
+		
+		if([[[FavoritesArray objectAtIndex:i] identifier] isEqualToString:((LocationAnnotation *)annotation).hotspot.hotspotId])
+			   //[[FavoritesArray objectAtIndex:i] identifier]==((LocationAnnotation *)annotation).hotspot.hotspotId)
+			{
+				i=[FavoritesArray count];
+				isFavorite=TRUE;
+			}
+		i++;
+	}
+
 	if ((LocationAnnotation *)annotation == searchLocation) mkav.image = [UIImage imageNamed:@"pin-search.png"];
 	else {
 		mkav.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusUnknow) mkav.image = [UIImage imageNamed:@"pin-unknown.png"];
-		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusDown) mkav.image = [UIImage imageNamed:@"pin-down.png"];
-		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusUp) mkav.image = [UIImage imageNamed:@"pin-up.png"];
+		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusDown && isFavorite==FALSE) mkav.image = [UIImage imageNamed:@"pin-down.png"];
+		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusUp && isFavorite==FALSE) mkav.image = [UIImage imageNamed:@"pin-up.png"];
+		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusDown && isFavorite==TRUE) mkav.image = [UIImage imageNamed:@"pin-down-fav.png"];
+		if ([((LocationAnnotation *)annotation).hotspot status] == kHotspotStatusUp && isFavorite==TRUE) mkav.image = [UIImage imageNamed:@"pin-up-fav.png"];
 	}
 
 	return mkav;
@@ -454,13 +567,17 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+		
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+	
 }
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
 	if(initialized == NO && map.region.span.latitudeDelta < MAX_SPAN_DELTA) {
 		[self addHotspots];
+		
+		//A VERIFIER COMMENTER ADDHOTSPOTS
 		initialized = YES;
 	}
 	if(initialized == NO || loadingMap == YES) return;
@@ -511,9 +628,17 @@
 	[self mapZoomToLocation:[[map userLocation] coordinate] animated:NO];
 	[map selectAnnotation:[map userLocation] animated:YES];
 }
+- (IBAction)Refresh {
 
-
-
+	[[LoadingOverlay overlayInstance] showMessage:NSLocalizedString(@"Loading...", @"") inViewController:[self parentViewController]];
+	[self fetchHotspots];
+	[tableViewHotspot reloadData];
+	/*[self removeAllAnnotations];
+	
+	[self addHotspots];*/
+	
+}
+	
 
 -(CLLocationCoordinate2D) getCurrentCoordinate {
 	CLLocationCoordinate2D coordinate= [[map userLocation] coordinate];
@@ -591,8 +716,9 @@
 	{
 		NSRange titleResultsRange = [hotspot.name rangeOfString:searchText options:NSCaseInsensitiveSearch];
 		NSRange titleResultsRange2 = [hotspot.streetAddress rangeOfString:searchText options:NSCaseInsensitiveSearch];
+		NSRange titleResultsRange3 = [hotspot.postalCode rangeOfString:searchText options:NSCaseInsensitiveSearch];
 		
-		if (titleResultsRange.length > 0 | titleResultsRange2.length > 0)
+		if (titleResultsRange.length > 0 | titleResultsRange2.length > 0 | titleResultsRange3.length > 0)
 			[self.filteredListContent addObject:hotspot];
 	}
 	
@@ -651,6 +777,7 @@
 		} else {
 			[principalView addSubview:map];
 			[principalView addSubview:BtLocateme];
+			[principalView addSubview:BtRefresh];
 			//si on est pas sur la map (donc la liste est affiché) quand on appuis sur le bouton dans le cas ou il n'y a une connection internet on enleve la map (ou la page d'explication hors ligne) et on met la liste
 		}
 		
@@ -712,15 +839,42 @@
         hotspot = (Hotspot *)[hotspotArray objectAtIndex:indexPath.row];
     }
 	
-	
-
+		
 	NSString *address=[[hotspot civicNumber] stringByAppendingString:@" "];
-	cell.detailTextLabel.text=[address stringByAppendingString:[hotspot streetAddress]];
-
+	address=[address stringByAppendingString:[hotspot streetAddress]];
+	address=[address stringByAppendingString:@" "];
+	cell.detailTextLabel.text=[address stringByAppendingString:[hotspot postalCode]];
+	
 	cell.textLabel.text = [hotspot name];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+	UIImage *img=[[UIImage alloc] init];
+	
+	NSMutableArray *FavoritesArray=[[NSMutableArray alloc] init];
+	FavoritesArray=[NSMutableArray arrayWithArray:[Favorite findAll]];
+	NSInteger i=0;
+	BOOL isFavorite=FALSE;
+	while(i<[FavoritesArray count])
+	{
 		
+		if([[[FavoritesArray objectAtIndex:i] identifier] isEqualToString:hotspot.hotspotId])
+			//[[FavoritesArray objectAtIndex:i] identifier]==((LocationAnnotation *)annotation).hotspot.hotspotId)
+		{
+			i=[FavoritesArray count];
+			isFavorite=TRUE;
+		}
+		i++;
+	}
+	//NSLog(@"Is FAVORITE: %@", isFavorite ? @"YES" : @"NO");
+		
+	if ([hotspot status] == kHotspotStatusUnknow) img = [UIImage imageNamed:@"pin-unknown.png"];
+	if ([hotspot status] == kHotspotStatusDown && isFavorite==FALSE) img = [UIImage imageNamed:@"pin-down.png"];
+	if ([hotspot status] == kHotspotStatusUp && isFavorite==FALSE) img = [UIImage imageNamed:@"pin-up.png"];
+	if ([hotspot status] == kHotspotStatusDown && isFavorite==TRUE) img = [UIImage imageNamed:@"pin-down-fav.png"];
+	if ([hotspot status] == kHotspotStatusUp && isFavorite==TRUE) img = [UIImage imageNamed:@"pin-up-fav.png"];
+    cell.imageView.image = img;
+	cell.textLabel.textAlignment	= UITextAlignmentCenter;
+	
+	
 	return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -746,6 +900,65 @@
 	
 		
 	
+}
+
+
+
+
+- (void)reloadTableViewDataSource{
+	//  should be calling your tableviews model to reload
+	//  put here just for demo
+	[self fetchHotspots];
+	[tableViewHotspot reloadData];
+	//[self removeAllAnnotations];
+	
+	//[self addHotspots];
+	
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:13.0];
+}
+
+
+- (void)doneLoadingTableViewData{
+	//  model should call this when its done loading
+	[self dataSourceDidFinishLoadingNewData];
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {	
+	
+	if (scrollView.isDragging) {
+		if (refreshHeaderView.state == EGOOPullRefreshPulling && scrollView.contentOffset.y > -65.0f && scrollView.contentOffset.y < 0.0f && !_reloading) {
+			[refreshHeaderView setState:EGOOPullRefreshNormal];
+		} else if (refreshHeaderView.state == EGOOPullRefreshNormal && scrollView.contentOffset.y < -65.0f && !_reloading) {
+			[refreshHeaderView setState:EGOOPullRefreshPulling];
+		}
+	}
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	
+	if (scrollView.contentOffset.y <= - 65.0f && !_reloading) {
+		_reloading = YES;
+		[self reloadTableViewDataSource];
+		[refreshHeaderView setState:EGOOPullRefreshLoading];
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.2];
+		tableViewHotspot.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+		[UIView commitAnimations];
+	}
+}
+
+- (void)dataSourceDidFinishLoadingNewData {
+	
+	_reloading = NO;
+	
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:.3];
+	[tableViewHotspot setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+	[UIView commitAnimations];
+	
+	[refreshHeaderView setState:EGOOPullRefreshNormal];
+	[refreshHeaderView setCurrentDate];  //  should check if data reload was successful 
 }
 
 

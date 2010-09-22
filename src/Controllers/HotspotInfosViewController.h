@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Hotspot.h"
+#import "MapViewController.h"
 
 @class Favorite;
 
@@ -18,16 +19,15 @@
 	NSMutableArray					*infos;
 	Hotspot 							*hotspot;
 	CLLocationCoordinate2D		 currentCoords;
-	//UIButton *btn;
 	BOOL exist;
 	
 }
 
 
-//@property (nonatomic, retain) UIButton *btn;
 @property (nonatomic, retain) Hotspot *hotspot;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoords;
 @property (nonatomic, assign) BOOL exist;
+
 
 //- (id)initWithBackImageNamed:(NSString*)imageName;
 
@@ -38,7 +38,7 @@
 - (void)confirmEmail;
 - (void)sendEmail;
 - (void)showDirections;
-- (void)AddDeleteFavorite:(BOOL )action;
+- (IBAction)AddDeleteFavorite;
 
 //- (IBAction)closeView;
 

@@ -14,10 +14,13 @@
 // Connection View
 "Cannot connect to the Internet" = "Cannot connect to the Internet";
 "You must connect to a Wi-Fi or cellular data network to view the map." = "You must connect to a Wi-Fi or cellular data network to view the map.";
-"You must connect to a Wi-Fi or cellular data network to view the news." = "You must connect to a Wi-Fi or cellular data network to view the news.";
 "To take advantage of offline mode, you need to connect once to Internet to create the database of hotspots." = "To take advantage of OFFLINE MODE, you need to connect once to Internet to create the database of hotspots.";
+"To take advantage of offline mode, you need to connect once to Internet to create the database of news." = "To take advantage of OFFLINE MODE, you need to connect once to Internet to create the database of news.";
 
 "Loading..." = "Loading...";
+"Release to refresh..." = "Release to refresh...";
+"Pull down to refresh..." = "Pull down to refresh...";
+"Last Updated: %@" = "Last Updated: %@";
 "Locating..." = "Locating";
 "You are here" = "You are here";
 "There are no location in the area" = "There are no location in the area";
@@ -31,6 +34,7 @@
 "Phone" = "Phone";
 "Email" = "Email";
 "Directions To Here" = "Directions To Here";
+"Show it on the map" = "Show it on the map";
 "Add to Favorites" = "Add to Favorites";
 "Remove to Favorites" = "Remove to Favorites";
 "Open in Google Maps?" = "Open in Google Maps?";
@@ -56,4 +60,9 @@
 "isfButton" = "btn_isf_en.png";
 "backButton" = "btn_isf_infos_back_en.png";
 "isfInfosImage" = "isf_infos_en.png";
+"isfInfosNotice" = "isfInfosNotice_en.png";
 "isfCreditsImage" ="btn_credits_en.png";
+"btn_notice" = "btn_notice_en.png";
+
+
+"textinfo" = "This application is there to help you find free internet wireless access points on the great Montréal, managed by the non profit organisation Île sans fil.\r\n\n Today you are 150,000 members to use more than 210 WiFi hotpsots. Île sans fil network is the easiest and free way to connect to the Internet wirelessly in Montreal. Spread the word around!";

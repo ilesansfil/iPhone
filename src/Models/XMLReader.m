@@ -55,6 +55,7 @@ static NSUInteger parsedLocationsCounter;
 	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
 	if (theConnection) {
 		receivedData = [[NSMutableData data] retain];
+	
 	} else {
 	}
 }
@@ -63,10 +64,12 @@ static NSUInteger parsedLocationsCounter;
 	[[ISFAppDelegate appDelegate] showNetworkActivity:YES];
 	[ISFAppDelegate appDelegate].isLoadingData = YES;
 	[receivedData setLength:0];
+	
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
 	[receivedData appendData:data];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -81,6 +84,8 @@ static NSUInteger parsedLocationsCounter;
 	NSLog(@"Connection failed! Error - %@ %@",
 			[error localizedDescription],
 			[[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+	
+	
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -92,6 +97,8 @@ static NSUInteger parsedLocationsCounter;
 	
 	[connection release];
 	[receivedData release];
+	
+	
 }
 
 

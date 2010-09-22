@@ -25,6 +25,7 @@
 	return [[Model shared] fetchObjectsForEntityForName:@"Favorite" 
 											  predicate:nil 
 											   sortedBy:@"createdAt"
+												ascending:YES
 												  limit:0];
 }
 

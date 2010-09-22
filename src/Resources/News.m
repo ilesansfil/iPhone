@@ -30,6 +30,7 @@
 	return [[Model shared] fetchObjectsForEntityForName:@"News" 
 											  predicate:nil 
 											   sortedBy:@"createdAt"
+												ascending:YES
 												  limit:0];
 }
 

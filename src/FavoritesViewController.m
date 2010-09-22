@@ -11,7 +11,7 @@
 #import "Hotspot.h"
 #import "HotspotInfosViewController.h"
 #import "MapViewController.h"
-
+#import "ISFAppDelegate.h"
 
 
 @implementation FavoritesViewController
@@ -85,6 +85,13 @@
 		
 		NSString *address=[[hotspot civicNumber] stringByAppendingString:@" "];
 		cell.detailTextLabel.text=[address stringByAppendingString:[hotspot streetAddress]];
+		UIImage *img=[[UIImage alloc] init];
+		if ([hotspot status] == kHotspotStatusUnknow) img = [UIImage imageNamed:@"pin-unknown.png"];
+		if ([hotspot status] == kHotspotStatusDown) img = [UIImage imageNamed:@"pin-down.png"];
+		if ([hotspot status] == kHotspotStatusUp) img = [UIImage imageNamed:@"pin-up.png"];
+		cell.imageView.image = img;
+		cell.textLabel.textAlignment	= UITextAlignmentCenter;
+		
 	}else {
 	    cell.detailTextLabel.text=NSLocalizedString(@"This hotspot has been removed!",@"");
 		cell.detailTextLabel.textColor = [UIColor redColor];
@@ -124,11 +131,38 @@
 		
         Favorite *favorite = (Favorite *)[favoritesArray objectAtIndex:indexPath.row];
 		
+	 
+	
+		
+		
+		NSString *identifier=favorite.identifier;
+		NSPredicate *predicate = identifier
+		? [NSPredicate predicateWithFormat:@"identifier == %@", favorite.identifier]
+		: nil;
+		id entity = [[Model shared] findFirstObjectForEntityForName:@"Hotspot" 
+														  predicate:predicate 
+														   sortedBy:nil];
+		
 		[[Model shared] deleteObject:favorite];
 		
         [favoritesArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
 		[[Model shared] save];
+		
+		if(entity!=nil)
+		{
+			Hotspot *hotspot=entity;
+			
+	
+			ISFAppDelegate *appDelegate = (ISFAppDelegate *)[[UIApplication sharedApplication] delegate];
+			NSArray *viewControllers =[appDelegate.tabBarController viewControllers];
+			UINavigationController *leUINavigationController=(UINavigationController *)[viewControllers objectAtIndex:0];
+			MapViewController *laMapViewController=[[leUINavigationController viewControllers] objectAtIndex:0];
+			[laMapViewController refreshAnnotations:hotspot];
+			
+
+		}
+		
 		
     }   
 }

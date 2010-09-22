@@ -26,21 +26,24 @@
 	[infosImage setImage:[UIImage imageNamed:NSLocalizedString(@"infosImage", @"")]];
 	[ISFButton setImage:[UIImage imageNamed:NSLocalizedString(@"isfButton", @"")] forState:UIControlStateNormal];
 	[CreditsButton setImage:[UIImage imageNamed:NSLocalizedString(@"isfCreditsImage", @"")] forState:UIControlStateNormal];
+	[GuideButton setImage:[UIImage imageNamed:NSLocalizedString(@"btn_notice",@"")]	 forState:UIControlStateNormal];
 	
 	[ISFInfosImage setImage:[UIImage imageNamed:NSLocalizedString(@"isfInfosImage", @"")]];
+	[ISFInfosNotice setImage:[UIImage imageNamed:NSLocalizedString(@"isfInfosNotice", @"")]];
 	[backButton setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
 	[backButton2 setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
+	[backButton3 setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
 	
 	NSString *versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey];
-	NSLog(@"version: %@",versionString);
+	NSLog(@"version : %@",versionString);
 
 	
-	versionLabel.text=[@"Version :" stringByAppendingFormat:versionString]; 
+	versionLabel.text=[@"Version : " stringByAppendingFormat:versionString]; 
 	
 	isMainView = YES;
 	
 	
-	
+	infos.text=NSLocalizedString(@"textinfo",@"");
 	
 	
 }
@@ -97,6 +100,29 @@
 		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
 		[mainView removeFromSuperview];
 		[self.view addSubview:CreditsView];
+		[UIView commitAnimations];
+		isMainView = NO;
+	}
+	else {
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationBeginsFromCurrentState:NO];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:YES];
+		[ISFView removeFromSuperview];
+		[self.view addSubview:mainView];
+		[UIView commitAnimations];
+		isMainView = YES;
+	}
+	
+}
+- (IBAction)flipViews3 {
+	if (isMainView == YES) {
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:1.0];
+		[UIView setAnimationBeginsFromCurrentState:NO];
+		[UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.view cache:YES];
+		[mainView removeFromSuperview];
+		[self.view addSubview:GuideView];
 		[UIView commitAnimations];
 		isMainView = NO;
 	}

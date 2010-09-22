@@ -13,8 +13,10 @@
 	IBOutlet UIWebView		*webView;
 	UIActivityIndicatorView	*spinner;
 	NSString						*_url;
+	NSString						*contentWebView;
 }
 
 @property (nonatomic, retain) NSString *url;
 
+- (void)setContentWebView:(NSString *)content:(NSString *)URL;
 @end

@@ -14,14 +14,17 @@
 	IBOutlet UIImageView		*infosImage;
 	IBOutlet UIButton			*ISFButton;
 	IBOutlet UIButton			*CreditsButton;
+	IBOutlet UIButton			*GuideButton;
+	IBOutlet UITextView			*infos;
 	
-	//IBOutlet UITextView			*Credits;
-	
+	IBOutlet UIView			*GuideView;
 	IBOutlet UIView			*ISFView;
 	IBOutlet UIView			*CreditsView;
 	IBOutlet UIImageView		*ISFInfosImage;
+	IBOutlet UIImageView		*ISFInfosNotice;
 	IBOutlet UIButton			*backButton;
 	IBOutlet UIButton			*backButton2;
+	IBOutlet UIButton			*backButton3;
 	IBOutlet UILabel			*versionLabel;
 		
 	BOOL	isMainView;
@@ -29,6 +32,7 @@
 
 - (IBAction)flipViews;
 - (IBAction)flipViews2;
+- (IBAction)flipViews3;
 - (IBAction)visitIleSansFil;
 - (IBAction)visitIWeb;
 - (IBAction)visitTdo;

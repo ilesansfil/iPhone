@@ -42,6 +42,7 @@
 	return [[Model shared] fetchObjectsForEntityForName:@"Hotspot" 
 															predicate:nil 
 															 sortedBy:@"createdAt"
+																ascending:YES
 																 limit:0];
 }
 

@@ -25,10 +25,10 @@
 	// Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 	// self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
-	UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITabBar2.png"]];
+	/*UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"UITabBar2.png"]];
 	img.frame = CGRectOffset(img.frame, 0, 1);
 	[latabbar insertSubview:img atIndex:0];
-	[img release];
+	[img release];*/
 	}
 
 

@@ -31,6 +31,7 @@
 	return [[Model shared] fetchObjectsForEntityForName:@"Node" 
 															predicate:nil 
 															 sortedBy:@"createdAt"
+																ascending:YES
 																 limit:0];
 }
 

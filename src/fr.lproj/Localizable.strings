@@ -15,10 +15,13 @@
 // Connection View
 "Cannot connect to the Internet" = "Aucune connexion à Internet";
 "You must connect to a Wi-Fi or cellular data network to view the map." = "Vous devez être connecté à un réseau Wi-Fi ou cellulaire pour voir la carte ";
-"You must connect to a Wi-Fi or cellular data network to view the news." = "Vous devez être connecté à un réseau Wi-Fi ou cellulaire pour voir les nouvelles ";
 "To take advantage of offline mode, you need to connect once to Internet to create the database of hotspots." = "Pour profiter du MODE HORS-LIGNE, vous devez vous connecter une première fois à Internet afin de créer la base de données des points d'accès";
+"To take advantage of offline mode, you need to connect once to Internet to create the database of news." = "Pour profiter du MODE HORS-LIGNE, vous devez vous connecter une première fois à Internet afin de créer la base de données actualité";
 
 "Loading..." = "Chargement...";
+"Release to refresh..." = "Relachez pour rafraichir...";
+"Pull down to refresh..." = "Abaissez pour rafraichir...";
+"Last Updated: %@" = "Dernière mise à jour: %@";
 "Locating..." = "Localisation...";
 "You are here" = "Vous êtes ici";
 "There are no location in the area" = "Aucun point d'accès dans cette zone";
@@ -32,6 +35,7 @@
 "Phone" = "Téléphone";
 "Email" = "Courriel";
 "Directions To Here" = "Itinéraire vers ce lieu";
+"Show it on the map" = "Montrer sur la carte";
 "Add to Favorites" = "Ajouter aux favoris";
 "Remove to Favorites" = "Enlever des favoris";
 "Open in Google Maps?" = "Ouvrir dans Google Maps ?";
@@ -58,4 +62,8 @@
 "isfButton" = "btn_isf_fr.png";
 "backButton" = "btn_isf_infos_back_fr.png";
 "isfInfosImage" = "isf_infos_fr.png";
+"isfInfosNotice" = "isfInfosNotice_fr.png";
 "isfCreditsImage" ="btn_credits_fr.png";
+"btn_notice" = "btn_notice_fr.png";
+
+"textinfo" = "Cette application est là pour vous aider à trouver des points d'accès sans fil internet gratuit sur le grand Montréal, qui sont gérés par l'organisme à but non lucratif Île sans fil. \r\n\n Aujourd'hui, vous êtes 150 000 membres à utiliser plus de 210 points d'accès. Le réseau d'Île sans fil est le moyen le plus simple et gratuit pour se connecter à l'Internet sans fil à Montréal. Passez le message autour de vous !";

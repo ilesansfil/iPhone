@@ -12,7 +12,8 @@
 #import "XMLReader.h"
 
 
-@class BanksViewController, LocationAnnotation;
+@class /*BanksViewController,*/ LocationAnnotation;
+@class EGORefreshTableHeaderView;
 
 @interface MapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate,/* googleMapsAPIDelegate,*/ XMLReaderDelegate> {
 	IBOutlet MKMapView 					*map;
@@ -27,13 +28,16 @@
 	IBOutlet UIView							*connectionView;
 	IBOutlet UIView							*principalView;
 	IBOutlet UIButton						*BtLocateme;
+	IBOutlet UIButton						*BtRefresh;
 	IBOutlet UILabel						*alertMain;
 	IBOutlet UILabel						*alertMessage;
 	
 	UIView * barButtonSuperView, * barButtonPrimaryView, * barButtonSecondaryView;
 
+	EGORefreshTableHeaderView *refreshHeaderView;
 	
-	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.	
+	NSMutableArray	*filteredListContent;	// The content filtered as a result of a search.
+	NSMutableArray *AnnotationsClone;
     BOOL			searchWasActive;
 	
 	NSOperationQueue *operationQueue;
@@ -57,17 +61,28 @@
 	BOOL updatingLocations;
 	BOOL needsZoomOut;
 	
+	BOOL _reloading;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *hotspotArray;
 @property (nonatomic, retain) NSMutableArray *filteredListContent;
+@property (nonatomic, retain) NSMutableArray *AnnotationsClone;
+@property (nonatomic) BOOL isMapView;
 @property (nonatomic) BOOL searchWasActive;
+@property(assign,getter=isReloading) BOOL reloading;
+
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 
 - (IBAction)locateMe;
+- (IBAction)Refresh;
 - (CLLocationCoordinate2D) getCurrentCoordinate;
 - (IBAction)showList;
 -(void)searchTableView:(NSString*)searchText;
+-(void)refreshAnnotations:(Hotspot *)hotspot;
+- (void)mapZoomToLocation:(CLLocationCoordinate2D)position animated:(BOOL)animated;
+-(void)selectAnnotations:(Hotspot *) hotspot;
 @end
 
 

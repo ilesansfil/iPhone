@@ -9,6 +9,8 @@
 #import "HotspotInfosViewController.h"
 #import "Favorite.h"
 #import "Model.h"
+#import "MapViewController.h"
+#import "ISFAppDelegate.h"
 
 #define kSectionInfos			0
 #define kSectionDirections		1
@@ -24,32 +26,48 @@
 
 @implementation HotspotInfosViewController
 
-@synthesize hotspot, currentCoords, /*btn,*/ exist;
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
-
-/*
-- (id)initWithBackImageNamed:(NSString*)imageName {
-	if (self = [super initWithNibName:@"HotspotInfosViewController" bundle:nil]) {
-		btn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 65, 32)] autorelease];
-		[btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
-		[btn addTarget:self action:@selector(closeView) forControlEvents:UIControlEventTouchUpInside];
-		btn.titleLabel.font = [UIFont boldSystemFontOfSize:13];
-		btn.titleLabel.textAlignment = UITextAlignmentRight;
-	}
-	return self;
-}*/
+@synthesize hotspot, currentCoords, exist;
 
 
 - (void)viewDidLoad {
-	//_navBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:btn] autorelease];
+	
+	
+	NSString *identifier=hotspot.hotspotId;
+	NSPredicate *predicate = identifier
+	? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
+	: nil;
+	
+	id entity = [[Model shared] findFirstObjectForEntityForName:@"Favorite" 
+													  predicate:predicate 
+													   sortedBy:nil];
+	UIBarButtonItem *addfavoriteButton;
+	if(entity==nil)
+	{
+		addfavoriteButton = [[UIBarButtonItem alloc]
+										   initWithImage:[UIImage imageNamed:@"favorite-grey2.png"]
+										   style:UIBarButtonItemStyleBordered
+										   target:self
+							 action:@selector(AddDeleteFavorite)];
+
+
+		self.exist=0;
+		
+	} else {
+		addfavoriteButton = [[UIBarButtonItem alloc]
+											  initWithImage:[UIImage imageNamed:@"favorite-color2.png"]
+											  style:UIBarButtonItemStyleBordered
+											  target:self
+							 action:@selector(AddDeleteFavorite)];
+		
+		self.exist=1;
+	}
+	
+    self.navigationItem.rightBarButtonItem=addfavoriteButton;
+
+	
+	
+	
+	//self.navigationController.topViewController.navigationController.navigationBar.topItem.rightBarButtonItem=addfavoriteButton;
 	infos = [[NSMutableArray alloc] init];
 	[super viewDidLoad];
 }
@@ -127,7 +145,8 @@
 
 	CGSize size = [hotspot.name sizeWithFont:[UIFont boldSystemFontOfSize:17] constrainedToSize:CGSizeMake(280, 80) lineBreakMode:UILineBreakModeWordWrap];
 	UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, size.height+40.0f)] autorelease];
-	UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 20, 280, size.height+10)] autorelease];
+//	UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 20, 280, size.height+10)] autorelease];
+	UILabel *nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(45, 20, 255, size.height+10)] autorelease];
 	nameLabel.backgroundColor = [UIColor clearColor];
 	nameLabel.text = hotspot.name;
 	nameLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -135,6 +154,17 @@
 	nameLabel.shadowOffset = CGSizeMake(0, 1);
 	nameLabel.numberOfLines = 3;
 	[headerView addSubview:nameLabel];
+	
+	//UIImageView *imageView=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pin-down.png"]];
+	UIImageView *imageView=[[[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 20,/* size.height+10*/34)] autorelease];
+
+	if ([hotspot status] == kHotspotStatusUnknow) imageView.image = [UIImage imageNamed:@"pin-unknown.png"];
+	if ([hotspot status] == kHotspotStatusDown) imageView.image = [UIImage imageNamed:@"pin-down.png"];
+	if ([hotspot status] == kHotspotStatusUp) imageView.image = [UIImage imageNamed:@"pin-up.png"];
+
+	
+	[headerView addSubview:imageView];
+
 	return headerView;
 }
 
@@ -163,7 +193,7 @@
 	if(indexPath.section == kSectionFavorite)	 {
 		
 		
-		NSString *identifier=hotspot.hotspotId;
+	/*	NSString *identifier=hotspot.hotspotId;
 		NSPredicate *predicate = identifier
 		? [NSPredicate predicateWithFormat:@"identifier == %@", identifier]
 		: nil;
@@ -187,7 +217,13 @@
 			UIImage *img= [UIImage imageNamed:@"favorite-color.png"];
 			cell.imageView.image = img;
 			self.exist=1;
-		}
+		}*/
+		cell.textLabel.text				= NSLocalizedString(@"Show it on the map", @"");
+		cell.textLabel.textAlignment	= UITextAlignmentCenter;
+		UIImage *img= [UIImage imageNamed:@"showmap.png"];
+		cell.imageView.image = img;
+		
+		
 	} else {
 		switch (indexPath.row) {
 			case kRowTagAddress:
@@ -221,8 +257,24 @@
 	}
 	else {
 	if (indexPath.section == 2) {
-		[self AddDeleteFavorite:exist];
-		[tableView reloadData];
+		ISFAppDelegate *appDelegate = (ISFAppDelegate *)[[UIApplication sharedApplication] delegate];
+		NSArray *viewControllers =[appDelegate.tabBarController viewControllers];
+		UINavigationController *leUINavigationController=(UINavigationController *)[viewControllers objectAtIndex:0];
+		MapViewController *laMapViewController=[[leUINavigationController viewControllers] objectAtIndex:0];
+		
+		[self.navigationController popToRootViewControllerAnimated:NO];
+		[appDelegate.tabBarController setSelectedViewController:laMapViewController];
+		[appDelegate.tabBarController setSelectedIndex:0];
+		CLLocationCoordinate2D coords;
+		coords.latitude	= [hotspot.latitude doubleValue];
+		coords.longitude	= [hotspot.longitude doubleValue];
+		if(!laMapViewController.isMapView)
+		{
+			[laMapViewController showList];
+		}
+		[laMapViewController mapZoomToLocation:coords animated:YES];
+		[laMapViewController selectAnnotations:hotspot];
+		
 	}
 	 else {
 		switch (indexPath.row) {
@@ -328,23 +380,32 @@
 	NSURL *myURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.google.com/maps?daddr==%@&saddr=%f,%f", [[hotspot fullAddressOneLine] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], currentCoords.latitude, currentCoords.longitude]];
 	[[UIApplication sharedApplication] openURL:myURL];
 }
-- (void)AddDeleteFavorite:(BOOL )action {
-	if(!action)
+- (IBAction)AddDeleteFavorite {
+	if(!exist)
 	{
 		
 	Favorite *favorite = [[Model shared] insertNewObjectForEntityForName:@"Favorite"];
 	favorite.identifier			= hotspot.hotspotId;
 	favorite.name				= hotspot.name;
-		[favorite setCreatedAt:[NSDate date]];
+	[favorite setCreatedAt:[NSDate date]];
 
 	
 	[[Model shared] save];
 		
+	UIBarButtonItem *addfavoriteButton;	
+	self.exist=1;
 		
-	self.exist=0;
+			addfavoriteButton = [[UIBarButtonItem alloc]
+								 initWithImage:[UIImage imageNamed:@"favorite-color2.png"]
+								 style:UIBarButtonItemStyleBordered
+								 target:self
+								 action:@selector(AddDeleteFavorite)];
+			
 		
 		
+		self.navigationItem.rightBarButtonItem=addfavoriteButton;
 		
+
 		
 	}else {
 		
@@ -359,11 +420,38 @@
 		Favorite *favorite=entity;
 		[[Model shared] deleteObject:favorite];
 		[[Model shared] save];
-		/*UIAlertView *Alert = [[UIAlertView alloc] initWithTitle: @"Alert" message: @"the favorite already exist ! "  delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
-		[Alert show];*/
-	self.exist=1;
+		UIBarButtonItem *addfavoriteButton;
 		
+		
+		
+			addfavoriteButton = [[UIBarButtonItem alloc]
+								 initWithImage:[UIImage imageNamed:@"favorite-grey2.png"]
+								 style:UIBarButtonItemStyleBordered
+								 target:self
+								 action:@selector(AddDeleteFavorite)];
+			
+			
+	
+		self.navigationItem.rightBarButtonItem=addfavoriteButton;
+		
+		
+		
+		
+		
+		self.exist=0;
+		
+	
+		
+		
+	
 	}
+	
+		
+	ISFAppDelegate *appDelegate = (ISFAppDelegate *)[[UIApplication sharedApplication] delegate];
+	NSArray *viewControllers =[appDelegate.tabBarController viewControllers];
+	UINavigationController *leUINavigationController=(UINavigationController *)[viewControllers objectAtIndex:0];
+	MapViewController *laMapViewController=[[leUINavigationController viewControllers] objectAtIndex:0];
+	[laMapViewController refreshAnnotations:hotspot];
 	
 }
 /*
