@@ -2,8 +2,8 @@
 //  InfosViewController.m
 //  Ile sans fil
 //
-//  Created by Oli on 09-10-06.
-//  Copyright 2009 Kolt Production. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import "InfosViewController.h"
@@ -30,6 +30,12 @@
 	[ISFInfosImage setImage:[UIImage imageNamed:NSLocalizedString(@"isfInfosImage", @"")]];
 	[backButton setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
 	[backButton2 setImage:[UIImage imageNamed:NSLocalizedString(@"backButton", @"")] forState:UIControlStateNormal];
+	
+	NSString *versionString = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey];
+	NSLog(@"version: %@",versionString);
+
+	
+	versionLabel.text=[@"Version :" stringByAppendingFormat:versionString]; 
 	
 	isMainView = YES;
 	

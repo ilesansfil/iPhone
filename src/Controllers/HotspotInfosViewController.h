@@ -2,8 +2,8 @@
 //  HotspotInfosViewController.h
 //  Ile sans fil
 //
-//  Created by Oli on 09-10-06.
-//  Copyright 2009 Kolt Production. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import <UIKit/UIKit.h>
@@ -18,18 +18,18 @@
 	NSMutableArray					*infos;
 	Hotspot 							*hotspot;
 	CLLocationCoordinate2D		 currentCoords;
-	UIButton *btn;
+	//UIButton *btn;
 	BOOL exist;
 	
 }
 
 
-@property (nonatomic, retain) UIButton *btn;
+//@property (nonatomic, retain) UIButton *btn;
 @property (nonatomic, retain) Hotspot *hotspot;
 @property (nonatomic, assign) CLLocationCoordinate2D currentCoords;
 @property (nonatomic, assign) BOOL exist;
 
-- (id)initWithBackImageNamed:(NSString*)imageName;
+//- (id)initWithBackImageNamed:(NSString*)imageName;
 
 - (void)confirmMap;
 - (void)showMap;
@@ -40,6 +40,6 @@
 - (void)showDirections;
 - (void)AddDeleteFavorite:(BOOL )action;
 
-- (IBAction)closeView;
+//- (IBAction)closeView;
 
 @end

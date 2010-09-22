@@ -2,8 +2,8 @@
 //  Ile_sans_filAppDelegate.m
 //  Ile sans fil
 //
-//  Created by Oli on 09-10-03.
-//  Copyright Kolt Production 2009. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import "ISFAppDelegate.h"

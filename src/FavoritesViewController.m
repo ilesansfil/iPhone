@@ -2,7 +2,7 @@
 //  FavoritesViewController.m
 //
 //  Created by thomas dobranowski on 12/04/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import "FavoritesViewController.h"
@@ -44,6 +44,9 @@
 	[favoritesArray release]; 
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark tableview favorites
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -57,13 +60,7 @@
 	return 60.0f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	// A date formatter for the time stamp static 
-	/*NSDateFormatter *dateFormatter = nil; 
-	if (dateFormatter == nil) {
-		dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-		[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	}*/
+	
 	static NSString *CellIdentifier = @"identifier";
 	// Dequeue or create a new cell
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -88,8 +85,7 @@
 		
 		NSString *address=[[hotspot civicNumber] stringByAppendingString:@" "];
 		cell.detailTextLabel.text=[address stringByAppendingString:[hotspot streetAddress]];
-	}
-	else {
+	}else {
 	    cell.detailTextLabel.text=NSLocalizedString(@"This hotspot has been removed!",@"");
 		cell.detailTextLabel.textColor = [UIColor redColor];
 	}
@@ -113,12 +109,12 @@
 	if(entity!=nil)
 	{
 		Hotspot *hotspot=entity;
-		HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] initWithBackImageNamed:NSLocalizedString(@"btn-back-favorites", @"")] autorelease];
+			
+		HotspotInfosViewController *infosController = [[[HotspotInfosViewController alloc] init] autorelease];
 		infosController.hotspot = hotspot;
-		//infosController.currentCoords = mapView.userLocation.coordinate;
-
 		infosController.currentCoords =[mapViewController getCurrentCoordinate];
-		[self presentModalViewController:infosController animated:YES];
+		[self.navigationController pushViewController:infosController animated:YES];
+		
 	}
 	
 }

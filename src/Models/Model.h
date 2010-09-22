@@ -3,7 +3,8 @@
 //  Ile sans fil
 //
 //  Created by Fred Brunel on 02/08/09.
-//  Copyright 2009 WhereCloud Inc. All rights reserved.
+//  Copyright 2009 WhereCloud Inc. License Apache2.
+
 //
 
 #import <Foundation/Foundation.h>

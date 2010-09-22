@@ -2,14 +2,15 @@
 //  NewsViewController.m
 //  Ile sans fil
 //
-//  Created by Oli Kenobi on 09-10-10.
-//  Copyright 2009 Kenobi Studios. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
-
+#import <SystemConfiguration/SystemConfiguration.h>
 #import "NewsViewController.h"
 #import "NewsWebViewController.h"
 #import "ISFAppDelegate.h"
-
+#import "News.h"
+#import "Model.h"
 
 #define kRSSURL @"http://www.ilesansfil.org/feed/"
 
@@ -19,11 +20,21 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	
+
+		if([self isConnectionAvailable] == NO) {
+			[self setView:connectionView];
+			[alertMain setText:NSLocalizedString(@"Cannot connect to the Internet", @"")];
+			[alertMessage setText:NSLocalizedString(@"You must connect to a Wi-Fi or cellular data network to view the news.", @"")];
+			
+		} else {
+			
+
 	operationQueue = [[NSOperationQueue alloc] init];
 	[operationQueue setMaxConcurrentOperationCount:1];
 	
-	UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
-	self.navigationItem.leftBarButtonItem = refreshButton;
+	//refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+	//self.navigationItem.leftBarButtonItem = refreshButton;
 
 	activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
 	activity.hidesWhenStopped = YES;
@@ -31,9 +42,12 @@
 	UIBarButtonItem *spinnerItem = [[UIBarButtonItem alloc] initWithCustomView:activity];
 	self.navigationItem.rightBarButtonItem = spinnerItem;
 	
+	
 	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL];
 	[operationQueue addOperation:operation];
 	[operation release];
+			
+	}
 }
 
 
@@ -130,10 +144,19 @@
 #pragma mark XML Parser
 
 - (IBAction)refresh {
+	
+	self.navigationItem.leftBarButtonItem = nil; 
+	
+	stories=[[NSMutableArray alloc] init];
+	[self.tableView reloadData];
 	[activity startAnimating];
 	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parseXMLFileAtURL:) object:kRSSURL];
 	[operationQueue addOperation:operation];
 	[operation release];
+	
+
+	
+	
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser{	
@@ -173,7 +196,7 @@
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 	[[ISFAppDelegate appDelegate] showNetworkActivity:NO];
 	[activity stopAnimating];
-
+	
 	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
 	NSLog(@"error parsing XML: %@", errorString);
 	
@@ -191,6 +214,9 @@
 		currentDate = [[NSMutableString alloc] init];
 		currentSummary = [[NSMutableString alloc] init];
 		currentLink = [[NSMutableString alloc] init];
+		currentAutor = [[NSMutableString alloc] init];
+		currentText = [[NSMutableString alloc] init];
+
 	}
 	
 }
@@ -205,6 +231,21 @@
 		[item setObject:currentDate forKey:@"date"];
 		
 		[stories addObject:[[item copy] autorelease]];
+		
+		/*
+		News *news = [[Model shared] insertNewObjectForEntityForName:@"News"];
+
+		news.title=[item objectForKey:@"title"];
+		news.link=[item objectForKey:@"link"];
+		news.summary=[item objectForKey:@"summary"];
+		news.createdAt=[item objectForKey:@"date"];
+//		news.text=[item objectForKey:@"title"];
+	//	news.title=[item objectForKey:@"title"];
+
+		
+		
+		
+		[[Model shared] save];*/
 		NSLog(@"adding story: %@", currentTitle);
 	}
 	
@@ -228,10 +269,30 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	
 	[activity stopAnimating];
-
+	
+	
 	NSLog(@"all done!");
 	NSLog(@"stories array has %d items", [stories count]);
 	[self.tableView reloadData];
+	refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+	self.navigationItem.leftBarButtonItem = refreshButton;
+}
+- (BOOL)isConnectionAvailable {
+	static BOOL checkNetwork = YES;
+	static BOOL available = NO;
+	if (checkNetwork) { // Since checking the reachability of a host can be expensive, cache the result and perform the reachability check once.
+		checkNetwork = NO;
+		
+		Boolean success;    
+		const char *host_name = "google.com";
+		
+		SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(NULL, host_name);
+		SCNetworkReachabilityFlags flags;
+		success = SCNetworkReachabilityGetFlags(reachability, &flags);
+		available = success && (flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired);
+		CFRelease(reachability);
+	}
+	return available;
 }
 
 

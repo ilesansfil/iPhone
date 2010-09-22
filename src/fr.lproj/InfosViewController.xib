@@ -487,7 +487,7 @@ ZXJjaWUKA</string>
 					<object class="IBUIButton" id="1002769087">
 						<reference key="NSNextResponder" ref="43141082"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{19, 356}, {171, 37}}</string>
+						<string key="NSFrame">{{14, 356}, {171, 37}}</string>
 						<reference key="NSSuperview" ref="43141082"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -505,6 +505,33 @@ ZXJjaWUKA</string>
 							<bytes key="NSRGB">MC4wMDIwNjgyNTQ1NDEgMSAwLjAwMzIwODkzNzQ2AA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="357762397"/>
+					</object>
+					<object class="IBUILabel" id="693130188">
+						<reference key="NSNextResponder" ref="43141082"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{18, 383}, {162, 21}}</string>
+						<reference key="NSSuperview" ref="43141082"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">version 1.2</string>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">10</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+							<object class="NSColorSpace" key="NSCustomColorSpace">
+								<int key="NSID">1</int>
+							</object>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 411}</string>
@@ -713,6 +740,14 @@ ZXJjaWUKA</string>
 					</object>
 					<int key="connectionID">108</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">versionLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="693130188"/>
+					</object>
+					<int key="connectionID">110</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -824,6 +859,7 @@ ZXJjaWUKA</string>
 							<reference ref="159102769"/>
 							<reference ref="912737041"/>
 							<reference ref="1002769087"/>
+							<reference ref="693130188"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -887,6 +923,11 @@ ZXJjaWUKA</string>
 						<reference key="object" ref="1002769087"/>
 						<reference key="parent" ref="43141082"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">109</int>
+						<reference key="object" ref="693130188"/>
+						<reference key="parent" ref="43141082"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -902,6 +943,7 @@ ZXJjaWUKA</string>
 					<string>100.IBPluginDependency</string>
 					<string>101.IBPluginDependency</string>
 					<string>102.IBPluginDependency</string>
+					<string>109.IBPluginDependency</string>
 					<string>15.IBPluginDependency</string>
 					<string>18.IBEditorWindowLastContentRect</string>
 					<string>18.IBPluginDependency</string>
@@ -941,6 +983,7 @@ ZXJjaWUKA</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{234, 426}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -951,7 +994,7 @@ ZXJjaWUKA</string>
 					<string>{{341, 465}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{131, 258}, {320, 480}}</string>
+					<string>{{142, 254}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -984,7 +1027,7 @@ ZXJjaWUKA</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">108</int>
+			<int key="maxID">110</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1034,6 +1077,7 @@ ZXJjaWUKA</string>
 							<string>backButton2</string>
 							<string>infosImage</string>
 							<string>mainView</string>
+							<string>versionLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1046,6 +1090,7 @@ ZXJjaWUKA</string>
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UIView</string>
+							<string>UILabel</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1197,6 +1242,14 @@ ZXJjaWUKA</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UIImageView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UILabel</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UILabel.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

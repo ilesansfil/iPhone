@@ -3,7 +3,7 @@
 //  Ile sans fil
 //
 //  Created by Oli on 24/05/09.
-//  Copyright 2009 Kolt Production. All rights reserved.
+//  Copyright 2009 Kolt Production. License Apache2.
 //
 
 #import "XMLReader.h"
@@ -233,6 +233,11 @@ static NSUInteger parsedLocationsCounter;
 	for (NSDictionary *spot in hotspotsList) {
 		contentOfCurrentHotspot = [spot objectForKey:@"hotspot"];
 		nodesForCurrentHotspot	= [spot objectForKey:@"nodes"];
+	
+		if(![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LAT] isEqualToString:@""] & ![(NSString *)[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOT_LONG] isEqualToString:@""])
+		{		
+
+	
 //		Hotspot *hotspot = [[Model shared] insertNewObjectForEntityForName:@"Hotspot"];
 		Hotspot *hotspot = [[Model shared] findOrCreateObjectForEntityForName:@"Hotspot" withIdentifier:[contentOfCurrentHotspot objectForKey:XML_TAG_HOTSPOTID]];
 		if (hotspot.hotspotId == nil) {
@@ -270,11 +275,15 @@ static NSUInteger parsedLocationsCounter;
 			node.updatedAt		= [NSDate date];
 			node.hotspot 		= hotspot;
 		}
+			
+		}
 	}
-	[[Model shared] save];
 	
+	
+	[[Model shared] save];
 	if (delegate && [delegate respondsToSelector:@selector(XMLReaderDidFinishParsing)]) [delegate XMLReaderDidFinishParsing];
 //	NSLog(@"%@", [Hotspot findAll]);
 }
 
 @end
+

@@ -3,7 +3,7 @@
 //  Ile sans fil
 //
 //  Created by Oli on 24/05/09.
-//  Copyright 2009 Kolt Production. All rights reserved.
+//  Copyright 2009 Kolt Production.License Apache2.
 //
 
 #import <Foundation/Foundation.h>

@@ -3,13 +3,15 @@
 //  Ile sans fil
 //
 //  Created by Fred Brunel on 02/08/09.
-//  Copyright 2009 WhereCloud Inc.. All rights reserved.
+//  Copyright 2009 WhereCloud Inc. License Apache2.
+
 //
 
 #import "Model.h"
 #import "Hotspot.h"
 #import "Node.h"
 #import "Favorite.h"
+#import "News.h"
 
 @implementation Model
 
@@ -139,6 +141,7 @@
 	[self deleteObjects:[Hotspot findAll]];
 	[self deleteObjects:[Node findAll]];
 	[self deleteObjects:[Favorite findAll]];
+	[self deleteObjects:[News findAll]];
 	return self;
 }
 

@@ -2,8 +2,8 @@
 //  NewsWebViewController.h
 //  Ile sans fil
 //
-//  Created by Oli Kenobi on 09-10-11.
-//  Copyright 2009 Kenobi Studios. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import <UIKit/UIKit.h>

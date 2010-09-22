@@ -2,7 +2,7 @@
 //  FavoritesViewController.h
 //
 //  Created by thomas dobranowski on 12/04/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import <UIKit/UIKit.h>
