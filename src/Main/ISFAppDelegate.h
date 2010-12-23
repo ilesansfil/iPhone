@@ -2,8 +2,8 @@
 //  Ile_sans_filAppDelegate.h
 //  Ile sans fil
 //
-//  Created by Oli on 09-10-03.
-//  Copyright Kolt Production 2009. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 @interface ISFAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
@@ -20,5 +20,5 @@
 
 + (ISFAppDelegate *)appDelegate;
 - (void)showNetworkActivity:(BOOL)active;
-
+-(void)alertNotice:(NSString *)title withMSG:(NSString *)msg cancleButtonTitle:(NSString *)cancleTitle otherButtonTitle:(NSString *)otherTitle;
 @end

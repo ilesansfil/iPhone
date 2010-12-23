@@ -1,0 +1,498 @@
+Tfacebook-ios-sdk
+v7
+r1
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk
+c000000004BA82B910000000000000110
+t1269312401
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004B9F26D2000000000036A650
+t1268721362
+s3581520
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004B9F26B90000000000001355
+t1268721337
+s4949
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004B9F318D000000000000098F
+t1268724109
+s2447
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBDialog.h
+c000000004C9B817E00000000000011EE
+t1285259646
+s4590
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBDialog.m
+c000000004C9B817E00000000000056FD
+t1285259646
+s22269
+i"FBDialog.h"
+i"Facebook.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBLoginDialog.h
+c000000004C9B817E0000000000000577
+t1285259646
+s1399
+i"FBDialog.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBLoginDialog.m
+c000000004C9B817E0000000000000BC4
+t1285259646
+s3012
+i"FBDialog.h"
+i"FBLoginDialog.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBRequest.h
+c000000004C9B817E0000000000000C0C
+t1285259646
+s3084
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBRequest.m
+c000000004C9B817E0000000000002BEA
+t1285259646
+s11242
+i"FBRequest.h"
+i"JSON.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/Facebook.h
+c000000004C9B817E0000000000000C78
+t1285259646
+s3192
+i"FBLoginDialog.h"
+i"FBRequest.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/Facebook.m
+c000000004C9B817E0000000000003DDE
+t1285259646
+s15838
+i"Facebook.h"
+i"FBLoginDialog.h"
+i"FBRequest.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/JSON.h
+c000000004C9B817E00000000000008F9
+t1285259646
+s2297
+i"SBJSON.h"
+i"NSObject+SBJSON.h"
+i"NSString+SBJSON.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSObject+SBJSON.h
+c000000004C9B817E0000000000000A01
+t1285259646
+s2561
+i<Foundation/Foundation.h>
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSObject+SBJSON.m
+c000000004C9B817E000000000000089E
+t1285259646
+s2206
+i"NSObject+SBJSON.h"
+i"SBJsonWriter.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSString+SBJSON.h
+c000000004C9B817E0000000000000916
+t1285259646
+s2326
+i<Foundation/Foundation.h>
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSString+SBJSON.m
+c000000004C9B817E000000000000087D
+t1285259646
+s2173
+i"NSString+SBJSON.h"
+i"SBJsonParser.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJSON.h
+c000000004C9B817E0000000000000AED
+t1285259646
+s2797
+i<Foundation/Foundation.h>
+i"SBJsonParser.h"
+i"SBJsonWriter.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJSON.m
+c000000004C9B817E0000000000001ABC
+t1285259646
+s6844
+i"SBJSON.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonBase.h
+c000000004C9B817E0000000000000B82
+t1285259646
+s2946
+i<Foundation/Foundation.h>
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonBase.m
+c000000004C9B817E0000000000000AC1
+t1285259646
+s2753
+i"SBJsonBase.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonParser.h
+c000000004C9B817E0000000000000C0B
+t1285259646
+s3083
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonParser.m
+c000000004C9B817E00000000000036D0
+t1285259646
+s14032
+i"SBJsonParser.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonWriter.h
+c000000004C9B817E0000000000001140
+t1285259646
+s4416
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonWriter.m
+c000000004C9B817E0000000000001F26
+t1285259646
+s7974
+i"SBJsonWriter.h"
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/Debug-iphoneos/libfacebook_ios_sdk.a
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBDialog.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBLoginDialog.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBRequest.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/Facebook.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSObject+SBJSON.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSString+SBJSON.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJSON.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonBase.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonParser.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonWriter.o
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/facebook_ios_sdk.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/facebook_ios_sdk_Prefix.pch
+c000000004C9B817E00000000000000BC
+t1285259646
+s188
+i<Foundation/Foundation.h>
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBDialog.h
+c000000004C9B817E00000000000011EE
+t1285259646
+s4590
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBDialog.m
+c000000004C9B817E00000000000056FD
+t1285259646
+s22269
+i"FBDialog.h"
+i"Facebook.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBLoginDialog.h
+c000000004C9B817E0000000000000577
+t1285259646
+s1399
+i"FBDialog.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBLoginDialog.m
+c000000004C9B817E0000000000000BC4
+t1285259646
+s3012
+i"FBDialog.h"
+i"FBLoginDialog.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBRequest.h
+c000000004C9B817E0000000000000C0C
+t1285259646
+s3084
+i<Foundation/Foundation.h>
+i<UIKit/UIKit.h>
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBRequest.m
+c000000004C9B817E0000000000002BEA
+t1285259646
+s11242
+i"FBRequest.h"
+i"JSON.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/Facebook.h
+c000000004C9B817E0000000000000C78
+t1285259646
+s3192
+i"FBLoginDialog.h"
+i"FBRequest.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/Facebook.m
+c000000004C9B817E0000000000003DDE
+t1285259646
+s15838
+i"Facebook.h"
+i"FBLoginDialog.h"
+i"FBRequest.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/JSON.h
+c000000004C9B817E00000000000008F9
+t1285259646
+s2297
+i"SBJSON.h"
+i"NSObject+SBJSON.h"
+i"NSString+SBJSON.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSObject+SBJSON.h
+c000000004C9B817E0000000000000A01
+t1285259646
+s2561
+i<Foundation/Foundation.h>
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSObject+SBJSON.m
+c000000004C9B817E000000000000089E
+t1285259646
+s2206
+i"NSObject+SBJSON.h"
+i"SBJsonWriter.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSString+SBJSON.h
+c000000004C9B817E0000000000000916
+t1285259646
+s2326
+i<Foundation/Foundation.h>
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSString+SBJSON.m
+c000000004C9B817E000000000000087D
+t1285259646
+s2173
+i"NSString+SBJSON.h"
+i"SBJsonParser.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJSON.h
+c000000004C9B817E0000000000000AED
+t1285259646
+s2797
+i<Foundation/Foundation.h>
+i"SBJsonParser.h"
+i"SBJsonWriter.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJSON.m
+c000000004C9B817E0000000000001ABC
+t1285259646
+s6844
+i"SBJSON.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonBase.h
+c000000004C9B817E0000000000000B82
+t1285259646
+s2946
+i<Foundation/Foundation.h>
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonBase.m
+c000000004C9B817E0000000000000AC1
+t1285259646
+s2753
+i"SBJsonBase.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonParser.h
+c000000004C9B817E0000000000000C0B
+t1285259646
+s3083
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonParser.m
+c000000004C9B817E00000000000036D0
+t1285259646
+s14032
+i"SBJsonParser.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonWriter.h
+c000000004C9B817E0000000000001140
+t1285259646
+s4416
+i<Foundation/Foundation.h>
+i"SBJsonBase.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonWriter.m
+c000000004C9B817E0000000000001F26
+t1285259646
+s7974
+i"SBJsonWriter.h"
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/Debug-iphoneos/libfacebook_ios_sdk.a
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBDialog.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBLoginDialog.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBRequest.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/Facebook.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSObject+SBJSON.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSString+SBJSON.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJSON.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonBase.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonParser.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonWriter.o
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/facebook_ios_sdk.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/facebook_ios_sdk_Prefix.pch
+c000000004C9B817E00000000000000BC
+t1285259646
+s188
+i<Foundation/Foundation.h>
+
+N/var/folders/DA/DAXmSl1oEJK1f5ld+ybexk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/facebook_ios_sdk_Prefix-ctcmqlezbejesjaugntgrbpjfqug/facebook_ios_sdk_Prefix.pch.gch
+t2
+s0
+
+N/var/folders/lG/lGp9CENoHl0N9X6yJTcE4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/facebook_ios_sdk_Prefix-fkclzjevphkbwafwcwajalonrruh/facebook_ios_sdk_Prefix.pch.gch
+t2
+s0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBDialog.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBDialog.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBDialog.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBDialog.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBLoginDialog.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBLoginDialog.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBLoginDialog.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBLoginDialog.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBRequest.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBRequest.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/FBRequest.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/FBRequest.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/Facebook.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/Facebook.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/Facebook.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/Facebook.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSObject+SBJSON.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSObject+SBJSON.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSObject+SBJSON.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSObject+SBJSON.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSString+SBJSON.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSString+SBJSON.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/NSString+SBJSON.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/NSString+SBJSON.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJSON.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJSON.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJSON.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJSON.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonBase.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonBase.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonBase.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonBase.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonParser.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonParser.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonParser.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonParser.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonWriter.o "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonWriter.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CCompileC build/facebook-ios-sdk.build/Debug-iphoneos/facebook-ios-sdk.build/Objects-normal/armv6/SBJsonWriter.o "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/JSON/SBJsonWriter.m" normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CLibtool "/Users/tdo1/Desktop/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/Debug-iphoneos/libfacebook_ios_sdk.a" normal armv6
+r0
+
+CLibtool "/Volumes/FichiersMobile/Stage Zeagence/tdo1-isf.iPhone EN DEV /src/facebook_connect/build/Debug-iphoneos/libfacebook_ios_sdk.a" normal armv6
+r0
+
+CProcessPCH /var/folders/DA/DAXmSl1oEJK1f5ld+ybexk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/facebook_ios_sdk_Prefix-ctcmqlezbejesjaugntgrbpjfqug/facebook_ios_sdk_Prefix.pch.gch facebook_ios_sdk_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+
+CProcessPCH /var/folders/lG/lGp9CENoHl0N9X6yJTcE4k+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/facebook_ios_sdk_Prefix-fkclzjevphkbwafwcwajalonrruh/facebook_ios_sdk_Prefix.pch.gch facebook_ios_sdk_Prefix.pch normal armv6 objective-c com.apple.compilers.gcc.4_2
+r0
+

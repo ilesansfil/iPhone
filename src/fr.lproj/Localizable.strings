@@ -7,15 +7,22 @@
  */
 
 "Map" = "Carte";
+"Hotspots" = "Points d'accès";
 "News" = "Nouvelles";
-"Informations" = "Informations";
+"Informations" = "Infos";
 "Favorites" = "Favoris";
 
 // Connection View
 "Cannot connect to the Internet" = "Aucune connexion à Internet";
-"You must connect to a Wi-Fi or cellular data network to use this application." = "Vous devez être connecté à un réseau Wi-Fi ou cellulaire pour utiliser cette application.";
+"You must connect to a Wi-Fi or cellular data network to view the map." = "Vous devez être connecté à un réseau Wi-Fi ou cellulaire pour voir la carte ";
+"To take advantage of offline mode, you need to connect once to Internet to create the database of hotspots." = "Pour profiter du MODE HORS-LIGNE, vous devez vous connecter une première fois à Internet afin de créer la base de données des points d'accès";
+"To take advantage of offline mode, you need to connect once to Internet to create the database of news." = "Pour profiter du MODE HORS-LIGNE, vous devez vous connecter une première fois à Internet afin de créer la base de données actualité";
 
+"You must connect to a Wi-Fi or cellular data network." = "Vous devez être connecté à un réseau Wi-Fi ou cellulaire";
 "Loading..." = "Chargement...";
+"Release to refresh..." = "Relachez pour rafraichir...";
+"Pull down to refresh..." = "Abaissez pour rafraichir...";
+"Last Updated: %@" = "Dernière mise à jour: %@";
 "Locating..." = "Localisation...";
 "You are here" = "Vous êtes ici";
 "There are no location in the area" = "Aucun point d'accès dans cette zone";
@@ -24,10 +31,12 @@
 "btn-back-map" = "btn-back-map-fr.png";
 "btn-retour" = "btn-retour-fr.png";
 "btn-back-favorites" = "btn-back-favorites-fr.png";
+"btn-back-list" = "btn-back-list-fr.png"; 
 "Address" = "Addresse";
 "Phone" = "Téléphone";
 "Email" = "Courriel";
 "Directions To Here" = "Itinéraire vers ce lieu";
+"Show it on the map" = "Montrer sur la carte";
 "Add to Favorites" = "Ajouter aux favoris";
 "Remove to Favorites" = "Enlever des favoris";
 "Open in Google Maps?" = "Ouvrir dans Google Maps ?";
@@ -38,6 +47,8 @@
 "site apache"= "http://www.ilesansfil.org/a-propos/documents-officiels/licence-app/";
 
 "ISF News" = "Nouvelles ISF";
+"Blog" = "Blogue";
+"Twitter" = "Twitter";
 
 "Yes" = "Oui";
 "No" = "Non";
@@ -54,4 +65,20 @@
 "isfButton" = "btn_isf_fr.png";
 "backButton" = "btn_isf_infos_back_fr.png";
 "isfInfosImage" = "isf_infos_fr.png";
+"isfInfosNotice" = "isfInfosNotice_fr.png";
 "isfCreditsImage" ="btn_credits_fr.png";
+"btn_notice" = "btn_notice_fr.png";
+"bt_settings" = "settings_fr.png";
+
+"New Twitter Account"="Ajouter compte Twitter";
+"Delete Twitter Account"="Retirer compte Twitter";
+"New Facebook Account"="Ajouter compte Facebook";
+"Delete Facebook Account"="Retirer compte Facebook";
+
+"#ISF i'm actually to  " = "#ISF je suis actuellement au  ";
+
+"Connected @ " = "Connecté @ ";
+" • An Ile sans fil's hotspot" = " • Un point d'accès Île sans fil";
+"My wireless community in Montreal" = "Ma communauté sans fil à Montréal";
+
+"textinfo" = "Cette application est là pour vous aider à trouver des points d'accès sans fil internet gratuit sur le grand Montréal, qui sont gérés par l'organisme à but non lucratif Île sans fil. \r\n\n Aujourd'hui, vous êtes 160 000 membres à utiliser plus de 220 points d'accès. Le réseau d'Île sans fil est le moyen le plus simple et gratuit pour se connecter à l'Internet sans fil à Montréal. Passez le message autour de vous !";

@@ -3,7 +3,7 @@
 //  Ile sans fil
 //
 //  Created by Oli on 09-10-04.
-//  Copyright 2009 Kolt Production. All rights reserved.
+//  Copyright 2009 Kolt Production. License Apache2.
 //
 
 #import "Node.h"
@@ -31,6 +31,7 @@
 	return [[Model shared] fetchObjectsForEntityForName:@"Node" 
 															predicate:nil 
 															 sortedBy:@"createdAt"
+																ascending:YES
 																 limit:0];
 }
 

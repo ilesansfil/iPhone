@@ -2,8 +2,8 @@
 //  ConnectionViewController.h
 //  CASH Track
 //
-//  Created by Oli on 08/02/09.
-//  Copyright 2009 Kenobi Studios. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import <UIKit/UIKit.h>

@@ -2,8 +2,8 @@
 //  ConnectionViewController.m
 //  CASH Track
 //
-//  Created by Oli on 08/02/09.
-//  Copyright 2009 Kenobi Studios. All rights reserved.
+//  Created by thomas dobranowski on 12/04/10.
+//  Copyright 2010 ilesansfil. License Apache2.
 //
 
 #import "ConnectionViewController.h"
@@ -32,7 +32,8 @@
 - (void)viewDidLoad {
    [super viewDidLoad];
 	[alertMain setText:NSLocalizedString(@"Cannot connect to the Internet", @"")];
-	[alertMessage setText:NSLocalizedString(@"You must connect to a Wi-Fi or cellular data network to use this application.", @"")];
+	[alertMessage setText:NSLocalizedString(@"To take advantage of offline mode, you need to connect once to Internet to create the database of hotspots.", @"")];
+
 }
 
 
